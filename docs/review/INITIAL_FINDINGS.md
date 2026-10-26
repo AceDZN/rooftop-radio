@@ -22,3 +22,13 @@ Simulation follow-up: `tests/independent-simulation.test.ts` passes five input-o
 
 
 Final pure review follow-up: seven independent simulation tests pass after edge-to-edge ramp slopes, altitude gating and pause lifecycle changes. Antenna↔laundry down/up walking succeeds without jumping or recovery. First task “Tune the relay next to the greenhouse” correctly accepts both valid physical routes; direct glide is taught/tested separately. CURRICULUM.md reflects the final fixture and explicit parcel risk.
+
+## Pre-GLB source audit at HEAD 1a45707
+
+The unlocked Mac allows art work to resume; this audit did not drive Chrome. `GLB_ACCEPTANCE.md` lists the final model-visible checks that remain after integration.
+
+A concrete Ch4 bypass is confirmed by a new input-only regression: touching the first greenhouse→laundry awning, returning to bell, then gliding the direct crossing without beam contact incorrectly completes delivery. The test expects rejection and currently fails (`success` received; 809ms focused test). The existing complete valid route remains available. The production `wide` event must represent the named awning route being completed, rather than any awning touch.
+
+Dedicated low-wall vault evidence and actual Tripo clip mapping are still open. No additional speculative features or browser processes were added.
+
+Latest movement follow-up: the Ch4 bypass is fixed by full northbound laundry→west awning corridor evidence. Three new independent input fixtures pass for dedicated low-wall vault, jumping away without false vault detection, and spring-awning launch→greenhouse delivery. The earlier grounded-vault source concern is therefore closed in simulation. Final imported-character visual evidence remains to be inspected separately.

@@ -1,0 +1,22 @@
+objc[10651]: Class GNotificationCenterDelegate is implemented in both /Users/acedzn/.npm/_npx/9ae6225218f85c19/node_modules/ndarray-pixels/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.18.7.dylib (0x130fb1a50) and /Users/acedzn/.npm/_npx/9ae6225218f85c19/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.3.dylib (0x13212d978). One of the two will be used. Which one is undefined.
+❯ dedup
+✔ dedup               [2m 400ms[0m
+❯ weld
+✔ weld                [2m 1,186ms[0m
+❯ resample
+✔ resample            [2m 1ms[0m
+❯ prune
+✔ prune               [2m 1,083ms[0m
+❯ sparse
+✔ sparse              [2m 174ms[0m
+❯ textureCompress
+✔ textureCompress     [2m 833ms[0m
+❯ quantize
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+✔ quantize            [2m 1,338ms[0m
+
+info: casa-original.glb (4.04 MB) → casa.glb (1.92 MB)

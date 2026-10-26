@@ -1,39 +1,39 @@
 # Rooftop Radio playtest evidence
 
-26 October 2026. Pure-input simulation and rendered/browser verification are distinct below.
+26 October 2026. Pure-input simulation, deterministic rendered capture and real-time hardware measurements are distinguished below.
 
-## Verified pure state and movement
+## Simulation and independent semantics
 
-35 tests across four files pass after independent review. The independent controller supplies ordinary movement/jump/glide/tune inputs and public lifecycle controls. It never writes position, evidence, checkpoint, level or completion state.
+41 tests across five files pass. The independent controller supplies ordinary movement/jump/glide/tune inputs and public lifecycle controls. It never writes player position, evidence, checkpoint, level or completion state.
 
-- First direct jump/glide reaches the greenhouse relay in under 30 simulated seconds with zero recovery.
-- A broad alternate route works without a precision jump. `Tune` keeps that route consistent with the English task.
-- Both directions of the 10 m ↔ 9 m antenna/laundry ramp work without jumping.
-- A missed glide reaches the recovery deck and returns safely without tuning progress.
-- Planning, help and vocabulary freeze movement and medal time; planning→help→vocabulary returns to planning.
-- Full five-contract route succeeds: fresh greenhouse passage, southbound right=west, deliberate narrow-beam parcel drop then replacement/wide route, then bell→greenhouse→east with northbound right=east and café reassignment.
-- Hard-coded compass truth covers all headings, wrong relay correction, far-side near misses, ordered transmission, stale-evidence counterexamples, actual turn departure and independent route geometry.
+- Direct jump/glide and a broad alternate route both reach the first relay. Both ramp directions work.
+- Full campaign covers fresh greenhouse passage, southbound right=west, fragile parcel loss/replacement/full awning route, then bell→greenhouse→east with northbound right=east and café reassignment.
+- Hard-coded fixtures cover all compass headings, wrong-relay correction, ordered transmission, near misses, stale evidence and actual turn departure.
+- A partial awning touch followed by a direct glide is rejected. Wide-route evidence requires crossing the full laundry→receiver corridor.
+- A grounded low-wall vault has distinct behavior/events. Jumping away does not falsely vault. A real drop onto the spring awning bounces and can deliver without recovery.
+- Planning/help/vocabulary/audio reading freeze movement time. Campaign recovery totals remain accumulated. Events distinguish parcel drops and first decisions without student identities.
+- Two skeleton-chain tests verify arm-target reach and wrist orientation through rotated parents.
 
-Automated solvability does not establish fun or learning gains.
+## Full rendered campaign
 
-## Browser boundary
+The final preview4231 campaign at1600×900 used real keyboard events with deterministic stepping and GPU draws at capture boundaries. All five jobs completed; campaign reached `won` in92.9 simulated movement seconds with one accumulated recovery, two rejected relay tunes, no assistance and a distinct parcel-drop event. Browser errors are empty. The imported courier/glider,65 joints, actual animation names, spine socket and67 building modules were present throughout.
 
-The installed `develop-web-game/scripts/web_game_playwright_client.js` was run after scene/control integration. Initial attempts hit navigation/start-button timeouts under shared-host load above 100; superseded test trees belonging to this game were stopped. The final per-frame software-rendering attempt ran for 6 minutes 41 seconds without producing a screenshot/state file, while host load rose above 170. Its owned process tree was stopped. After separating exact simulation updates from throttled GPU capture draws and retaining the drawing buffer, a bounded retry completed. Its click-start stability wait timed out, but the documented Enter fallback started play. `18-installed-client.png` and its matching state show an airborne player with `gliding:true`; the screenshot was opened and inspected, and no error artifact was emitted. The supplied client captures the WebGL canvas; full HUD evidence is in the supplemental captures below.
+Current actual screenshots and matching states are in `docs/gameplay-captures`. First glide02, width choice07 and completion12 were opened and inspected. Running and side-grip development views also confirmed attached folded gear and hands at the bar. First-glide wrist target distances are below5mm; numeric distance is supplemented by actual image inspection.
 
-Supplemental real-input browser verification passed at 1600×900. Every contract reached `success`, and the campaign reached `won`; `browser-errors.json` is empty. Inputs were real keyboard events, with deterministic stepping and GPU drawing at capture boundaries. No player position, evidence, level or win state was assigned. The first signal corrected a deliberately wrong relay, then completed by jump/glide in 7.75 simulated seconds. The transfer corrected a wrong early relay, followed the changed order and east receiver without vocabulary or solution hint. The fragile job physically dropped/replaced the parcel before completing the awning route. This verifies behavior, not a learner's unaided understanding. The `mistakes` counter counts rejected relay tunes; parcel contact and recovery are separate. Narrow-crossing parcel drops emit a distinct local `parcel-drop` event, without claiming why the player chose that crossing.
+The installed `develop-web-game/scripts/web_game_playwright_client.js` was rerun unchanged. A temporary local preload selected the real Metal browser backend instead of the client's hard-coded SwiftShader. Its five-second click wait expired during asset loading; the Enter action fallback then started play. The captured canvas/state show real gliding, loaded models, active grip and no error artifact, stored as18-installed-client. Earlier software-only attempts stalled under heavy shared-host load; they are not performance measurements.
 
-Actual captures and matching observable states are in `docs/gameplay-captures`: `02-first-glide`, `04-past-greenhouse`, `06-right-turn`, `07-width-choice`, `08-parcel-recovery`, `09-wide-route`, `10-transfer-junction`, `11-transfer-success`, and `12-campaign-complete`. Images were opened and inspected. Review fixed behind-player sign occlusion, tower placement, RTL progress, invisible first-frame completion-panel captures and the English-only transfer context. The final campaign panel uses accumulated recoveries/assistance rather than the last job's values; the final review asserts one recovery and two rejected relay tunes across the actual route.
+## Phone, camera and audio
 
-Mobile verification passed at 390×844 using actual CDP touch events: direction controls, held jump/glide, physical relay tuning and first-contract success (5.5 simulated seconds, no recovery/mistake), camera drag without changing route evidence, pause, hint/help/vocabulary time freeze, restart, mute, reduced motion, fullscreen and focus-loss pause. `controls-results.json` has an empty error list. Captures `13`–`17` were inspected; vocabulary and controls fit without horizontal overflow. Sound state was tested; subjective sound balance remains a human playtest task.
+Actual390×844 CDP touch input completes the first mission through physical movement, held jump/glide and relay tuning. Pause/help/vocabulary/hint/restart/mute/reduced-motion/fullscreen checks pass. The blur event handler is exercised synthetically; that is not an OS app-switch test. Phone panels have no horizontal overflow and keep English LTR/Hebrew RTL.
 
-The pinned Playwright browser was installed normally after an initial missing-executable error. Software rendering uses a smaller shadow map; captured frames measured about 23–26 thousand triangles and 107–145 draw calls depending on state. Deterministic capture mode reports FPS as unavailable. Real-hardware performance and fun/learning-gain claims remain unverified.
+Actual mouse drag-right changes yaw0→.28; downward drag changes pitch.245→.395. Touch-right changes yaw.28→.52. C resets0/.245. Camera movement leaves route evidence unchanged. Portrait flight pulls back/rises and centers the courier so the wing and landing fit better.
 
-## Art boundary
+All three native sliders respond to real touch. Focused ArrowUp adjusts the range without being intercepted by movement. Music/effects/wind settings51/58/21 persist across reload, mute persists correctly, and the original local score is decoded with an AudioContext running after a gesture. Audio reading remains paused. Final `controls-results.json` has `passed:true`, preview4231 and errors[]. Captures13–18 were opened and inspected. Subjective musical taste and balance remain human judgments.
 
-Tripo courier generated; rig, clips and local GLB download blocked by observed Chrome timeout / Mac lock. All current rendering is labelled development art. Required GLB-visible browser/mobile and final visual acceptance remain open.
+## Hardware and payload
 
-## Build and payload
+An actual requestAnimationFrame run, without advanceTime, used the Apple M2 Max Metal renderer at1600×900 and DPR1. Seven samples measured58–60FPS,99–128 draw calls and approximately842–844 thousand triangles including shadow draws, with no browser errors. Samples are in `hardware-performance.json`. This short check does not establish performance on other devices or sustained thermal load. Deterministic captures correctly report FPS as unavailable.
 
-`npm run build` passes. Static output is 1,072,584 bytes (about 1.1 MB) before the missing model, including a 359,804-byte local Rubik font. Measured JS: 696.40 kB raw / 181.07 kB gzip; CSS: 11.03 kB raw / 3.38 kB gzip. Re-measure after art integration; <=20 MB final initial-load acceptance is still open.
+`npm run build` passes. Final static output is approximately10.26MB, including the local score, Rubik and all eight GLBs. Each model is under3MB. JS is713.31kB raw /186.31kB gzip; CSS11.28kB raw /3.44kB gzip. The expected Vite large-chunk advisory is not a build failure. No runtime AI, external model/font request, server or production deployment is needed.
 
-Final fresh review passed after the façade/summary changes: campaign `won`, 93.2 simulated movement seconds, one accumulated recovery, two rejected relay tunes, no assistance, a distinct local parcel-drop event and an empty browser error list. Current `07` and `12` images were opened and inspected.
+Art provenance, rights, source assets, native Blender projects and optimization checks are in `ASSETS.md` and `docs/art/architecture/PROVENANCE.md`. `VISUAL_REVIEW.md` records actual target comparisons and remaining stylization. Automated verification establishes behavior; it does not establish fun or learning gains.

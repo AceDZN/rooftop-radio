@@ -1,12 +1,12 @@
 # Rooftop Radio · רדיו על הגגות
 
-A third-person 3D radio-courier prototype for Hebrew-speaking grade-7 learners. Jump, glide and bounce between warm stone rooftops; English radio jobs determine which relays to tune and how to get there. Five original contracts cover spatial relations, `past`, traveller-relative right turns, route width and parcel needs, then a changed-context transfer with a new relay order and reversed approach.
+A third-person 3D radio-courier game for Hebrew-speaking grade-7 learners. Jump, glide and bounce between warm stone rooftops; English radio jobs determine which relays to tune and how to get there. Five original contracts cover spatial relations, `past`, traveller-relative right turns, route width and parcel needs, then a changed-context transfer with a new relay order and reversed approach.
 
 ## Current acceptance status
 
-The playable simulation, five-contract flow, Hebrew UI, touch controls and procedural architectural scene are implemented. Independent tests complete the full campaign through normal movement and interaction inputs. Built-in imagegen targets were generated and inspected before source implementation.
+The five-contract slice uses a local Tripo courier with a real 65-joint skeleton, idle/run/jump/landing animation, and a separate Tripo glider. Original Blender building modules replace the temporary block façades. A locally composed instrumental score accompanies play, with separate music, effects and glide-wind controls.
 
-**The required art pipeline is still open.** The original courier generation completed in the user's Tripo account, but Chrome control timed out and native fallback reported that the Mac was locked. Rigging, useful animation clips and local GLB download have not been completed. The runtime therefore shows an explicitly labelled development capsule. This is a working prototype checkpoint, not a claim of finished Tripo art or final visual acceptance. See `ASSETS.md`, `VISUAL_REVIEW.md` and `PLAYTEST.md` for evidence and remaining work.
+The latest review corrects mouse-drag direction, removes exported animation root offsets, mounts folded equipment to the spine, and poses the real arm/finger bones around the deployed grip bar. Final rendered, touch and campaign evidence is recorded in `PLAYTEST.md` and `VISUAL_REVIEW.md`. Automated verification establishes behavior; human fun and learning assessment remain separate.
 
 ## Run
 
@@ -18,7 +18,7 @@ npm run build
 npm run preview   # http://localhost:4231 — strict port
 ```
 
-Tested with Node 24.14.0 and the pinned Vite toolchain. No server, credentials, runtime AI or account is required. Models/fonts/sounds remain local. Rubik includes its OFL license. Sounds are synthesized after a user gesture.
+Tested with Node 24.14.0 and the pinned Vite toolchain. No server, credentials, runtime AI or account is required. Models/fonts/sounds remain local. Rubik includes its OFL license. The original local score and synthesized effects start after a user gesture.
 
 ## Controls
 
@@ -26,7 +26,7 @@ Tested with Node 24.14.0 and the pinned Vite toolchain. No server, credentials, 
 |---|---|---|
 | Move | WASD or arrows, using `event.code` | Four direction buttons |
 | Jump / glide | Space; hold in the air to glide; G also glides | Hold jump in the air |
-| Camera | Drag the scene, or J/L; C restores heading | Drag the scene |
+| Camera | Drag right to look right; vertical drag changes elevation; J/L; C resets | Drag the scene |
 | Tune a nearby relay | E | Contextual tune button |
 | Read / pause | P or Escape, or reading button | Pause / reading button |
 | Vocabulary | Hebrew toolbar button | Same |
@@ -40,7 +40,10 @@ Reading, help, vocabulary and focus-loss pause freeze movement and medal time. W
 - `src/rules.ts`: pure stage-scoped semantic evidence.
 - `src/sim.ts`: deterministic traversal, collisions, recovery and timers.
 - `src/scene.ts`: Three.js materials, architecture, camera, glider and GLB/AnimationMixer integration point.
-- `src/asset-config.ts`: explicit courier-art gate; set only after acquiring and inspecting the local rigged GLB.
+- `src/asset-config.ts`: acquired local courier and glider paths.
+- `src/arm-ik.ts`: arm-chain grip pose on the real character skeleton.
+- `scripts/build_architecture.py`: reproducible original Blender modules.
+- `scripts/compose_rooftop_score.py`: original instrumental score source.
 - `tests/independent-*`: hard-coded semantic truth and an input-only solvability campaign by the independent reviewer.
 - `scripts/browser-playtest.mjs`: real keyboard/pointer browser campaign and separate actual captures; no teleport or win assignment.
 
@@ -56,4 +59,4 @@ Exact built-in imagegen prompts and conceptual targets are in `docs/visual-targe
 
 Import as a Vite project. Build: `npm run build`; output: `dist`. Vite uses relative paths. No environment variables or rewrite service is required for this single-page static game. No production deployment was performed.
 
-Before final release: unlock Chrome, finish courier rig/download/animation provenance, replace the labelled capsule, retest browser/mobile input with that GLB visible, compare captures with both targets, and record remaining visual differences. Do not treat a procedural substitute as completed Tripo art.
+No production deployment was performed. See the recorded browser checks and remaining visual differences before wider release.

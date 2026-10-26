@@ -1,0 +1,184 @@
+{
+  "mode": "audio",
+  "coordinateSystem": "meters; x east, y up, z south; north is -z",
+  "job": {
+    "number": 1,
+    "title": "האות הראשון",
+    "english": "From the water tower, face the greenhouse. Tune the relay next to the greenhouse.",
+    "transfer": false,
+    "startingHeading": "north"
+  },
+  "player": {
+    "position": {
+      "x": 0,
+      "y": 10,
+      "z": 39
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "facingYaw": 0,
+    "grounded": true,
+    "gliding": false,
+    "stamina": 1
+  },
+  "currentRoof": "water",
+  "checkpoint": {
+    "x": 0,
+    "y": 10,
+    "z": 39
+  },
+  "nearestRelay": null,
+  "relays": [
+    {
+      "site": "water",
+      "pos": {
+        "x": 2.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Water tower"
+    },
+    {
+      "site": "greenhouse",
+      "pos": {
+        "x": 3.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Greenhouse"
+    },
+    {
+      "site": "bell",
+      "pos": {
+        "x": 2.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Bell tower"
+    },
+    {
+      "site": "clock",
+      "pos": {
+        "x": 2.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Clock"
+    },
+    {
+      "site": "west",
+      "pos": {
+        "x": -15.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Receiver"
+    },
+    {
+      "site": "east",
+      "pos": {
+        "x": 20.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Café"
+    },
+    {
+      "site": "laundry",
+      "pos": {
+        "x": -15.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Laundry"
+    },
+    {
+      "site": "antenna",
+      "pos": {
+        "x": -15.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Antenna terrace"
+    },
+    {
+      "site": "mural",
+      "pos": {
+        "x": -15.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Mural"
+    }
+  ],
+  "route": {
+    "tuned": 0,
+    "required": 1,
+    "past": false,
+    "rightTurn": false,
+    "wide": false,
+    "trace": []
+  },
+  "movement": {
+    "vaults": 0,
+    "landings": 0,
+    "glideSeconds": 0,
+    "stunts": 0
+  },
+  "time": 0,
+  "recoveries": 0,
+  "assisted": false,
+  "mistakes": 0,
+  "feedback": "",
+  "assets": "Local Tripo courier loaded",
+  "campaign": {
+    "movementSeconds": 0,
+    "recoveries": 0,
+    "mistakes": 0,
+    "assisted": false
+  },
+  "art": {
+    "courier": true,
+    "glider": true,
+    "bones": 65,
+    "clips": [
+      "idle",
+      "run",
+      "jump_down",
+      "jump",
+      "land"
+    ],
+    "activeClip": "idle",
+    "equipmentBone": "mixamorigSpine2",
+    "grip": {
+      "active": false,
+      "left": 0,
+      "right": 0
+    },
+    "buildings": 67,
+    "error": ""
+  },
+  "camera": {
+    "yaw": 0,
+    "pitch": 0.245
+  },
+  "audio": {
+    "ready": true,
+    "muted": false,
+    "context": "running",
+    "musicVolume": 0.51,
+    "effectsVolume": 0.58,
+    "windVolume": 0.21,
+    "error": ""
+  },
+  "performance": {
+    "fps": null,
+    "clock": "deterministic",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+    "drawCalls": 118,
+    "triangles": 843452
+  }
+}

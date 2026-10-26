@@ -1,0 +1,42 @@
+{
+  "path": "public/models/courier.glb",
+  "bytes": 1294924,
+  "sha256": "391f136e4e3dc638f93ba15a7e5cfaf2a0887592a0ab80c22ccdddcd2c505e95",
+  "version": 2,
+  "valid_declared_length": true,
+  "meshes": 1,
+  "skins": [
+    {
+      "name": "Armature",
+      "joints": 65
+    }
+  ],
+  "animations": [
+    {
+      "name": "idle",
+      "channels": 195,
+      "duration_seconds": 15.333333015441895
+    },
+    {
+      "name": "run",
+      "channels": 195,
+      "duration_seconds": 1.25
+    },
+    {
+      "name": "jump_down",
+      "channels": 195,
+      "duration_seconds": 3.7083332538604736
+    },
+    {
+      "name": "jump",
+      "channels": 195,
+      "duration_seconds": 2.2083332538604736
+    }
+  ],
+  "materials": 1,
+  "images": 3,
+  "extensions": [
+    "EXT_texture_webp"
+  ],
+  "generator": "glTF-Transform v4.5.1"
+}

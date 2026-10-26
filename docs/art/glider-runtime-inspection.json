@@ -1,0 +1,16 @@
+{
+  "path": "public/models/glider.glb",
+  "bytes": 709476,
+  "sha256": "fc0e34febd1df28dc4680b7b79ab472ab400c5f194a3d62248b570ba24d96e64",
+  "version": 2,
+  "valid_declared_length": true,
+  "meshes": 1,
+  "skins": [],
+  "animations": [],
+  "materials": 1,
+  "images": 3,
+  "extensions": [
+    "EXT_texture_webp"
+  ],
+  "generator": "glTF-Transform v4.5.1"
+}

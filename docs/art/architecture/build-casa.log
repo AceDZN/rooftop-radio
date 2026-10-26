@@ -1,0 +1,5 @@
+00:08.139  translation      | WARNING Falling back to standard locale ("C")
+/Users/acedzn/dev/AceDZN-exp/rooftop-radio/scripts/build_architecture.py:66: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(name);m.use_nodes=True
+Building facade casa 0
+Building facade casa 1

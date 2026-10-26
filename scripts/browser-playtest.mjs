@@ -1,8 +1,8 @@
 // Real keyboard/pointer/touch input only. Observable text is read; state is never assigned.
 import {chromium} from 'playwright';
 import fs from 'node:fs/promises';
-const out='docs/gameplay-captures';await fs.mkdir(out,{recursive:true});
-const browser=await chromium.launch({headless:true,args:['--use-gl=angle','--use-angle=swiftshader']});
+const out=process.env.RR_CAPTURES||'docs/gameplay-captures';await fs.mkdir(out,{recursive:true});
+const browser=await chromium.launch({headless:true,args:process.env.RR_GPU==='metal'?['--use-angle=metal','--enable-gpu','--ignore-gpu-blocklist']:['--use-gl=angle','--use-angle=swiftshader']});
 const page=await browser.newPage({viewport:{width:1600,height:900}});page.setDefaultTimeout(120000);
 console.log('Browser launched');
 const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -27,12 +27,12 @@ async function toBell(tuneIt=true){await walk(0,22);await walk(0,10);await walk(
 try{
   await page.goto(process.env.RR_URL||'http://localhost:4231',{waitUntil:'domcontentloaded',timeout:120000});console.log('Page navigated');await page.waitForSelector('#start-btn');console.log('Game ready');await page.evaluate(()=>window.advanceTime(0));await shot('01-planning');
   await page.click('#start-btn',{force:true});await press([],1);
-  // A deliberately wrong but interactable relay, corrected through traversal.
-  await relay('water');if((await read()).mistakes!==1)throw Error('Wrong relay did not remain recoverable');
-  await walk(0,31.5);await press(['ArrowUp','Space'],40);await shot('02-first-glide');await press(['ArrowUp','Space'],22);await press(['KeyG'],100);await walk(3.5,22);await relay('greenhouse');await shot('03-first-signal');
+  if(process.argv.includes('--pose-review')){await press(['ArrowUp'],20);await shot('19-running-pack');}
+  await walk(0,31.5);await press(['ArrowUp','Space'],40);await shot('02-first-glide');if(process.argv.includes('--pose-review')){await page.mouse.move(800,500);await page.mouse.down();await page.mouse.move(1040,550,{steps:8});await page.mouse.up();await press(['KeyG'],4);await shot('20-side-grip');await page.keyboard.press('c');}
+  await press(['ArrowUp','Space'],22);await press(['KeyG'],100);await walk(3.5,22);await relay('greenhouse');await shot('03-first-signal');
   if(process.argv.includes('--first')){console.log(JSON.stringify({scenario:'first',state:await read(),errors}));}
   else {
-    await next();await broadGreen();await toBell();await shot('04-past-greenhouse');
+    await next();await relay('water');if((await read()).mistakes!==1)throw Error('Wrong relay did not remain recoverable');await broadGreen();await toBell();await shot('04-past-greenhouse');
     await next();await walk(0,0);await shot('05-junction-southbound');await walk(-8,0);await walk(-14,0);await relay('west');await shot('06-right-turn');
     await next();await walk(0,0);await press(['KeyL'],55);await press([],1);await shot('07-width-choice');await press(['KeyJ'],55);await press([],1);
     const before=(await read()).recoveries;for(let i=0;i<40&&(await read()).recoveries===before;i++)await press(['ArrowRight'],3);await press([],15);if((await read()).recoveries===before)throw Error('Narrow beam did not drop parcel');await shot('08-parcel-recovery');

@@ -1,0 +1,15 @@
+00:18.531  translation      | WARNING Falling back to standard locale ("C")
+02:29.420  blend            | Read blend: "/Users/acedzn/dev/AceDZN-exp/rooftop-radio/art/architecture/casa.blend"
+/Users/acedzn/dev/AceDZN-exp/rooftop-radio/scripts/build_architecture.py:445: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world=world;world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.60,.76,1,1);world.node_tree.nodes['Background'].inputs[1].default_value=.45
+04:41.392  render           | Saved: '/Users/acedzn/dev/AceDZN-exp/rooftop-radio/docs/art/architecture/casa-beauty.png'
+04:41.418  blend            | Read blend: "/Users/acedzn/dev/AceDZN-exp/rooftop-radio/art/architecture/arcade.blend"
+04:46.025  render           | Saved: '/Users/acedzn/dev/AceDZN-exp/rooftop-radio/docs/art/architecture/arcade-beauty.png'
+04:46.032  blend            | Read blend: "/Users/acedzn/dev/AceDZN-exp/rooftop-radio/art/architecture/atelier.blend"
+04:49.605  render           | Saved: '/Users/acedzn/dev/AceDZN-exp/rooftop-radio/docs/art/architecture/atelier-beauty.png'
+Info: Saved as "casa-proof.blend"
+Info: Saved as "arcade-proof.blend"
+Info: Saved as "atelier-proof.blend"
+Blender 5.2.0 LTS (hash fbe6228777e7 built 2026-07-14 01:31:22)
+
+Blender quit

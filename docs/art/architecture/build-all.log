@@ -1,0 +1,142 @@
+00:06.792  translation      | WARNING Falling back to standard locale ("C")
+Authoring local PBR maps
+/Users/acedzn/dev/AceDZN-exp/rooftop-radio/scripts/build_architecture.py:66: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(name);m.use_nodes=True
+Building facade casa 0
+Building facade casa 1
+Building facade casa 2
+Building facade casa 3
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+22:05:15 | INFO: Starting glTF 2.0 export
+22:05:15 | INFO: Extracting primitive: Aged teal timber
+22:05:17 | INFO: Primitives created: 1
+22:05:17 | INFO: Extracting primitive: Barrel terracotta
+22:05:17 | INFO: Primitives created: 1
+22:05:17 | INFO: Extracting primitive: Deep blue glazing
+22:05:17 | INFO: Primitives created: 1
+22:05:17 | INFO: Extracting primitive: Graphite iron
+22:05:18 | INFO: Primitives created: 1
+22:05:18 | INFO: Extracting primitive: Honey limestone
+22:05:19 | INFO: Primitives created: 1
+22:05:19 | INFO: Extracting primitive: Lime plaster
+22:05:19 | INFO: Primitives created: 1
+22:05:19 | INFO: Extracting primitive: Oiled walnut
+22:05:19 | INFO: Primitives created: 1
+22:05:20 | INFO: Finished glTF 2.0 export in 4.5574939250946045 s
+
+Info: Packed 21 file(s)
+Info: Saved as "casa.blend"
+ROOFTOP_MODULE {"name": "casa", "blender_version": "5.2.0 LTS", "triangles": 38556, "draw_calls_material_groups": 7, "bytes": 4041396, "footprint_xz_m": [13, 13], "walkable_roof_y_m": 9, "roof_decor_max_y_m": 9.035, "central_path_clear_xz_m": [-5, 5], "blender_bounds": [[-6.5, -6.5, 0.0], [6.5, 6.500000476837158, 9.03499984741211]]}
+Building facade arcade 0
+Building facade arcade 1
+Building facade arcade 2
+Building facade arcade 3
+22:05:43 | INFO: Starting glTF 2.0 export
+22:05:43 | INFO: Extracting primitive: Aged teal timber.001
+22:05:44 | INFO: Primitives created: 1
+22:05:44 | INFO: Extracting primitive: Arcade pale plaster
+22:05:44 | INFO: Primitives created: 1
+22:05:44 | INFO: Extracting primitive: Barrel terracotta.001
+22:05:45 | INFO: Primitives created: 1
+22:05:45 | INFO: Extracting primitive: Deep blue glazing.001
+22:05:45 | INFO: Primitives created: 1
+22:05:45 | INFO: Extracting primitive: Graphite iron.001
+22:05:45 | INFO: Primitives created: 1
+22:05:45 | INFO: Extracting primitive: Honey limestone.001
+22:05:47 | INFO: Primitives created: 1
+22:05:48 | INFO: Extracting primitive: Oiled walnut.001
+22:05:48 | INFO: Primitives created: 1
+22:05:49 | INFO: Finished glTF 2.0 export in 6.046880006790161 s
+
+Info: No new files have been packed
+Info: Saved as "arcade.blend"
+ROOFTOP_MODULE {"name": "arcade", "blender_version": "5.2.0 LTS", "triangles": 33580, "draw_calls_material_groups": 7, "bytes": 3710904, "footprint_xz_m": [13, 13], "walkable_roof_y_m": 9, "roof_decor_max_y_m": 9.035, "central_path_clear_xz_m": [-5, 5], "blender_bounds": [[-6.5, -6.5, 0.0], [6.5, 6.500000476837158, 9.03499984741211]]}
+Building facade atelier 0
+Building facade atelier 1
+Building facade atelier 2
+Building facade atelier 3
+22:06:11 | INFO: Starting glTF 2.0 export
+22:06:11 | INFO: Extracting primitive: Aged teal timber.002
+22:06:13 | INFO: Primitives created: 1
+22:06:13 | INFO: Extracting primitive: Atelier ochre plaster
+22:06:14 | INFO: Primitives created: 1
+22:06:14 | INFO: Extracting primitive: Barrel terracotta.002
+22:06:15 | INFO: Primitives created: 1
+22:06:15 | INFO: Extracting primitive: Deep blue glazing.002
+22:06:15 | INFO: Primitives created: 1
+22:06:15 | INFO: Extracting primitive: Graphite iron.002
+22:06:15 | INFO: Primitives created: 1
+22:06:15 | INFO: Extracting primitive: Honey limestone.002
+22:06:16 | INFO: Primitives created: 1
+22:06:17 | INFO: Extracting primitive: Oiled walnut.002
+22:06:17 | INFO: Primitives created: 1
+22:06:17 | INFO: Extracting primitive: Warm ochre
+22:06:17 | INFO: Primitives created: 1
+22:06:18 | INFO: Finished glTF 2.0 export in 7.1006529331207275 s
+
+Info: No new files have been packed
+Info: Saved as "atelier.blend"
+ROOFTOP_MODULE {"name": "atelier", "blender_version": "5.2.0 LTS", "triangles": 36584, "draw_calls_material_groups": 8, "bytes": 3840856, "footprint_xz_m": [13, 13], "walkable_roof_y_m": 9, "roof_decor_max_y_m": 9.035, "central_path_clear_xz_m": [-5, 5], "blender_bounds": [[-6.5, -6.5, 0.0], [6.5, 6.500000476837158, 9.03499984741211]]}
+Building facade casa 0
+Building facade casa 1
+Building facade casa 2
+Building facade casa 3
+/Users/acedzn/dev/AceDZN-exp/rooftop-radio/scripts/build_architecture.py:389: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(flatname);m.diffuse_color=(*color,1);m.use_nodes=True
+22:06:24 | INFO: Starting glTF 2.0 export
+22:06:24 | INFO: Extracting primitive: Barrel terracotta.003
+22:06:24 | INFO: Primitives created: 1
+22:06:24 | INFO: Extracting primitive: Deep blue glazing.003
+22:06:25 | INFO: Primitives created: 1
+22:06:25 | INFO: Extracting primitive: Honey limestone.003
+22:06:25 | INFO: Primitives created: 1
+22:06:25 | INFO: Extracting primitive: Lime plaster.001
+22:06:25 | INFO: Primitives created: 1
+22:06:26 | INFO: Finished glTF 2.0 export in 1.8399758338928223 s
+
+Info: No new files have been packed
+Info: Saved as "distant-flat.blend"
+ROOFTOP_MODULE {"name": "distant-flat", "blender_version": "5.2.0 LTS", "triangles": 1764, "draw_calls_material_groups": 4, "bytes": 95140, "footprint_xz_m": [13, 13], "walkable_roof_y_m": 9, "roof_decor_max_y_m": 9.035, "central_path_clear_xz_m": [-5, 5], "blender_bounds": [[-6.5, -6.5, 0.0], [6.5, 6.5, 9.0]]}
+Building facade casa 0
+Building facade casa 1
+Building facade casa 2
+Building facade casa 3
+22:06:27 | INFO: Starting glTF 2.0 export
+22:06:27 | INFO: Extracting primitive: Barrel terracotta.004
+22:06:27 | INFO: Primitives created: 1
+22:06:27 | INFO: Extracting primitive: Deep blue glazing.004
+22:06:27 | INFO: Primitives created: 1
+22:06:27 | INFO: Extracting primitive: Honey limestone.004
+22:06:27 | INFO: Primitives created: 1
+22:06:27 | INFO: Extracting primitive: Lime plaster.002
+22:06:27 | INFO: Primitives created: 1
+22:06:27 | INFO: Finished glTF 2.0 export in 0.8207168579101562 s
+
+Info: No new files have been packed
+Info: Saved as "distant-pitched.blend"
+ROOFTOP_MODULE {"name": "distant-pitched", "blender_version": "5.2.0 LTS", "triangles": 1770, "draw_calls_material_groups": 4, "bytes": 95472, "footprint_xz_m": [13, 13], "walkable_roof_y_m": 9, "roof_decor_max_y_m": 9.035, "central_path_clear_xz_m": [-5, 5], "blender_bounds": [[-6.5, -6.5, 0.0], [6.5, 6.5, 10.800000190734863]]}
+Building facade casa 0
+Building facade casa 1
+Building facade casa 2
+Building facade casa 3
+22:06:29 | INFO: Starting glTF 2.0 export
+22:06:29 | INFO: Extracting primitive: Barrel terracotta.005
+22:06:29 | INFO: Primitives created: 1
+22:06:29 | INFO: Extracting primitive: Deep blue glazing.005
+22:06:29 | INFO: Primitives created: 1
+22:06:29 | INFO: Extracting primitive: Honey limestone.005
+22:06:29 | INFO: Primitives created: 1
+22:06:29 | INFO: Extracting primitive: Lime plaster.003
+22:06:29 | INFO: Primitives created: 1
+22:06:30 | INFO: Finished glTF 2.0 export in 1.1914067268371582 s
+
+Info: No new files have been packed
+Info: Saved as "distant-stepped.blend"
+ROOFTOP_MODULE {"name": "distant-stepped", "blender_version": "5.2.0 LTS", "triangles": 1824, "draw_calls_material_groups": 4, "bytes": 98400, "footprint_xz_m": [13, 13], "walkable_roof_y_m": 9, "roof_decor_max_y_m": 9.035, "central_path_clear_xz_m": [-5, 5], "blender_bounds": [[-6.5, -6.5, 0.0], [6.5, 6.5, 10.220000267028809]]}
+EXPORT_PASS_COMPLETE
+02:37.525  blend            | Read blend: "/Users/acedzn/dev/AceDZN-exp/rooftop-radio/art/architecture/casa.blend"
+/Users/acedzn/dev/AceDZN-exp/rooftop-radio/scripts/build_architecture.py:445: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world=world;world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.60,.76,1,1);world.node_tree.nodes['Background'].inputs[1].default_value=.45
+24:25.308  render           | Saved: '/Users/acedzn/dev/AceDZN-exp/rooftop-radio/docs/art/architecture/casa-beauty.png'
+24:25.382  blend            | Read blend: "/Users/acedzn/dev/AceDZN-exp/rooftop-radio/art/architecture/arcade.blend"

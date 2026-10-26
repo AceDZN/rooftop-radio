@@ -1,0 +1,161 @@
+[
+  {
+    "path": "public/architecture/casa.glb",
+    "bytes": 1920808,
+    "sha256": "d97a095c359c056fceecd13f0eef561c16869e751766dd1966341b083e653a46",
+    "triangles": 38556,
+    "draws": 7,
+    "bounds": {
+      "min": [
+        -6.500000238418579,
+        0.00007574312395952632,
+        -6.500000476837158
+      ],
+      "max": [
+        6.500000238418579,
+        9.03509819688412,
+        6.5
+      ],
+      "size": [
+        13.000000476837158,
+        9.03502245376016,
+        13.000000476837158
+      ]
+    },
+    "extensions": [
+      "EXT_texture_webp",
+      "KHR_mesh_quantization"
+    ]
+  },
+  {
+    "path": "public/architecture/arcade.glb",
+    "bytes": 1690940,
+    "sha256": "7639c63daafcb6ead5d6c077ab199010b2cb74249912832090fb272fca10d6a5",
+    "triangles": 33580,
+    "draws": 7,
+    "bounds": {
+      "min": [
+        -6.500000238418579,
+        0.00007574312395952632,
+        -6.500000476837158
+      ],
+      "max": [
+        6.500000238418579,
+        9.03509819688412,
+        6.5
+      ],
+      "size": [
+        13.000000476837158,
+        9.03502245376016,
+        13.000000476837158
+      ]
+    },
+    "extensions": [
+      "EXT_texture_webp",
+      "KHR_mesh_quantization"
+    ]
+  },
+  {
+    "path": "public/architecture/atelier.glb",
+    "bytes": 1826660,
+    "sha256": "5fb70759691a5297601e5146e02db5652a8cec23bedf39586541833d5daa7ea4",
+    "triangles": 36584,
+    "draws": 8,
+    "bounds": {
+      "min": [
+        -6.500000238418579,
+        0.00008613849998084788,
+        -6.500000476837158
+      ],
+      "max": [
+        6.500000238418579,
+        9.03509819688412,
+        6.5
+      ],
+      "size": [
+        13.000000476837158,
+        9.035012058384138,
+        13.000000476837158
+      ]
+    },
+    "extensions": [
+      "EXT_texture_webp",
+      "KHR_mesh_quantization"
+    ]
+  },
+  {
+    "path": "public/architecture/distant-flat.glb",
+    "bytes": 95140,
+    "sha256": "acdc45a3752e73fde4914aec309a14b904e93e7ccf25c0646846ce932117ba6a",
+    "triangles": 1764,
+    "draws": 4,
+    "bounds": {
+      "min": [
+        -6.5,
+        0,
+        -6.5
+      ],
+      "max": [
+        6.5,
+        9,
+        6.5
+      ],
+      "size": [
+        13,
+        9,
+        13
+      ]
+    },
+    "extensions": []
+  },
+  {
+    "path": "public/architecture/distant-pitched.glb",
+    "bytes": 95476,
+    "sha256": "44973d0d9b2ee992dd15bb1545b94ea188ee00365ff43b1943620e7e7b15e8bc",
+    "triangles": 1770,
+    "draws": 4,
+    "bounds": {
+      "min": [
+        -6.5,
+        0,
+        -6.5
+      ],
+      "max": [
+        6.5,
+        10.800000190734863,
+        6.5
+      ],
+      "size": [
+        13,
+        10.800000190734863,
+        13
+      ]
+    },
+    "extensions": []
+  },
+  {
+    "path": "public/architecture/distant-stepped.glb",
+    "bytes": 98400,
+    "sha256": "9cf86458745f424c01fa68df76ed8352b315c4d26ac1cb39da82568dcc7574a8",
+    "triangles": 1824,
+    "draws": 4,
+    "bounds": {
+      "min": [
+        -6.5,
+        0,
+        -6.5
+      ],
+      "max": [
+        6.5,
+        10.220000267028809,
+        6.5
+      ],
+      "size": [
+        13,
+        10.220000267028809,
+        13
+      ]
+    },
+    "extensions": []
+  }
+]

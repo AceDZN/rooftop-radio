@@ -34,3 +34,13 @@ Actual first browser captures have now been independently inspected for English/
 The full input-only campaign now asserts that the final job has zero recoveries while campaign totals retain the deliberate parcel drop: `totals.recoveries===1`, `totals.assisted===false`, `totals.mistakes===0`. Campaign movement time exceeds the last-job time, and calling `next()` after `won` cannot double-count. The focused campaign test passes (2.959s test, 12.45s suite on the current host). Its timeout is 30s because the busy shared host exceeded Vitest's 5s default once; movement loops remain bounded.
 
 `mistakes` currently counts rejected relay tunes. Zero here must not be described as zero comprehension mistakes: the fixture deliberately takes the narrow beam contrary to the parcel job before correcting. The recovery counter preserves that consequence; a separate parcel-route-slip local event can distinguish it from an ordinary motor fall.
+
+## Dedicated vault and spring-awnings
+
+Three new independent input-only fixtures pass after the movement fix (23.48s focused suite on the loaded host):
+
+- Approach the water-roof low wall from the south, press/hold jump while moving towards it, record exactly one `vault`, retain no glider during the initial vault window, cross the wall, and land on the water roof with no recovery.
+- From the same approach point, jump away from the wall. This records an ordinary jump, zero vaults, and a safe landing with no recovery.
+- Walk off the water roof onto the spring awning. A real fall records one `awning-bounce` and upward velocity, without a jump input. Steer onto the greenhouse roof and tune the first relay successfully, with no recovery.
+
+The earlier grounded-vault reachability issue is closed in simulation. Its visual animation/feedback still needs the matching local-courier capture. The Ch4 partial-awning bypass is also closed by the lead's full laundry→receiver corridor tracking; the bypass regression now passes alongside the correct full campaign. No player state, evidence or win state was injected.

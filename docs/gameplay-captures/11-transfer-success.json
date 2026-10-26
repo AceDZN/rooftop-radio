@@ -10,9 +10,9 @@
   },
   "player": {
     "position": {
-      "x": 21.407908755161543,
+      "x": 20.367908755161576,
       "y": 9,
-      "z": 1.4121998717303565
+      "z": 1.4080551980352178
     },
     "velocity": {
       "x": 0,
@@ -26,16 +26,16 @@
   },
   "currentRoof": "east",
   "checkpoint": {
-    "x": 21.407908755161543,
+    "x": 20.367908755161576,
     "y": 9,
-    "z": 1.4121998717303565
+    "z": 1.4080551980352178
   },
   "nearestRelay": "east",
   "relays": [
     {
       "site": "water",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 10,
         "z": 37.5
       },
@@ -53,7 +53,7 @@
     {
       "site": "bell",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 9,
         "z": 1.5
       },
@@ -62,7 +62,7 @@
     {
       "site": "clock",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 10,
         "z": -16.5
       },
@@ -71,7 +71,7 @@
     {
       "site": "west",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 9,
         "z": 1.5
       },
@@ -80,7 +80,7 @@
     {
       "site": "east",
       "pos": {
-        "x": 21.5,
+        "x": 20.5,
         "y": 9,
         "z": 1.5
       },
@@ -89,7 +89,7 @@
     {
       "site": "laundry",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 9,
         "z": 19.5
       },
@@ -98,7 +98,7 @@
     {
       "site": "antenna",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 10,
         "z": 37.5
       },
@@ -107,7 +107,7 @@
     {
       "site": "mural",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 10,
         "z": -16.5
       },
@@ -119,7 +119,7 @@
     "required": 3,
     "past": true,
     "rightTurn": true,
-    "wide": true,
+    "wide": false,
     "trace": [
       "antenna",
       "laundry",
@@ -130,16 +130,63 @@
       "east"
     ]
   },
-  "time": 37.74999999999914,
+  "movement": {
+    "vaults": 0,
+    "landings": 1,
+    "glideSeconds": 0,
+    "stunts": 0
+  },
+  "time": 37.58333333333248,
   "recoveries": 0,
   "assisted": false,
   "mistakes": 1,
   "feedback": "האות הגיע. שידור נקי!",
-  "assets": "Tripo rig/download pending; explicit development capsule",
+  "assets": "Local Tripo courier loaded",
+  "campaign": {
+    "movementSeconds": 55.31666666666686,
+    "recoveries": 1,
+    "mistakes": 1,
+    "assisted": false
+  },
+  "art": {
+    "courier": true,
+    "glider": true,
+    "bones": 65,
+    "clips": [
+      "idle",
+      "run",
+      "jump_down",
+      "jump",
+      "land"
+    ],
+    "activeClip": "idle",
+    "equipmentBone": "mixamorigSpine2",
+    "grip": {
+      "active": false,
+      "left": 0.004237233071224739,
+      "right": 0.004881062797205857
+    },
+    "buildings": 67,
+    "error": ""
+  },
+  "camera": {
+    "yaw": 0,
+    "pitch": 0.245
+  },
+  "audio": {
+    "ready": true,
+    "muted": false,
+    "context": "running",
+    "musicVolume": 0.72,
+    "effectsVolume": 0.75,
+    "windVolume": 0.2,
+    "error": ""
+  },
   "performance": {
     "fps": null,
     "clock": "deterministic",
-    "drawCalls": 107,
-    "triangles": 23568
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+    "drawCalls": 116,
+    "triangles": 842090
   }
 }

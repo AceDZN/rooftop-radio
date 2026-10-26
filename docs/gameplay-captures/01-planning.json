@@ -35,7 +35,7 @@
     {
       "site": "water",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 10,
         "z": 37.5
       },
@@ -53,7 +53,7 @@
     {
       "site": "bell",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 9,
         "z": 1.5
       },
@@ -62,7 +62,7 @@
     {
       "site": "clock",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 10,
         "z": -16.5
       },
@@ -71,7 +71,7 @@
     {
       "site": "west",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 9,
         "z": 1.5
       },
@@ -80,7 +80,7 @@
     {
       "site": "east",
       "pos": {
-        "x": 21.5,
+        "x": 20.5,
         "y": 9,
         "z": 1.5
       },
@@ -89,7 +89,7 @@
     {
       "site": "laundry",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 9,
         "z": 19.5
       },
@@ -98,7 +98,7 @@
     {
       "site": "antenna",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 10,
         "z": 37.5
       },
@@ -107,7 +107,7 @@
     {
       "site": "mural",
       "pos": {
-        "x": -14.5,
+        "x": -15.5,
         "y": 10,
         "z": -16.5
       },
@@ -122,16 +122,63 @@
     "wide": false,
     "trace": []
   },
+  "movement": {
+    "vaults": 0,
+    "landings": 0,
+    "glideSeconds": 0,
+    "stunts": 0
+  },
   "time": 0,
   "recoveries": 0,
   "assisted": false,
   "mistakes": 0,
   "feedback": "",
-  "assets": "Tripo rig/download pending; explicit development capsule",
+  "assets": "Local Tripo courier loaded",
+  "campaign": {
+    "movementSeconds": 0,
+    "recoveries": 0,
+    "mistakes": 0,
+    "assisted": false
+  },
+  "art": {
+    "courier": true,
+    "glider": true,
+    "bones": 65,
+    "clips": [
+      "idle",
+      "run",
+      "jump_down",
+      "jump",
+      "land"
+    ],
+    "activeClip": "idle",
+    "equipmentBone": "mixamorigSpine2",
+    "grip": {
+      "active": false,
+      "left": 0,
+      "right": 0
+    },
+    "buildings": 67,
+    "error": ""
+  },
+  "camera": {
+    "yaw": 0,
+    "pitch": 0.245
+  },
+  "audio": {
+    "ready": false,
+    "muted": false,
+    "context": "locked",
+    "musicVolume": 0.72,
+    "effectsVolume": 0.75,
+    "windVolume": 0.2,
+    "error": ""
+  },
   "performance": {
     "fps": null,
     "clock": "deterministic",
-    "drawCalls": 138,
-    "triangles": 26634
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+    "drawCalls": 149,
+    "triangles": 846184
   }
 }

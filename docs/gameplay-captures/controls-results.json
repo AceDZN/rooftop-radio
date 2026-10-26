@@ -1,4 +1,51 @@
 {
-  "mobile": "touch movement, glide, physical tune, camera, pause, vocabulary, restart, mute, reduced motion, fullscreen, focus loss",
+  "passed": true,
+  "url": "http://localhost:4231",
+  "checks": {
+    "audio": {
+      "sliders": {
+        "music": 0.51,
+        "effects": 0.58,
+        "wind": 0.21
+      },
+      "keyboardRange": true,
+      "decodedMusic": {
+        "ready": true,
+        "muted": false,
+        "context": "running",
+        "musicVolume": 0.51,
+        "effectsVolume": 0.58,
+        "windVolume": 0.21,
+        "error": ""
+      },
+      "readingPaused": true,
+      "persistence": true
+    },
+    "touchTraversal": "physical movement, held glide, reachable relay and successful tuning",
+    "camera": {
+      "mouseBefore": {
+        "yaw": 0,
+        "pitch": 0.245
+      },
+      "mouseRight": {
+        "yaw": 0.28,
+        "pitch": 0.245
+      },
+      "mouseDown": {
+        "yaw": 0.28,
+        "pitch": 0.39500000000000013
+      },
+      "touchRight": {
+        "yaw": 0.52,
+        "pitch": 0.39500000000000013
+      },
+      "reset": {
+        "yaw": 0,
+        "pitch": 0.245
+      },
+      "routeUnchanged": true
+    },
+    "other": "pause, help, vocabulary, hint record, restart, mute, reduced motion, fullscreen, focus loss"
+  },
   "errors": []
 }

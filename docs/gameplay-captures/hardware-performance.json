@@ -1,0 +1,84 @@
+{
+  "viewport": "1600x900",
+  "clock": "actual requestAnimationFrame; no advanceTime",
+  "samples": [
+    {
+      "mode": "play",
+      "gliding": true,
+      "performance": {
+        "fps": 58,
+        "clock": "realtime",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+        "drawCalls": 128,
+        "triangles": 844254
+      }
+    },
+    {
+      "mode": "play",
+      "gliding": false,
+      "performance": {
+        "fps": 58,
+        "clock": "realtime",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+        "drawCalls": 103,
+        "triangles": 842784
+      }
+    },
+    {
+      "mode": "play",
+      "gliding": false,
+      "performance": {
+        "fps": 60,
+        "clock": "realtime",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+        "drawCalls": 99,
+        "triangles": 842456
+      }
+    },
+    {
+      "mode": "play",
+      "gliding": false,
+      "performance": {
+        "fps": 60,
+        "clock": "realtime",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+        "drawCalls": 99,
+        "triangles": 842456
+      }
+    },
+    {
+      "mode": "play",
+      "gliding": false,
+      "performance": {
+        "fps": 60,
+        "clock": "realtime",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+        "drawCalls": 99,
+        "triangles": 842456
+      }
+    },
+    {
+      "mode": "play",
+      "gliding": false,
+      "performance": {
+        "fps": 60,
+        "clock": "realtime",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+        "drawCalls": 99,
+        "triangles": 842456
+      }
+    },
+    {
+      "mode": "play",
+      "gliding": false,
+      "performance": {
+        "fps": 60,
+        "clock": "realtime",
+        "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+        "drawCalls": 99,
+        "triangles": 842456
+      }
+    }
+  ],
+  "errors": []
+}

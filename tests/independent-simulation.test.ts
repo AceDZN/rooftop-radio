@@ -28,6 +28,30 @@ function toThird(s:Simulation){
 }
 
 describe('independent simulation input paths',()=>{
+  it('vaults a low wall from the ground, clears it and lands with no early glider',()=>{
+    const s=new Simulation(1);s.start();walk(s,0,35.2);walk(s,4.5,35.2);walk(s,4.5,34);
+    expect(s.onGround).toBe(true);ticks(s,1,{forward:1,jump:true});
+    expect(s.vaults).toBe(1);expect(s.events.filter(e=>e.type==='vault')).toHaveLength(1);
+    ticks(s,18,{forward:1,jump:true});expect(s.gliding).toBe(false);
+    walk(s,4.5,31.2);ticks(s,100);
+    expect(s.p.z).toBeLessThan(32.37);expect(s.p.y).toBe(10);expect(s.onGround).toBe(true);
+    expect(s.landings).toBeGreaterThan(0);expect(s.recoveries).toBe(0);
+  });
+  it('does not classify a jump away from the low wall as a vault',()=>{
+    const s=new Simulation(1);s.start();walk(s,0,35.2);walk(s,4.5,35.2);walk(s,4.5,34);
+    ticks(s,1,{forward:-1,jump:true});walk(s,4.5,36.5);ticks(s,100);
+    expect(s.vaults).toBe(0);expect(s.events.some(e=>e.type==='vault')).toBe(false);
+    expect(s.events.some(e=>e.type==='jump')).toBe(true);expect(s.onGround).toBe(true);expect(s.recoveries).toBe(0);
+  });
+  it('springs from the awning after a real drop and lands on the greenhouse roof',()=>{
+    const s=new Simulation(1);s.start();walk(s,0,32);walk(s,-4,32);
+    for(let i=0;i<240&&!s.events.some(e=>e.type==='awning-bounce');i++)ticks(s,1,{forward:1});
+    expect(s.events.filter(e=>e.type==='awning-bounce')).toHaveLength(1);
+    expect(s.p.y).toBe(8.3);expect(s.v.y).toBeGreaterThan(10);expect(s.onGround).toBe(false);
+    expect(s.events.some(e=>e.type==='jump')).toBe(false);
+    walk(s,0,22,true);ticks(s,160);walk(s,3.5,19.5);tune(s);
+    expect(s.mode).toBe('success');expect(s.currentSite).toBe('greenhouse');expect(s.recoveries).toBe(0);
+  });
   it('performs a satisfying first jump/glide and completes by physical tuning',()=>{
     const s=new Simulation(1);firstGlide(s);
     expect(s.events.some(e=>e.type==='jump')).toBe(true);
@@ -60,6 +84,14 @@ describe('independent simulation input paths',()=>{
     expect(s.recoveries).toBeGreaterThan(0);expect(s.evidence.progress).toBe(0);expect(s.mode).toBe('play');
     expect(s.checkpoint.y).toBeGreaterThan(8);
   });
+  it('rejects a fragile delivery after only touching the first awning then gliding across the direct route',()=>{
+    const s=new Simulation(1);toThird(s);walk(s,0,0);walk(s,-14,0);walk(s,-15.5,1.5);tune(s);expect(s.mode).toBe('success');
+    s.next();s.start();expect(s.job.id).toBe(4);
+    walk(s,0,18);walk(s,0,22);walk(s,-6,22);walk(s,-6,18);walk(s,-9,18);
+    walk(s,-6,18);walk(s,-6,22);walk(s,0,22);walk(s,0,0);walk(s,-4.7,0);
+    ticks(s,1,{x:-1,jump:true});walk(s,-14,0,true);ticks(s,160);walk(s,-15.5,1.5);tune(s);
+    expect(s.recoveries).toBe(0);expect(s.mode).toBe('play');
+  },30_000);
   it('plays all five contracts, emits actual route evidence and replaces a dropped parcel',()=>{
     const s=new Simulation(1);toThird(s);expect(s.job.id).toBe(3);
     walk(s,0,0);expect(s.evidence.junction).toBe(false);

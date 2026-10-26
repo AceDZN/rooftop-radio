@@ -1,0 +1,40 @@
+{
+  "path": "docs/art/originals/rooftop-radio-courier-rigged.glb",
+  "bytes": 1971568,
+  "sha256": "042cab2c1fe934edaecf85b1ae711068657a7ed2ddec73892352da8c588f62db",
+  "version": 2,
+  "valid_declared_length": true,
+  "meshes": 1,
+  "skins": [
+    {
+      "name": "Armature",
+      "joints": 65
+    }
+  ],
+  "animations": [
+    {
+      "name": "idle",
+      "channels": 195,
+      "duration_seconds": 15.333333333333334
+    },
+    {
+      "name": "run",
+      "channels": 195,
+      "duration_seconds": 1.25
+    },
+    {
+      "name": "jump_down",
+      "channels": 195,
+      "duration_seconds": 3.7083333333333335
+    },
+    {
+      "name": "jump",
+      "channels": 195,
+      "duration_seconds": 2.2083333333333335
+    }
+  ],
+  "materials": 1,
+  "images": 3,
+  "extensions": [],
+  "generator": "Tripo"
+}

@@ -1,0 +1,30 @@
+{
+  "details": [
+    "./architecture/casa.glb",
+    "./architecture/arcade.glb",
+    "./architecture/atelier.glb"
+  ],
+  "distant": [
+    "./architecture/distant-flat.glb",
+    "./architecture/distant-pitched.glb",
+    "./architecture/distant-stepped.glb"
+  ],
+  "height": 9,
+  "footprint": [
+    13,
+    13
+  ],
+  "roofDecorMax": 9.035,
+  "centralRoofClearance": [
+    -5,
+    5
+  ],
+  "units": "metres",
+  "up": "+Y",
+  "source": "Original Blender 5.2 LTS architecture; scripts/build_architecture.py",
+  "backgroundOnly": [
+    "distant-flat",
+    "distant-pitched",
+    "distant-stepped"
+  ]
+}

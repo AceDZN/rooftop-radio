@@ -122,22 +122,63 @@
     "wide": false,
     "trace": []
   },
+  "movement": {
+    "vaults": 0,
+    "landings": 0,
+    "glideSeconds": 0,
+    "stunts": 0
+  },
   "time": 2.0166666666666644,
   "recoveries": 0,
   "assisted": false,
   "mistakes": 0,
   "feedback": "",
-  "assets": "Tripo rig/download pending; explicit development capsule",
+  "assets": "Local Tripo courier loaded",
   "campaign": {
-    "movementSeconds": 36.23333333333337,
+    "movementSeconds": 35.933333333333344,
     "recoveries": 0,
     "mistakes": 1,
     "assisted": false
   },
+  "art": {
+    "courier": true,
+    "glider": true,
+    "bones": 65,
+    "clips": [
+      "idle",
+      "run",
+      "jump_down",
+      "jump",
+      "land"
+    ],
+    "activeClip": "idle",
+    "equipmentBone": "mixamorigSpine2",
+    "grip": {
+      "active": false,
+      "left": 0.004237233071224739,
+      "right": 0.004881062797205857
+    },
+    "buildings": 67,
+    "error": ""
+  },
+  "camera": {
+    "yaw": 4.699925986923126,
+    "pitch": 0.245
+  },
+  "audio": {
+    "ready": true,
+    "muted": false,
+    "context": "running",
+    "musicVolume": 0.72,
+    "effectsVolume": 0.75,
+    "windVolume": 0.2,
+    "error": ""
+  },
   "performance": {
     "fps": null,
     "clock": "deterministic",
-    "drawCalls": 112,
-    "triangles": 24950
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+    "drawCalls": 118,
+    "triangles": 843824
   }
 }
