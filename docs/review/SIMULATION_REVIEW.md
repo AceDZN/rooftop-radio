@@ -28,3 +28,9 @@ The first task now uses “From the water tower, face the greenhouse. Tune the r
 
 
 Actual first browser captures have now been independently inspected for English/RTL feedback (`FIRST_CAPTURE_REVIEW.md`). They are a prototype baseline and do not close the final rig/art acceptance gate. The transfer factual context is “The café has moved to the west roof.”; the receiver side must be inferred from the English relation and changed world rather than stated in Hebrew.
+
+## Campaign summary totals
+
+The full input-only campaign now asserts that the final job has zero recoveries while campaign totals retain the deliberate parcel drop: `totals.recoveries===1`, `totals.assisted===false`, `totals.mistakes===0`. Campaign movement time exceeds the last-job time, and calling `next()` after `won` cannot double-count. The focused campaign test passes (2.959s test, 12.45s suite on the current host). Its timeout is 30s because the busy shared host exceeded Vitest's 5s default once; movement loops remain bounded.
+
+`mistakes` currently counts rejected relay tunes. Zero here must not be described as zero comprehension mistakes: the fixture deliberately takes the narrow beam contrary to the parcel job before correcting. The recovery counter preserves that consequence; a separate parcel-route-slip local event can distinguish it from an ordinary motor fall.

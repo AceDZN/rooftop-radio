@@ -29,7 +29,7 @@ export class Simulation {
   mode:Mode='planning';level=0;variant:number;jobs:Contract[];evidence:Evidence=freshEvidence();
   p:Vec={x:0,y:10,z:39};v:Vec={x:0,y:0,z:0};yaw=0;onGround=true;gliding=false;stamina=1;
   checkpoint:Vec={x:0,y:10,z:39};currentSite:SiteId|null='water';lastSite:SiteId|null='water';
-  elapsed=0;totalTime=0;recoveries=0;landings=0;airtime=0;glideSeconds=0;stunts=0;assisted=false;retries=0;
+  elapsed=0;totalTime=0;totals={recoveries:0,mistakes:0,assisted:false};recoveries=0;landings=0;airtime=0;glideSeconds=0;stunts=0;assisted=false;retries=0;
   toast='';toastTime=0;landingPulse=0;bouncePulse=0;signalPulse=0;nearest:SiteId|null=null;
   events:LocalEvent[]=[];returnMode:Mode='play';hintOpen=false;
   private coyote=.14;private buffer=0;private lastJump=false;private lastInteract=false;private recoverTime=0;private lastZ=39;private junctionInside=false;
@@ -52,7 +52,7 @@ export class Simulation {
   resume(){if(['paused','help','vocabulary'].includes(this.mode))this.mode=this.returnMode;}
   vocabulary(){if(['play','planning','paused','help'].includes(this.mode)){this.assisted=true;if(this.mode==='play'||this.mode==='planning')this.returnMode=this.mode;this.mode='vocabulary';this.log('vocabulary');}}
   hint(){if(this.job.hint){this.assisted=true;this.hintOpen=true;this.log('hint');}}
-  next(){this.totalTime+=this.elapsed;if(this.level===4){this.mode='won';return;}this.level++;this.resetJob();}
+  next(){if(this.mode!=='success')return;this.totalTime+=this.elapsed;this.totals.recoveries+=this.recoveries;this.totals.mistakes+=this.evidence.mistakes;this.totals.assisted ||=this.assisted;if(this.level===4){this.mode='won';return;}this.level++;this.resetJob();}
   restart(){this.resetJob(true);}
   recover(reason='נחיתה רכה. חזרנו לגג האחרון.'){
     this.p={...this.checkpoint};this.v={x:0,y:0,z:0};this.onGround=true;this.gliding=false;this.stamina=1;this.recoveries++;this.recoverTime=0;this.lastZ=this.p.z;this.coyote=.14;this.junctionInside=false;
@@ -75,6 +75,16 @@ export class Simulation {
     else this.v.y-=GRAVITY*dt;
     if(!this.onGround)this.airtime+=dt;else this.stamina=Math.min(1,this.stamina+dt*.8);
     const old={...this.p};this.p.x+=this.v.x*dt;this.p.z+=this.v.z*dt;this.p.y+=this.v.y*dt;
+    // Solid building sides stop a missed jump from passing through a façade.
+    // Leave the shallow top band to the authored ramps and landing solver.
+    for(const roof of SITES){
+      if(old.y>=roof.y-.3||this.p.y>=roof.y-.3)continue;
+      const left=roof.x-roof.w/2-RADIUS,right=roof.x+roof.w/2+RADIUS,north=roof.z-roof.d/2-RADIUS,south=roof.z+roof.d/2+RADIUS;
+      if(this.p.x>left&&this.p.x<right&&this.p.z>north&&this.p.z<south){
+        const distances=[this.p.x-left,right-this.p.x,this.p.z-north,south-this.p.z];const side=distances.indexOf(Math.min(...distances));
+        if(side===0){this.p.x=left;this.v.x=0;}if(side===1){this.p.x=right;this.v.x=0;}if(side===2){this.p.z=north;this.v.z=0;}if(side===3){this.p.z=south;this.v.z=0;}
+      }
+    }
     for(const o of OBSTACLES){
       if(this.p.y>=o.y+o.h-.04||this.p.y+1.5<o.y)continue;
       const nx=Math.max(o.x-o.w/2,Math.min(o.x+o.w/2,this.p.x)),nz=Math.max(o.z-o.d/2,Math.min(o.z+o.d/2,this.p.z));
@@ -101,7 +111,7 @@ export class Simulation {
         if(landing.site){this.currentSite=landing.site;if(this.lastSite!==landing.site){this.emit({type:'visit',site:landing.site});this.lastSite=landing.site;this.log('roof',landing.site);}
           if(Math.abs(this.p.x-landing.x)<landing.w/2-1.2&&Math.abs(this.p.z-landing.z)<landing.d/2-1.2)this.checkpoint={x:this.p.x,y:landing.y,z:this.p.z};}
         if(landing.kind==='awning'&&landing.id!=='spring')this.emit({type:'wide'});
-        if(landing.kind==='narrow'&&this.job.fragile&&!this.evidence.damaged){this.emit({type:'damage'});this.say(this.evidence.last);this.recover('המטען החליק. נסו מסלול שיש בו יותר מקום.');}
+        if(landing.kind==='narrow'&&this.job.fragile&&!this.evidence.damaged){this.emit({type:'damage'});this.log('parcel-drop','narrow crossing');this.say(this.evidence.last);this.recover('המטען החליק. נסו מסלול שיש בו יותר מקום.');}
       }
     }else this.currentSite=null;
     if(this.p.y<-2||Math.abs(this.p.x)>45||this.p.z>56||this.p.z<-40)this.recover();

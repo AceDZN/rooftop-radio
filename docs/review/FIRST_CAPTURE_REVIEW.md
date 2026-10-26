@@ -28,3 +28,7 @@ Browser campaign, transfer, mobile, mistakes and final success captures remain s
 ## Accepted follow-up
 
 The lead accepted the context and toast corrections: the transfer context is now specified as English “The café has moved to the west roof.” with no receiver-east clause, and the wrong-relay toast uses generic place/order guidance. Header stacking and capture-animation timing were also corrected for the next harness run. Recheck new captures before claiming those screenshot defects resolved. These first captures remain a prototype baseline; final Tripo rig/art acceptance is externally blocked. Ordinary vocabulary should also cover game-specific `tune`, `awning`, `parcel`, `beam`, `face` and `west` without supplying a route answer.
+
+## Won-summary source follow-up
+
+A later won capture exposed a mixed-scope summary: campaign movement time appeared beside only the final job's recovery count. The lead added accumulated campaign totals for recoveries, rejected relay tunes and assistance, used on the won screen. The independent full input-only campaign now verifies one total recovery despite zero in the final job, no assistance, no rejected relay tunes and no duplicate aggregation after `won`. The focused regression passes. Rendered totals still need their matching updated capture; this source/test result alone is not a screenshot verification.

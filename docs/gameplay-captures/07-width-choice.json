@@ -1,0 +1,143 @@
+{
+  "mode": "play",
+  "coordinateSystem": "meters; x east, y up, z south; north is -z",
+  "job": {
+    "number": 4,
+    "title": "מרחב למטען",
+    "english": "From the bell tower, carry the glass parcel. It needs space: the narrow beam can shake it loose. The direct crossing is narrower than the awning route. Take the wider awning route to the receiver opposite the café.",
+    "transfer": false,
+    "startingHeading": "south"
+  },
+  "player": {
+    "position": {
+      "x": 4.457714348896364e-16,
+      "y": 9,
+      "z": -0.11999999999999966
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "facingYaw": 4.699925986923126,
+    "grounded": true,
+    "gliding": false,
+    "stamina": 1
+  },
+  "currentRoof": "bell",
+  "checkpoint": {
+    "x": 4.457714348896364e-16,
+    "y": 9,
+    "z": -0.11999999999999966
+  },
+  "nearestRelay": null,
+  "relays": [
+    {
+      "site": "water",
+      "pos": {
+        "x": 2.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Water tower"
+    },
+    {
+      "site": "greenhouse",
+      "pos": {
+        "x": 3.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Greenhouse"
+    },
+    {
+      "site": "bell",
+      "pos": {
+        "x": 2.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Bell tower"
+    },
+    {
+      "site": "clock",
+      "pos": {
+        "x": 2.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Clock"
+    },
+    {
+      "site": "west",
+      "pos": {
+        "x": -15.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Receiver"
+    },
+    {
+      "site": "east",
+      "pos": {
+        "x": 20.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Café"
+    },
+    {
+      "site": "laundry",
+      "pos": {
+        "x": -15.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Laundry"
+    },
+    {
+      "site": "antenna",
+      "pos": {
+        "x": -15.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Antenna terrace"
+    },
+    {
+      "site": "mural",
+      "pos": {
+        "x": -15.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Mural"
+    }
+  ],
+  "route": {
+    "tuned": 0,
+    "required": 1,
+    "past": false,
+    "rightTurn": false,
+    "wide": false,
+    "trace": []
+  },
+  "time": 2.0166666666666644,
+  "recoveries": 0,
+  "assisted": false,
+  "mistakes": 0,
+  "feedback": "",
+  "assets": "Tripo rig/download pending; explicit development capsule",
+  "campaign": {
+    "movementSeconds": 36.23333333333337,
+    "recoveries": 0,
+    "mistakes": 1,
+    "assisted": false
+  },
+  "performance": {
+    "fps": null,
+    "clock": "deterministic",
+    "drawCalls": 112,
+    "triangles": 24950
+  }
+}

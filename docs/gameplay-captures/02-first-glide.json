@@ -1,0 +1,137 @@
+{
+  "mode": "play",
+  "coordinateSystem": "meters; x east, y up, z south; north is -z",
+  "job": {
+    "number": 1,
+    "title": "האות הראשון",
+    "english": "From the water tower, face the greenhouse. Tune the relay next to the greenhouse.",
+    "transfer": false,
+    "startingHeading": "north"
+  },
+  "player": {
+    "position": {
+      "x": 0.09071934363642471,
+      "y": 12.909722222222225,
+      "z": 28.041306279807692
+    },
+    "velocity": {
+      "x": 0,
+      "y": 2.350000000000003,
+      "z": -9.2
+    },
+    "facingYaw": 0,
+    "grounded": false,
+    "gliding": true,
+    "stamina": 0.8888333333333327
+  },
+  "currentRoof": null,
+  "checkpoint": {
+    "x": 0.09071934363642471,
+    "y": 10,
+    "z": 31.60575072425213
+  },
+  "nearestRelay": null,
+  "relays": [
+    {
+      "site": "water",
+      "pos": {
+        "x": 3.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Water tower"
+    },
+    {
+      "site": "greenhouse",
+      "pos": {
+        "x": 3.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Greenhouse"
+    },
+    {
+      "site": "bell",
+      "pos": {
+        "x": 3.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Bell tower"
+    },
+    {
+      "site": "clock",
+      "pos": {
+        "x": 3.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Clock"
+    },
+    {
+      "site": "west",
+      "pos": {
+        "x": -14.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Receiver"
+    },
+    {
+      "site": "east",
+      "pos": {
+        "x": 21.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Café"
+    },
+    {
+      "site": "laundry",
+      "pos": {
+        "x": -14.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Laundry"
+    },
+    {
+      "site": "antenna",
+      "pos": {
+        "x": -14.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Antenna terrace"
+    },
+    {
+      "site": "mural",
+      "pos": {
+        "x": -14.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Mural"
+    }
+  ],
+  "route": {
+    "tuned": 0,
+    "required": 1,
+    "past": false,
+    "rightTurn": false,
+    "wide": false,
+    "trace": []
+  },
+  "time": 3.599999999999992,
+  "recoveries": 0,
+  "assisted": false,
+  "mistakes": 1,
+  "feedback": "זה לא הממסר הדרוש בשלב הזה. בדקו שוב את תיאור המקום או את סדר התחנות בהודעה.",
+  "assets": "Tripo rig/download pending; explicit development capsule",
+  "performance": {
+    "fps": null,
+    "clock": "deterministic",
+    "drawCalls": 138,
+    "triangles": 26360
+  }
+}

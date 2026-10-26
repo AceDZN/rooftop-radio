@@ -16,7 +16,7 @@ Three.js geometry has warm plaster façades, shaded windows/shutters, tiled roof
 
 ## Acceptance still open
 
-No final target match is claimed. Material deviation: no acquired local Tripo courier/rig/clips yet; an explicit `RIG PENDING` capsule is visible. Architecture is more stylized and simpler than the targets. Actual captures, occupancy/camera comparison and fixes are pending browser capture completion and art access recovery. Final art acceptance requires the GLB visible in those captures.
+No final target match is claimed. Material deviation: no acquired local Tripo courier/rig/clips yet; an explicit `RIG PENDING` capsule is visible. Architecture is more stylized and simpler than the targets. Actual prototype captures and comparisons are recorded below. Final art acceptance and a new GLB-visible pass remain blocked by Chrome access recovery.
 
 ## Side-by-side prototype comparison
 
@@ -28,3 +28,11 @@ No final target match is claimed. Material deviation: no acquired local Tripo co
 The real canvas has the intended cream/terracotta/teal palette, a glass greenhouse landing, brass radios, recognizable skyline, depth and sparse radio HUD. It does not match the target's detailed courier, dense building surfaces or fabric detail. Those material differences remain explicit.
 
 The first actual review found an oversized sign behind the player, the bell tower blocking much of the junction camera, and a parcel placed on the model's front. Source fixes hide behind-player signs, move the tower into a roof corner and put the parcel on the back. The width-choice capture is now taken after a real camera turn toward the crossings. Fresh captures verify these changes; no synthetic image is used as gameplay evidence.
+
+## Phone and completion inspection
+
+The 390×844 actual glide shows the landing ahead with reachable touch controls, readable English and visible development marker. The vocabulary panel fits the same portrait viewport and pauses action. The actual final campaign panel renders a route trace and separates movement time from assistance. These are observed prototype frames, not generated illustrations.
+
+The palette, camera occupancy and route geometry now broadly follow the targets, with no answer ribbon or beacon. The main remainder is still substantial: the real rigged courier and clips, glider asset if its pending Tripo job succeeded, detailed material/architecture density, and final comparison with those assets. The procedural architecture is authored environment geometry; the capsule is an openly labelled temporary collider visualization.
+
+Final fresh frame07 confirms the parcel is visible on the back, both narrow beam and broad awning connections are in view, and the current-roof label no longer obstructs the crossing. Frame12 shows one accumulated recovery rather than the last job's zero. Target2's café and receiver are not simultaneously visible from this prototype camera; the player can orbit to inspect both, and this composition difference remains for the final art pass.

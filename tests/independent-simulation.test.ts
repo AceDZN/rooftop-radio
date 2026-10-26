@@ -75,5 +75,11 @@ describe('independent simulation input paths',()=>{
     walk(s,0,0);walk(s,0,18);walk(s,3.5,19.5);tune(s);expect(s.evidence.progress).toBe(2);expect(s.evidence.past).toBe(false);expect(s.evidence.junction).toBe(false);
     walk(s,0,10);walk(s,0,0);walk(s,8,0);expect(s.evidence.past).toBe(true);expect(s.evidence.junction).toBe(true);
     walk(s,18,0);walk(s,20.5,1.5);tune(s);expect(s.mode).toBe('success');s.next();expect(s.mode).toBe('won');
-  });
+    // Parcel loss is tracked as recovery; mistakes currently counts rejected relay tunes.
+    // The final job had zero recoveries, so this specifically checks campaign aggregation.
+    expect(s.recoveries).toBe(0);expect(s.totals.recoveries).toBe(1);
+    expect(s.totals.assisted).toBe(false);expect(s.totals.mistakes).toBe(0);
+    expect(s.totalTime).toBeGreaterThan(s.elapsed);
+    const finalTime=s.totalTime;s.next();expect(s.totalTime).toBe(finalTime);expect(s.totals.recoveries).toBe(1);
+  },30_000);
 });

@@ -8,7 +8,7 @@ console.log('Browser launched');
 const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 const held=new Set();const read=()=>page.evaluate(()=>JSON.parse(window.render_game_to_text()));
 async function press(keys,frames=1){for(const k of held)if(!keys.includes(k)){await page.keyboard.up(k);held.delete(k);}for(const k of keys)if(!held.has(k)){await page.keyboard.down(k);held.add(k);}return page.evaluate(ms=>{window.advanceTime(ms,false);return JSON.parse(window.render_game_to_text());},frames*1000/60);}
-async function shot(name){console.log('Capture',name);await page.evaluate(()=>window.drawGame());await page.screenshot({path:`${out}/${name}.png`,animations:"disabled"});await fs.writeFile(`${out}/${name}.json`,JSON.stringify(await read(),null,2));console.log('Saved',name);}
+async function shot(name){if(process.argv.includes('--final-review')&&!['07-width-choice','12-campaign-complete'].includes(name))return;console.log('Capture',name);await page.evaluate(()=>window.drawGame());await page.screenshot({path:`${out}/${name}.png`,animations:"disabled"});await fs.writeFile(`${out}/${name}.json`,JSON.stringify(await read(),null,2));console.log('Saved',name);}
 async function walk(x,z){let s=await read();for(let i=0;i<700;i++){const p=s.player.position,v=s.player.velocity,dx=x-p.x,dz=z-p.z,yaw=s.player.facingYaw;
   if(Math.hypot(dx,dz)<.28&&Math.hypot(v.x,v.z)<.5){await press([],8);return;}
   if(s.mode!=='play')throw Error(`Walk left play at ${x},${z}: ${JSON.stringify(s)}`);
@@ -40,6 +40,8 @@ try{
     await next();await broadGreen();await toBell();if((await read()).route.tuned!==1)throw Error('Transfer first stage wrong');
     await walk(0,0);await walk(0,18);await relay('greenhouse');await walk(0,22);await walk(0,10);await walk(0,0);await shot('10-transfer-junction');await walk(8,0);await walk(18,0);await relay('east');await shot('11-transfer-success');
     await page.click('[data-action="next"]');await shot('12-campaign-complete');
+    const final=await read();if(final.campaign.recoveries!==1||final.campaign.mistakes!==2)throw Error('Campaign totals do not match observed incidents: '+JSON.stringify(final.campaign));
+    const events=await page.evaluate(()=>JSON.parse(localStorage.getItem('rooftop-radio-events')||'[]'));if(!events.some(e=>e.type==='parcel-drop'&&e.value==='narrow crossing'))throw Error('Parcel route incident missing from local events');
     console.log(JSON.stringify({scenario:'campaign',state:await read(),errors}));
   }
   await fs.writeFile(`${out}/browser-errors.json`,JSON.stringify(errors,null,2));if(errors.length)throw Error(errors.join('\n'));

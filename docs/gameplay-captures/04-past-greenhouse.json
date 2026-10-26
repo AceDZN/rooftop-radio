@@ -1,0 +1,142 @@
+{
+  "mode": "success",
+  "coordinateSystem": "meters; x east, y up, z south; north is -z",
+  "job": {
+    "number": 2,
+    "title": "מעבר לחממה",
+    "english": "From the water tower, face the clock. First, tune the relay beside the greenhouse. Go past the greenhouse. Then tune the relay at the bell tower.",
+    "transfer": false,
+    "startingHeading": "north"
+  },
+  "player": {
+    "position": {
+      "x": 3.4002550697656013,
+      "y": 9,
+      "z": 1.4014805280938714
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "facingYaw": 0,
+    "grounded": true,
+    "gliding": false,
+    "stamina": 1
+  },
+  "currentRoof": "bell",
+  "checkpoint": {
+    "x": 3.4002550697656013,
+    "y": 9,
+    "z": 1.4014805280938714
+  },
+  "nearestRelay": "bell",
+  "relays": [
+    {
+      "site": "water",
+      "pos": {
+        "x": 3.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Water tower"
+    },
+    {
+      "site": "greenhouse",
+      "pos": {
+        "x": 3.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Greenhouse"
+    },
+    {
+      "site": "bell",
+      "pos": {
+        "x": 3.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Bell tower"
+    },
+    {
+      "site": "clock",
+      "pos": {
+        "x": 3.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Clock"
+    },
+    {
+      "site": "west",
+      "pos": {
+        "x": -14.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Receiver"
+    },
+    {
+      "site": "east",
+      "pos": {
+        "x": 21.5,
+        "y": 9,
+        "z": 1.5
+      },
+      "name": "Café"
+    },
+    {
+      "site": "laundry",
+      "pos": {
+        "x": -14.5,
+        "y": 9,
+        "z": 19.5
+      },
+      "name": "Laundry"
+    },
+    {
+      "site": "antenna",
+      "pos": {
+        "x": -14.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Antenna terrace"
+    },
+    {
+      "site": "mural",
+      "pos": {
+        "x": -14.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Mural"
+    }
+  ],
+  "route": {
+    "tuned": 2,
+    "required": 2,
+    "past": true,
+    "rightTurn": false,
+    "wide": true,
+    "trace": [
+      "antenna",
+      "laundry",
+      "greenhouse",
+      "bell"
+    ]
+  },
+  "time": 21.35000000000007,
+  "recoveries": 0,
+  "assisted": false,
+  "mistakes": 0,
+  "feedback": "האות הגיע. שידור נקי!",
+  "assets": "Tripo rig/download pending; explicit development capsule",
+  "performance": {
+    "fps": null,
+    "clock": "deterministic",
+    "drawCalls": 115,
+    "triangles": 23806
+  }
+}

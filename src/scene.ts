@@ -21,7 +21,7 @@ export class World {
   private lastTransfer=false;private firstCamera=true;private particles:{mesh:T.Mesh;vel:T.Vector3;life:number}[]=[];private wingOpen=0;private time=0;
   rigLoaded=false;assetError='';fps=60;private frames:number[]=[];
   constructor(public canvas:HTMLCanvasElement){
-    this.renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    this.renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));
     this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=T.PCFSoftShadowMap;this.renderer.outputColorSpace=T.SRGBColorSpace;this.renderer.toneMapping=T.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.16;
     const gl=this.renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');const software=debug&&/swiftshader|llvmpipe/i.test(String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL)));if(software)this.renderer.setPixelRatio(1);
     this.scene.background=new T.Color(0x9ed0dd);this.scene.fog=new T.Fog(0xb3d1d7,65,175);
@@ -115,11 +115,11 @@ export class World {
   snapCamera(){this.firstCamera=true;}
   render(sim:Simulation,dt:number,reduced:boolean,draw=true){
     this.time+=dt;if(draw&&dt>0){this.frames.push(dt);if(this.frames.length>120)this.frames.shift();this.fps=1/(this.frames.reduce((a,b)=>a+b,0)/this.frames.length);}
-    this.player.position.set(sim.p.x,sim.p.y,sim.p.z);this.player.rotation.y=sim.yaw;this.parcel.visible=sim.job.fragile;
+    this.player.position.set(sim.p.x,sim.p.y,sim.p.z);this.player.rotation.y=-sim.yaw;this.parcel.visible=sim.job.fragile;
     this.wingOpen=T.MathUtils.damp(this.wingOpen,sim.gliding?1:0,12,dt);this.wing.scale.set(0.12+this.wingOpen*.88,.25+this.wingOpen*.75,.25+this.wingOpen*.75);this.wing.visible=this.wingOpen>.02;
     if(!reduced)this.wing.rotation.z=Math.sin(this.time*3)*.025*this.wingOpen;this.animateCharacter(sim,sim.mode==='play'?dt:0);
     if(this.lastTransfer!==sim.job.transfer){this.lastTransfer=sim.job.transfer;for(const s of SITES){const old=this.labels.get(s.id)!;const sign=label(siteName(s.id,sim.job.transfer));sign.position.copy(old.position);this.scene.remove(old);(old.material as T.SpriteMaterial).map?.dispose();this.labels.set(s.id,sign);this.scene.add(sign);}this.cafe.position.x=sim.job.transfer?-18:18;this.receiverDecor.position.x=sim.job.transfer?18:-18;}
-    for(const sign of this.labels.values()){const dx=sign.position.x-sim.p.x,dz=sign.position.z-sim.p.z;sign.visible=dx*Math.sin(sim.yaw)-dz*Math.cos(sim.yaw)>-3&&Math.hypot(dx,dz)>4;}
+    for(const [id,sign] of this.labels){const dx=sign.position.x-sim.p.x,dz=sign.position.z-sim.p.z;sign.visible=id!==sim.currentSite&&dx*Math.sin(sim.yaw)-dz*Math.cos(sim.yaw)>-3&&Math.hypot(dx,dz)>4;}
     for(const relay of sim.relays){let g=this.relays.get(relay.site);if(!g){g=new T.Group();box(g,0,.45,0,.8,.9,.55,mats.teal);cylinder(g,0,1.1,0,.045,1.2,mats.brass);const ring=new T.Mesh(new T.TorusGeometry(.37,.055,6,20),mats.brass);ring.position.y=1.15;g.add(ring);box(g,0,.1,0,1.2,.2,1,mats.trim);this.scene.add(g);this.relays.set(relay.site,g);}g.position.set(relay.pos.x,relay.pos.y,relay.pos.z);}
     const forward=new T.Vector3(Math.sin(sim.yaw),0,-Math.cos(sim.yaw));const desired=new T.Vector3(sim.p.x-forward.x*8.4+Math.cos(sim.yaw)*1.1,sim.p.y+5.2,sim.p.z-forward.z*8.4+Math.sin(sim.yaw)*1.1);
     if(this.firstCamera){this.camera.position.copy(desired);this.firstCamera=false;}else this.camera.position.lerp(desired,1-Math.exp(-dt*(reduced?30:7)));
