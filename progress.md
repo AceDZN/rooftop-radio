@@ -1,3 +1,11 @@
 Original prompt: "Let's build another 3 English games." Continue the human's standing commission: real fun web-browser 3D games, grade-7/8 Workbook English for Hebrew-speaking students; built-in imagegen gameplay targets before implementation, Tripo models through their Chrome and appropriate character rigs, build then compare actual gameplay to targets; new public AceDZN repository, regular main commits and separate builder chat per game.
 
 2026-10-26: Parent selected Rooftop Radio from the researched ten-game backlog, seeded exact curriculum snapshots and concrete handoffs. No gameplay implementation or art fulfillment is claimed yet. Read docs/handoff and follow the required order.
+
+2026-10-26 lead: Read handoff, imagegen and develop-web-game skills; identity and exact target prompts saved before gameplay source. Started two actual helper agents: art_tripo owns Chrome/models/provenance; english_review owns independent semantics/review/fixtures. Lead owns integration and Git.
+
+2026-10-26 targets: Both built-in imagegen target images generated, inspected and copied to docs/visual-targets with exact prompts. Lead rejected invented answer ribbons/beacons in target 1. No gameplay source existed before first inspection.
+
+2026-10-26 art blocker: Courier generation succeeded in Tripo (30 credits; task/provenance in ASSETS.md), but tab automation timed out and native Chrome reports the Mac locked. Art owner released native lock. Rigging/download and glider outcome remain OPEN. User asked asynchronously to unlock. No local GLB, rig fulfillment, completed art or release acceptance claimed. Continued permitted pure semantics/collider/prototype layout work with a visibly labelled development capsule.
+
+2026-10-26 implementation: Pure route rules and simulation, five authored contracts, authored rooftop collision surfaces, buffered jump/coyote/glide/awning recovery; Hebrew reading/help/vocabulary pause; local-only assistance/retry events; full keyboard/touch UI shell and Three scene prototype. Review caught globally stale past/turn evidence, now scoped to instruction stage and actual approach/departure. Added altitude guard to prevent underflight route evidence. 27 semantic tests passed; input movement tests ongoing. First build found TS7 CSS import declaration requirement, fixed with vite/client reference.
