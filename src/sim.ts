@@ -14,7 +14,7 @@ SURFACES.push({id:'spring',x:-4,z:27,w:4,d:5,y:8.3,kind:'awning'});
 SURFACES.push({id:'recovery',x:-3,z:9,w:55,d:74,y:1.5,kind:'deck'});
 export const OBSTACLES: Obstacle[] = [
   {x:-3.6,z:18,w:3.6,d:5,y:9,h:3.4,kind:'landmark'},
-  {x:-3.6,z:-2.4,w:3,d:3,y:9,h:9,kind:'landmark'},
+  {x:-4.8,z:-4.8,w:2.4,d:2.4,y:9,h:9,kind:'landmark'},
   {x:-3.6,z:-20,w:3,d:3,y:10,h:8,kind:'landmark'},
   {x:-3.6,z:38,w:3,d:3,y:10,h:6,kind:'landmark'},
   {x:4.5,z:33,w:3,d:.5,y:10,h:.65,kind:'wall'},

@@ -30,16 +30,16 @@ try{await document.fonts.load('500 20px Rubik');world=new World(canvas);if(COURI
 function clearInput(){keys.clear();drag=null;}
 function storage(){try{localStorage.setItem('rooftop-radio-events',JSON.stringify(sim.events));}catch{/* Local-only telemetry is optional. */}}
 function time(t:number){return `${String(Math.floor(t/60)).padStart(2,'0')}:${String(Math.floor(t%60)).padStart(2,'0')}`;}
-function start(){audio.unlock();sim.start();clearInput();canvas.focus();}
-function pause(){sim.pause();clearInput();}
-function resume(){sim.resume();clearInput();canvas.focus();}
-function restart(){sim.restart();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;}
-function campaign(){sim.level=0;sim.totalTime=0;sim.variant=1-sim.variant;sim.resetJob();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;}
-function showHelp(){sim.pause('help');clearInput();}
+function start(){audio.unlock();sim.start();clearInput();canvas.focus();updateUI();}
+function pause(){sim.pause();clearInput();updateUI();}
+function resume(){sim.resume();clearInput();canvas.focus();updateUI();}
+function restart(){sim.restart();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;updateUI();}
+function campaign(){sim.level=0;sim.totalTime=0;sim.variant=1-sim.variant;sim.resetJob();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;updateUI();}
+function showHelp(){sim.pause('help');clearInput();updateUI();}
 function fullscreen(){if(document.fullscreenElement)void document.exitFullscreen();else void document.documentElement.requestFullscreen().catch(()=>{});}
-$('pause').onclick=()=>sim.mode==='play'?pause():resume();$('read').onclick=pause;$('vocab').onclick=()=>{sim.vocabulary();clearInput();};
-$('sound').onclick=()=>{audio.unlock();audio.muted=!audio.muted;localStorage.setItem('rr-muted',String(audio.muted));lastMode=null;};
-$('motion').onclick=()=>{reduced=!reduced;localStorage.setItem('rr-reduced',String(reduced));lastMode=null;};$('fullscreen').onclick=fullscreen;
+$('pause').onclick=()=>sim.mode==='play'?pause():resume();$('read').onclick=pause;$('vocab').onclick=()=>{sim.vocabulary();clearInput();updateUI();};
+$('sound').onclick=()=>{audio.unlock();audio.muted=!audio.muted;localStorage.setItem('rr-muted',String(audio.muted));lastMode=null;updateUI();};
+$('motion').onclick=()=>{reduced=!reduced;localStorage.setItem('rr-reduced',String(reduced));lastMode=null;updateUI();};$('fullscreen').onclick=fullscreen;
 window.addEventListener('resize',()=>world.resize());document.addEventListener('fullscreenchange',()=>world.resize());
 window.addEventListener('blur',()=>{if(sim.mode==='play')pause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&sim.mode==='play')pause();});
 window.addEventListener('keydown',e=>{
@@ -70,7 +70,7 @@ function updateOverlay(){
   const hint=sim.hintOpen?`<p class="hint">${sim.job.hint}</p>`:'';
   const utilities=`<div class="text-actions"><button data-action="vocabulary">מילון</button><button data-action="help">איך משחקים</button>${sim.job.hint?'<button data-action="hint">רמז למסלול</button>':'<span>ללא רמז פתרון במשימת ההעברה</span>'}</div>${hint}`;
   let html='';
-  if(mode==='planning')html=`<div class="sheet planning">${heading}<h1>${sim.job.title}</h1>${sim.level===0?'<p class="intro">קפצו. תפסו את הרוח. העבירו את האות.</p>':''}${sim.job.transfer?'<p class="notice">הודעת השכונה: בית הקפה עבר לגג המערבי. המקלט נמצא עכשיו ממול, בגג המזרחי.</p>':''}${briefing}<div class="launch-row"><button class="primary" id="start-btn" data-action="start">יוצאים לגגות <span>←</span></button><small>קפיצה: רווח<br>החזיקו באוויר לפתיחת דאון</small></div>${utilities}<div class="keyline"><span><b dir="ltr">WASD / ↑↓←→</b> תנועה</span><span><b>E</b> ממסר</span><span>גרירה לסיבוב מצלמה</span></div></div>`;
+  if(mode==='planning')html=`<div class="sheet planning">${heading}<h1>${sim.job.title}</h1>${sim.level===0?'<p class="intro">קפצו. תפסו את הרוח. העבירו את האות.</p>':''}${sim.job.transfer?'<p class="notice" lang="en" dir="ltr">The café has moved to the west roof.</p>':''}${briefing}<div class="launch-row"><button class="primary" id="start-btn" data-action="start">יוצאים לגגות <span>←</span></button><small>קפיצה: רווח<br>החזיקו באוויר לפתיחת דאון</small></div>${utilities}<div class="keyline"><span><b dir="ltr">WASD / ↑↓←→</b> תנועה</span><span><b>E</b> ממסר</span><span>גרירה לסיבוב מצלמה</span></div></div>`;
   if(mode==='paused')html=`<div class="sheet">${heading}<h1>ההודעה בקצב שלכם</h1>${briefing}${close}${utilities}<button class="subtle" data-action="restart">התחלת המשימה מחדש</button></div>`;
   if(mode==='vocabulary')html=`<div class="sheet vocabulary">${heading}<h1>מילים לדרך</h1><p>אפשר לקרוא ולתרגם בלי לאבד זמן. שימוש במילון נרשם בנפרד מהתנועה.</p><dl>${sim.job.vocabulary.map(([en,he])=>`<div><dt lang="en" dir="ltr">${en}</dt><dd>${he}</dd></div>`).join('')}</dl>${close}</div>`;
   if(mode==='help')html=`<div class="sheet">${heading}<h1>איך תופסים את הרוח</h1><ul class="help-list"><li><b>תנועה:</b> <bdi>WASD</bdi> או חצים. גררו על הנוף כדי לסובב מצלמה; גם <bdi>J / L</bdi>. <bdi>C</bdi> מחזיר את כיוון המצלמה.</li><li><b>קפיצה ודאייה:</b> רווח לקפיצה; החזיקו באוויר לפתיחת הדאון. <bdi>G</bdi> גם פותח דאון. הסוכך מתחת למעבר הראשון מקפיץ.</li><li><b>ממסר:</b> התקרבו לרדיו ולחצו <bdi>E</bdi>. כל הממסרים פועלים — קראו כדי לדעת איזה דרוש.</li><li><b>נפילה:</b> משטח התאוששות מחזיר לגג האחרון. אפשר לתקן בחירת ממסר בלי לאתחל.</li><li><b>קריאה:</b> <bdi>P</bdi> להשהיה, מילון בכל עת. הזמן נעצר. מהירות התנועה ומידת העזרה מוצגות בנפרד.</li><li><b>מגע:</b> חצי תנועה משמאל, קפיצה מימין. החזיקו לדאייה וגררו על הנוף למצלמה.</li></ul>${close}<button class="subtle" data-action="restart">התחלת המשימה מחדש</button></div>`;
@@ -84,13 +84,13 @@ function updateOverlay(){
     if(a==='start')start();if(a==='resume')resume();if(a==='restart')restart();if(a==='campaign')campaign();
     if(a==='next'){sim.next();yaw=sim.yaw;world.snapCamera();clearInput();}
     if(a==='help'){if(sim.mode==='planning'){sim.returnMode='planning';sim.mode='help';}else sim.mode='help';}
-    if(a==='vocabulary')sim.vocabulary();if(a==='hint'){sim.hint();lastMode=null;}
+    if(a==='vocabulary')sim.vocabulary();if(a==='hint'){sim.hint();lastMode=null;}updateUI();
   };
 }
 function updateUI(){
   if(lastMode!==sim.mode){lastMode=sim.mode;updateOverlay();storage();}
   $('active-brief').textContent=activeBrief();$('job-number').textContent=`${String(sim.level+1).padStart(2,'0')} / 05`;
-  $('task-title').textContent=sim.job.title;$('progress').textContent=`${sim.evidence.progress} / ${sim.job.order.length} ממסרים`;
+  $('task-title').textContent=sim.job.title;$('progress').innerHTML=`<bdi dir="ltr">${sim.evidence.progress} / ${sim.job.order.length}</bdi> ממסרים`;
   $('stamina').style.transform=`scaleX(${sim.stamina})`;$('flight-mode').textContent=sim.gliding?'דאייה':sim.onGround?'על הגג':'באוויר';$('timer').textContent=time(sim.elapsed);
   const compass=['N','NE','E','SE','S','SW','W','NW'];const angle=((yaw%(Math.PI*2))+Math.PI*2)%(Math.PI*2);$('compass').textContent=`${compass[Math.round(angle/(Math.PI/4))%8]} · ${Math.round(angle*180/Math.PI)}°`;
   $('feedback').textContent=sim.toastTime>0?sim.toast:'';$('feedback').classList.toggle('visible',sim.toastTime>0);
@@ -100,6 +100,6 @@ function updateUI(){
 function input():Input{if(keys.has('KeyJ'))yaw-=1/60*1.7;if(keys.has('KeyL'))yaw+=1/60*1.7;return {x:Number(keys.has('KeyD')||keys.has('ArrowRight'))-Number(keys.has('KeyA')||keys.has('ArrowLeft')),forward:Number(keys.has('KeyW')||keys.has('ArrowUp'))-Number(keys.has('KeyS')||keys.has('ArrowDown')),jump:keys.has('Space'),glide:keys.has('KeyG'),interact:keys.has('KeyE'),yaw};}
 function step(dt:number){sim.update(dt,input());audio.flight(sim.mode==='play'&&sim.gliding);for(;audioIndex<sim.events.length;audioIndex++){const e=sim.events[audioIndex];if(e.type==='jump')audio.tone('jump');if(e.type==='correct-tune')audio.tone('tune');if(e.type==='complete')audio.tone('success');if(e.type==='recovery'){audio.tone('recover');clearInput();}}updateUI();}
 let previous=performance.now(),accumulator=0;let manualStepping=false;
-function frame(now:number){const dt=Math.min(.05,(now-previous)/1000);previous=now;if(!manualStepping){accumulator+=dt;while(accumulator>=1/60){step(1/60);accumulator-=1/60;}world.render(sim,dt,reduced);}requestAnimationFrame(frame);}
-Object.assign(window,{render_game_to_text:()=>{const base=JSON.parse(sim.text());base.assets=world.rigLoaded?'Local Tripo courier loaded':'Tripo rig/download pending; explicit development capsule';base.performance={fps:Math.round(world.fps),drawCalls:world.renderer.info.render.calls,triangles:world.renderer.info.render.triangles};return JSON.stringify(base);},advanceTime:(ms:number)=>{manualStepping=true;const frames=Math.max(1,Math.round(ms/(1000/60)));for(let i=0;i<frames;i++)step(1/60);world.render(sim,Math.min(.05,frames/60),reduced);},resumeRealtime:()=>{manualStepping=false;previous=performance.now();accumulator=0;}});
+function frame(now:number){const dt=Math.max(0,Math.min(.05,(now-previous)/1000));previous=now;if(!manualStepping){accumulator+=dt;while(accumulator>=1/60){step(1/60);accumulator-=1/60;}world.render(sim,dt,reduced);}requestAnimationFrame(frame);}
+Object.assign(window,{render_game_to_text:()=>{const base=JSON.parse(sim.text());base.assets=world.rigLoaded?'Local Tripo courier loaded':'Tripo rig/download pending; explicit development capsule';base.performance={fps:manualStepping?null:Math.round(world.fps),clock:manualStepping?'deterministic':'realtime',drawCalls:world.renderer.info.render.calls,triangles:world.renderer.info.render.triangles};return JSON.stringify(base);},advanceTime:(ms:number,draw=true)=>{manualStepping=true;const frames=Math.max(1,Math.round(ms/(1000/60)));for(let i=0;i<frames;i++){step(1/60);world.render(sim,1/60,reduced,false);}if(draw)world.render(sim,0,reduced);},drawGame:()=>world.render(sim,0,reduced),resumeRealtime:()=>{manualStepping=false;previous=performance.now();accumulator=0;}});
 updateUI();requestAnimationFrame(frame);

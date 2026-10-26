@@ -25,3 +25,6 @@ All seven independent simulation tests pass (5.45s latest suite duration). The f
 ## Later source reconciliation
 
 The first task now uses “From the water tower, face the greenhouse. Tune the relay next to the greenhouse.” This makes the accepted broad route and the direct glide semantically equivalent. The movement onboarding and first-30-second action remain responsible for teaching jump/glide; no comprehension condition is waived. Ch4 now explicitly says the parcel needs space and that the narrow beam can shake it loose. Planning/help/vocabulary lifecycle now preserves the prior planning or play mode. Added independent down-and-up ramp and planning-help-vocabulary input tests for those changes.
+
+
+Actual first browser captures have now been independently inspected for English/RTL feedback (`FIRST_CAPTURE_REVIEW.md`). They are a prototype baseline and do not close the final rig/art acceptance gate. The transfer factual context is “The café has moved to the west roof.”; the receiver side must be inferred from the English relation and changed world rather than stated in Hebrew.

@@ -22,3 +22,6 @@ Content/rules review: fixtures match the agreed content (Ch1 uses “Tune” so 
 
 
 The first task does not require a specific movement technique: its English names the relay by relation. Onboarding teaches the direct jump/glide separately, and that satisfying move is tested within 30 simulated seconds. The broad alternate route therefore remains a legitimate solution.
+
+
+Transfer context is the factual English announcement “The café has moved to the west roof.” It supplies the changed landmark assignment without stating the receiver location. The earlier Hebrew notice that named the east receiver was removed from the agreed design because it would supply the final relation answer. Vocabulary remains available; the transfer has no route solution hint. Actual captures reviewed so far are a prototype baseline with a visible rig-pending capsule. Final rig/art acceptance remains blocked until local Tripo assets and animation are integrated and captured.

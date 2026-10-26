@@ -15,11 +15,11 @@ export function observe(job: Contract, old: Evidence, event: RouteEvent): Eviden
   if(event.type === 'wide') {s.wide=true;return s;}
   if(event.type === 'damage') {s.damaged=true;s.last='המטען החליק במעבר הצר. חזרנו לנקודת הבדיקה עם מטען חדש.';return s;}
   const expected=job.order[s.progress];
-  if (event.site !== expected) {s.mistakes++;s.last=`הממסר הזה שודר. בדקו שוב את סדר התחנות בהודעה.`;return s;}
+  if (event.site !== expected) {s.mistakes++;s.last=`זה לא הממסר הדרוש בשלב הזה. בדקו שוב את תיאור המקום או את סדר התחנות בהודעה.`;return s;}
   const isLast=s.progress === job.order.length-1;
-  if (isLast && job.past && !s.past) {s.mistakes++;s.last='Go past — צריך לעבור לצד הרחוק של החממה לפני השידור.';return s;}
+  if (isLast && job.past && !s.past) {s.mistakes++;s.last='\u2066Go past\u2069 — צריך לעבור לצד הרחוק של החממה לפני השידור.';return s;}
   if (isLast && job.turn && !s.junction) {s.mistakes++;s.last='ההודעה מתחילה בכיוון נתון. עברו דרך צומת מגדל הפעמון בכיוון הזה.';return s;}
-  if (isLast && job.fragile && (!s.wide || s.damaged)) {s.mistakes++;s.last='Take the wider awning route — המטען זקוק למרחב של מסלול הסוככים.';return s;}
+  if (isLast && job.fragile && (!s.wide || s.damaged)) {s.mistakes++;s.last='\u2066Take the wider awning route\u2069 — המטען זקוק למרחב של מסלול הסוככים.';return s;}
   s.progress++;
   if(event.site==='greenhouse') {s.past=false;s.junction=false;s.approach=null;}
   s.last=isLast?'האות הגיע. שידור נקי!':'הממסר כוון. המשיכו לפי ההודעה.';

@@ -33,7 +33,7 @@ export interface Contract {
   order: SiteId[]; past: boolean; turn: boolean; fragile: boolean; transfer: boolean;
   hint: string | null; vocabulary: [string,string][];
 }
-const vocab: [string,string][] = [['relay','ממסר רדיו'],['next to','ליד'],['past','מעבר ל־ / לחלוף על פני'],['towards','לעבר'],['opposite','ממול'],['wider','רחב יותר'],['narrower','צר יותר'],['fragile','שביר'],['first / then','תחילה / אחר כך'],['turn right','פנו ימינה ביחס לכיוון ההליכה']];
+const vocab: [string,string][] = [['relay / tune','ממסר רדיו / לכוון ממסר'],['next to','ליד'],['past','מעבר ל־ / לחלוף על פני'],['towards','לעבר'],['opposite','ממול'],['wider / narrower','רחב יותר / צר יותר'],['fragile / parcel','שביר / מטען'],['awning / beam','סוכך / קורה'],['face','לפנות אל / לעמוד מול'],['west','מערב'],['first / then','תחילה / אחר כך'],['turn right','פנו ימינה ביחס לכיוון ההליכה']];
 export function contracts(_variant = 0): Contract[] {
   return [
     {id:1,title:'האות הראשון',english:'From the water tower, face the greenhouse. Tune the relay next to the greenhouse.',start:'water',facing:'north',order:['greenhouse'],past:false,turn:false,fragile:false,transfer:false,hint:'החממה היא מבנה הזכוכית. הממסר שלידה נמצא על אותו גג. אפשר לקפוץ ואז לפתוח דאון.',vocabulary:vocab},

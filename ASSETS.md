@@ -8,7 +8,7 @@ Planned requirements and exact candidate prompt are in `docs/art/ASSET_PLAN.md`.
 
 ## Current blocker observation
 
-On 26 October 2026, initial CUA inventory found the user's Chrome extension browser but native app inventory returned: “The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.” After the target gate, the dedicated Chrome extension tab worked. Native access is not currently required.
+On 26 October 2026, the dedicated extension tab initially worked despite a native Mac-lock report. It later timed out, including a fresh recovery of the original courier tab. Native fallback again reported: “The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.” Manual unlock/access recovery is required to finish rigging and download. No native lock is held.
 
 ## Asset inventory
 
@@ -25,7 +25,7 @@ Rubik variable font (Hebrew and Latin), Google Fonts official repository. SIL Op
 
 Sources: https://github.com/google/fonts/tree/main/ofl/rubik ; https://raw.githubusercontent.com/google/fonts/main/ofl/rubik/OFL.txt
 
-## Courier generation in progress
+## Courier generation completed — rig/download pending
 
 - Owned library inspected: My Assets > Rigged. Visible existing kids, goblin, raccoon, automaton and other assets did not match the commissioned courier identity. No public discovery asset used.
 - Ownership basis: original generation requested in the user’s signed-in Tripo account under the commissioned game. Redistribution rights depend on the user’s existing Tripo account terms; no third-party discovered model is used.
