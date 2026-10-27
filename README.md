@@ -1,12 +1,14 @@
 # Rooftop Radio · רדיו על הגגות
 
-A third-person 3D radio-courier game for Hebrew-speaking grade-7 learners. Jump, glide and bounce between warm stone rooftops; English radio jobs determine which relays to tune and how to get there. Five original contracts cover spatial relations, `past`, traveller-relative right turns, route width and parcel needs, then a changed-context transfer with a new relay order and reversed approach.
+A third-person 3D radio-courier game for Hebrew-speaking grade-7 learners. Jump, glide, air-burst and bounce between warm stone rooftops; English radio jobs determine which relays to tune and how to get there. Five original contracts cover spatial relations, `past`, traveller-relative right turns, route width and parcel needs, then a changed-context transfer with a new relay order and reversed approach.
 
 ## Current acceptance status
 
 The five-contract slice uses a local Tripo courier with a real 65-joint skeleton, idle/run/jump/landing animation, and a separate Tripo glider. Original Blender building modules replace the temporary block façades. A locally composed instrumental score accompanies play, with separate music, effects and glide-wind controls.
 
-The latest review corrects mouse-drag direction, removes exported animation root offsets, mounts folded equipment to the spine, and poses the real arm/finger bones around the deployed grip bar. Final rendered, touch and campaign evidence is recorded in `PLAYTEST.md` and `VISUAL_REVIEW.md`. Automated verification establishes behavior; human fun and learning assessment remain separate.
+The 27 October redesign replaces ambiguous directions with short authored stages and permanent landmarks. The parcel job presents two adjacent crossings over the same gap: a narrow wooden beam and a wider striped bridge. The station cabinet and café counter are the delivery points. A second jump/glide gap, wind lifts, one air burst per flight, collectible signal notes, landing feedback and a separate flow score give the delivery loop more movement. Misses recover quickly.
+
+Nine original detailed landmark models share a pure collision layout with the simulation. Solid structure/furniture blocks movement; open tower legs, greenhouse doors and café aisles remain accessible. Existing paid Tripo models and original Blender building GLBs are reused. No new model-generation credits were spent. Actual verification and remaining visual limits are recorded in `PLAYTEST.md` and `VISUAL_REVIEW.md`; human fun/learning assessment remains separate.
 
 ## Run
 
@@ -18,7 +20,7 @@ npm run build
 npm run preview   # http://localhost:4231 — strict port
 ```
 
-Tested with Node 24.14.0 and the pinned Vite toolchain. No server, credentials, runtime AI or account is required. Models/fonts/sounds remain local. Rubik includes its OFL license. The original local score and synthesized effects start after a user gesture.
+Tested with Node 24.14.0 and the pinned Vite toolchain. No backend, credentials, runtime AI or account is required. Models/fonts/sounds remain local. Rubik includes its OFL license. The original local score and synthesized effects start after a user gesture.
 
 ## Controls
 
@@ -26,8 +28,9 @@ Tested with Node 24.14.0 and the pinned Vite toolchain. No server, credentials, 
 |---|---|---|
 | Move | WASD or arrows, using `event.code` | Four direction buttons |
 | Jump / glide | Space; hold in the air to glide; G also glides | Hold jump in the air |
+| Air burst | Shift while airborne; one charge per landing | Air-burst button |
 | Camera | Drag right to look right; vertical drag changes elevation; J/L; C resets | Drag the scene |
-| Tune a nearby relay | E | Contextual tune button |
+| Deliver / tune nearby | E | Contextual destination button |
 | Read / pause | P or Escape, or reading button | Pause / reading button |
 | Vocabulary | Hebrew toolbar button | Same |
 | Fullscreen / mute | F / M or toolbar | Toolbar |
@@ -36,6 +39,8 @@ Reading, help, vocabulary and focus-loss pause freeze movement and medal time. W
 
 ## Structure and verification
 
+- `src/course.ts`: two-crossing geometry, wind, pickups and fixed interaction locations.
+- `src/landmark-layout.ts` / `src/landmark-kit.ts`: shared pure collider data and original rendered models.
 - `src/content.ts`: original English fixtures, named sites and authored connections.
 - `src/rules.ts`: pure stage-scoped semantic evidence.
 - `src/sim.ts`: deterministic traversal, collisions, recovery and timers.

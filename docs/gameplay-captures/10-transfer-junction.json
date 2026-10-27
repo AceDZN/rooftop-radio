@@ -4,15 +4,15 @@
   "job": {
     "number": 5,
     "title": "תדר חדש",
-    "english": "From the water tower, face the clock. First, tune the bell-tower relay. Next, tune the greenhouse relay. Finally, go past the greenhouse, turn right at the bell tower and tune the receiver opposite the café.",
+    "english": "First, tune the bell-tower radio, then the greenhouse radio. Face the bell tower, go past the greenhouse, turn right at the bell tower and deliver to the café.",
     "transfer": true,
     "startingHeading": "north"
   },
   "player": {
     "position": {
-      "x": -0.11209124483845687,
+      "x": 0.04945347456837226,
       "y": 9,
-      "z": 0.08805519803521786
+      "z": 0.1977997920066205
     },
     "velocity": {
       "x": 0,
@@ -26,9 +26,9 @@
   },
   "currentRoof": "bell",
   "checkpoint": {
-    "x": -0.11209124483845687,
+    "x": 0.04945347456837226,
     "y": 9,
-    "z": 0.08805519803521786
+    "z": 0.1977997920066205
   },
   "nearestRelay": null,
   "relays": [
@@ -44,18 +44,18 @@
     {
       "site": "greenhouse",
       "pos": {
-        "x": 3.5,
+        "x": -0.5,
         "y": 9,
-        "z": 19.5
+        "z": 22.2
       },
       "name": "Greenhouse"
     },
     {
       "site": "bell",
       "pos": {
-        "x": 2.5,
+        "x": -2.4,
         "y": 9,
-        "z": 1.5
+        "z": -3.3
       },
       "name": "Bell tower"
     },
@@ -71,47 +71,20 @@
     {
       "site": "west",
       "pos": {
-        "x": -15.5,
+        "x": -21.85,
         "y": 9,
-        "z": 1.5
+        "z": -4.4
       },
-      "name": "Café"
+      "name": "Radio Station"
     },
     {
       "site": "east",
       "pos": {
-        "x": 20.5,
+        "x": 14.65,
         "y": 9,
-        "z": 1.5
+        "z": -1.3
       },
-      "name": "Receiver"
-    },
-    {
-      "site": "laundry",
-      "pos": {
-        "x": -15.5,
-        "y": 9,
-        "z": 19.5
-      },
-      "name": "Laundry"
-    },
-    {
-      "site": "antenna",
-      "pos": {
-        "x": -15.5,
-        "y": 10,
-        "z": 37.5
-      },
-      "name": "Antenna terrace"
-    },
-    {
-      "site": "mural",
-      "pos": {
-        "x": -15.5,
-        "y": 10,
-        "z": -16.5
-      },
-      "name": "Mural"
+      "name": "Café"
     }
   ],
   "route": {
@@ -131,9 +104,15 @@
   },
   "movement": {
     "vaults": 0,
-    "landings": 1,
-    "glideSeconds": 0,
-    "stunts": 0
+    "landings": 4,
+    "glideSeconds": 4.799999999999988,
+    "stunts": 4,
+    "notes": 5,
+    "notesAvailable": 18,
+    "flow": 9,
+    "bestFlow": 9,
+    "airBurstReady": true,
+    "windLift": false
   },
   "time": 32.666666666666096,
   "recoveries": 0,
@@ -142,10 +121,12 @@
   "feedback": "",
   "assets": "Local Tripo courier loaded",
   "campaign": {
-    "movementSeconds": 55.31666666666686,
+    "movementSeconds": 51.25000000000021,
     "recoveries": 1,
     "mistakes": 1,
-    "assisted": false
+    "assisted": false,
+    "notes": 11,
+    "bestFlow": 5
   },
   "art": {
     "courier": true,
@@ -162,8 +143,8 @@
     "equipmentBone": "mixamorigSpine2",
     "grip": {
       "active": false,
-      "left": 0.004237233071224739,
-      "right": 0.004881062797205857
+      "left": 0.00436780136429275,
+      "right": 0.00949031187067117
     },
     "buildings": 67,
     "error": ""
@@ -185,7 +166,7 @@
     "fps": null,
     "clock": "deterministic",
     "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
-    "drawCalls": 103,
-    "triangles": 842784
+    "drawCalls": 123,
+    "triangles": 974540
   }
 }

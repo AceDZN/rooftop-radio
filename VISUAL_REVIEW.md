@@ -1,32 +1,22 @@
 # Visual review
 
-26 October 2026. Generated targets are conceptual built-in imagegen outputs. Actual frames below come from the running Three.js game and real keyboard/touch input.
+27 October 2026. Actual gameplay captures are distinct from conceptual built-in imagegen targets. Both original targets were generated and inspected before gameplay source; exact prompts and built-in mode remain in `docs/visual-targets`.
 
-## Target inspection and final comparison
-
-Both targets were generated and inspected before gameplay source. Exact prompts and built-in mode are recorded in `docs/visual-targets`. Invented solution ribbons and answer beacons were excluded because the player must interpret the English.
-
-| Conceptual target | Actual current game,1600×900 |
+| Conceptual target | Current actual gameplay,1600×900 |
 |---|---|
-| ![Target1](docs/visual-targets/target-1.png) | ![First glide](docs/gameplay-captures/02-first-glide.png) |
-| ![Target2](docs/visual-targets/target-2.png) | ![Width-choice junction](docs/gameplay-captures/07-width-choice.png) |
+| ![First target](docs/visual-targets/target-1.png) | ![Current glide](docs/gameplay-captures/02-first-glide.png) |
+| ![Route-choice target](docs/visual-targets/target-2.png) | ![Actual two-crossing start](docs/gameplay-captures/07-width-spawn.png) |
 
-The real game now has a single original Tripo courier, 65 real skeleton joints, actual idle/run/jump/jump_down clips, a derived landing segment, and a separate original Tripo glider. Original Blender modules provide geometric roof tiles, recessed windows, shutters, iron balconies, stone arches and cornices. Three lighter variants extend the neighborhood along paved streets at varied heights. The earlier capsule and plain block skyline are absent after successful loading.
+The real game retains the warm plaster/terracotta/teal palette, street depth, greenhouse landing, brass devices and chase view. The imported Tripo courier has65 real joints and actual idle/run/jump/jump_down clips; the final segment supplies a derived landing action. A separate Tripo glider folds against a spine socket, levels independently of animated torso pitch and is held by actual arm/finger-bone posing. Original Blender building modules supply recessed windows, shutters, balconies, arches and tiled roofs. Local Rubik provides Hebrew and explicit LTR English.
 
-The cream/terracotta/teal palette, greenhouse landing, brass radios, cloth-wing silhouette, chase view, deep streets and sparse LTR radio strip follow the targets. The fragile parcel is visible beside the folded equipment at the junction. The broad awning and narrow beam remain actual navigable geometry. Transfer props/labels change together with the English context.
+The original target's invented solution ribbons and gold answer beacons were excluded. Current gameplay uses optional note pickups and visible physical wind rather than a solution path. The human's later ambiguity feedback changed the comparison layout to two nearby crossings of one gap.
 
-## Human screenshot corrections
+## 27 October: parkour-delivery redesign
 
-- Dragging right now increases heading to the right; vertical dragging changes elevation. Actual mouse and touch assertions verify direction, camera reset and unchanged route evidence.
-- The exported run clip retained a large fixed Hips offset. Runtime removes horizontal root offsets, leaves travel to the simulation and grounds the toes. Equipment follows a socket under `mixamorigSpine2`, so running and turning do not leave it behind.
-- The folded glider follows the spine; its deployed aerofoil keeps a stable orientation as the torso animates. Real upper-arm/forearm/wrist and finger bones pose around an added supported grip bar. First-glide wrist target distances are below 5mm; actual front/side frames were inspected as well as the numbers.
-- Corrected glider facing shows its teal cloth/radio face. Flight camera pulls back and rises; the phone view gets additional distance to keep the landing approach visible.
-- The distant kit originally hid its glazing inside solid walls. Its window planes now sit outside the facade; refreshed gameplay confirms dark, readable windows. Detailed module geometry was unchanged by this fix.
+The human rejected the opposite/café inference, a global wider-path comparison, pass-through scenery and the static walking loop. The new actual captures replace those with a stable mental map: blue Radio Station west, red-canopy café east, short staged English and exactly two adjacent crossings of the same gap. `07-width-spawn.png` is the exact x=3 / time=0 west-facing start. The wooden beam and broader teal/cream striped bridge are simultaneously visible and end at the same roof. The wider bottle crate makes the need for space visible. Both alternatives contain optional notes; pickups are movement rewards, not goal-only answer markers.
 
-## Evidence inspected
+Nine original detailed landmarks replace the primitive models: a compact banded tank/ladder, an open stone belfry, round clock/copper cupola, open-doored glasshouse with benches/plants, scalloped café porch/kiosk/furniture, blue radio cabinet/dish, actual laundry shapes, antenna and painted mural. The former ball trees are replaced by olive/rosemary/agave forms. Shared structural collision data preserves open passages. Geometric proof/provenance is in `docs/art/landmarks.md`; the lead inspected the final models in actual play as well as offline renders.
 
-Current desktop frames 02, 07 and 12 were opened and inspected, as were running-pack and side-grip development captures. The installed action client produced a real airborne/gliding canvas and matching state, stored as 18-installed-client. Phone planning, glide, success, vocabulary, paused and audio panels use real 390×844 CDP touch input. Final phone framing was inspected after the responsive flight-camera adjustment; the courier and wing are centered and the relay approach remains visible.
+Interaction points now match the objects people walk to. Frame 03 delivers at the radio immediately beside the greenhouse; frame 11 reaches the café service counter. The station is the blue cabinet itself, with no duplicate generic relay. The glider's full group is 0.74 of its former span, exposing substantially more landing area while retaining bone-driven hand contact. Factual labels move closer to their landmarks and the last-departed roof label stays hidden during flight.
 
-## Remaining visual differences
-
-This remains a stylized game rather than a pixel match to a generated illustration. Roof landmarks and planters use simpler authored geometry than the detailed building facades. The glider is a rigid mesh with a folding transform, not a cloth simulation. The courier has no facial rig. The junction view does not show both café and receiver simultaneously; players can rotate the camera to inspect them. No answer marker is added to compensate. Automated captures do not establish how comfortable or enjoyable the controls feel to a learner.
+The green→bell connection is now a jump/glide gap. Wind streaks, optional brass music notes, a once-per-flight air burst, dust/landing rings, quick recovery and flow scoring animate the repeated delivery action. Mobile captures show the wing fitting within portrait width, a visible approach and a working touch burst. Exact-spawn and flight views were independently inspected. A minor limit remains: a wing can still cover part of the Greenhouse label during a particular glide angle; the glasshouse and adjacent radio stay visible. Generic background building repetition and the rigid folding glider remain deliberate stylization. No human fun gain is claimed by the test suite.

@@ -44,9 +44,9 @@ export class RadioAudio {
   }
   flight(gliding:boolean,reading=false){if(gliding!==this.gliding||reading!==this.reading){this.gliding=gliding;this.reading=reading;this.applyMix();}}
   diagnostics(){return {ready:this.musicReady,muted:this.muted,context:this.context?.state??'locked',musicVolume:this.musicVolume,effectsVolume:this.effectsVolume,windVolume:this.windVolume,error:this.musicError};}
-  tone(type:'jump'|'land'|'bounce'|'tune'|'success'|'recover'){
+  tone(type:'jump'|'land'|'bounce'|'tune'|'success'|'recover'|'note'|'burst'){
     if(this.muted||!this.context||!this.effects)return;const c=this.context,now=c.currentTime;
-    const notes=type==='success'?[392,494,587,784]:type==='tune'?[440,659]:type==='bounce'?[440,554,659]:type==='jump'?[294,440]:type==='recover'?[330,294]:[100];
+    const notes=type==='note'?[659,880]:type==='burst'?[196,392,784]:type==='success'?[392,494,587,784]:type==='tune'?[440,659]:type==='bounce'?[440,554,659]:type==='jump'?[294,440]:type==='recover'?[330,294]:[100];
     notes.forEach((n,i)=>{const o=c.createOscillator(),g=c.createGain();o.type=type==='land'?'sine':'triangle';o.frequency.setValueAtTime(n,now+i*.075);g.gain.setValueAtTime(0,now+i*.075);g.gain.linearRampToValueAtTime(type==='land'?.13:.065,now+i*.075+.012);g.gain.exponentialRampToValueAtTime(.001,now+i*.075+.20);o.connect(g);g.connect(this.effects!);o.start(now+i*.075);o.stop(now+i*.075+.23);});
   }
 }

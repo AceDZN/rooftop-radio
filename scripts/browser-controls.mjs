@@ -28,6 +28,16 @@ async function hold(selectors,frames){
   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   return s;
 }
+async function touchWalk(x,z){
+  for(let i=0;i<200;i++){const s=await state(),p=s.player.position,v=s.player.velocity,yaw=s.camera.yaw,dx=x-p.x,dz=z-p.z;
+    if(Math.hypot(dx,dz)<.3&&Math.hypot(v.x,v.z)<.8){await advance(12);return;}
+    const tx=Math.max(-7.8,Math.min(7.8,dx*3)),tz=Math.max(-7.8,Math.min(7.8,dz*3));
+    const localX=Math.cos(yaw)*tx+Math.sin(yaw)*tz,localF=Math.sin(yaw)*tx-Math.cos(yaw)*tz,vx=Math.cos(yaw)*v.x+Math.sin(yaw)*v.z,vf=Math.sin(yaw)*v.x-Math.cos(yaw)*v.z;
+    const buttons=[];if(Math.abs(localX)>.35&&(Math.abs(vx)<Math.abs(localX)+.25||vx*localX<0))buttons.push(localX>0?'.dpad .right':'.dpad .left');
+    if(Math.abs(localF)>.35&&(Math.abs(vf)<Math.abs(localF)+.25||vf*localF<0))buttons.push(localF>0?'.dpad .up':'.dpad .down');
+    if(buttons.length)await hold(buttons,Math.hypot(dx,dz)>2?8:2);else await advance(4);
+  }throw Error('Touch approach failed: '+JSON.stringify(await state()));
+}
 async function shot(name){
   await page.evaluate(()=>window.drawGame());
   await page.screenshot({path:`${out}/${name}.png`,animations:'disabled'});
@@ -101,13 +111,19 @@ try{
   checks.audio.persistence=true;
   await tap('#start-btn');await advance(1);await musicReady();
 
-  await hold(['.dpad .right'],22);await hold(['.dpad .up'],60);
+  await hold(['.dpad .up'],60);
   const flight=await hold(['.dpad .up','#touch-jump'],40);
   check(flight.player.gliding,'Touch hold failed to open glider');await shot('14-mobile-glide');
   await hold(['.dpad .up','#touch-jump'],22);await advance(130);await hold(['.dpad .up'],24);await advance(30);
-  const near=await state();check(near.nearestRelay==='greenhouse','Touch route failed to reach greenhouse: '+JSON.stringify(near));
+  await touchWalk(1,22.2);const near=await state();check(near.nearestRelay==='greenhouse','Touch route failed to reach greenhouse: '+JSON.stringify(near));
   await hold(['#interact'],1);await advance(1);check((await state()).mode==='success','Touch tune failed');await shot('15-mobile-success');
-  checks.touchTraversal='physical movement, held glide, reachable relay and successful tuning';
+  checks.touchTraversal='physical movement, held glide, relocated greenhouse radio and successful delivery';
+
+  await page.click('[data-action="restart"]',{force:true});await tap('#start-btn');await advance(1);
+  await hold(['#touch-jump'],4);const burst=await hold(['#touch-jump','#touch-dash','.dpad .up'],7);
+  check(!burst.movement.airBurstReady&&Math.hypot(burst.player.velocity.x,burst.player.velocity.z)>10,'Touch air burst failed');
+  await shot('20-mobile-air-burst');await advance(100);check((await state()).movement.airBurstReady,'Landing did not recharge the air burst');
+  checks.airBurst={physicalTouch:true,usedOnce:true,rechargedOnLanding:true};await tap('#pause');
 
   await page.click('[data-action="restart"]',{force:true});await page.click('[data-action="hint"]',{force:true});await advance(600);
   check((await state()).assisted&&(await state()).time===0,'Hint reading was not paused/recorded');

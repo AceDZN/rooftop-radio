@@ -1,0 +1,165 @@
+{
+  "mode": "play",
+  "coordinateSystem": "meters; x east, y up, z south; north is -z",
+  "job": {
+    "number": 4,
+    "title": "מקום למטען",
+    "english": "The glass parcel needs space. Of the two crossings to Radio Station, take the wider striped bridge and deliver it.",
+    "transfer": false,
+    "startingHeading": "west"
+  },
+  "player": {
+    "position": {
+      "x": 3,
+      "y": 9,
+      "z": 1.8369701987210297e-16
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "facingYaw": -1.5707963267948966,
+    "grounded": true,
+    "gliding": false,
+    "stamina": 1
+  },
+  "currentRoof": "bell",
+  "checkpoint": {
+    "x": 3,
+    "y": 9,
+    "z": 1.8369701987210297e-16
+  },
+  "nearestRelay": null,
+  "relays": [
+    {
+      "site": "water",
+      "pos": {
+        "x": 2.5,
+        "y": 10,
+        "z": 37.5
+      },
+      "name": "Water tower"
+    },
+    {
+      "site": "greenhouse",
+      "pos": {
+        "x": -0.5,
+        "y": 9,
+        "z": 22.2
+      },
+      "name": "Greenhouse"
+    },
+    {
+      "site": "bell",
+      "pos": {
+        "x": -2.4,
+        "y": 9,
+        "z": -3.3
+      },
+      "name": "Bell tower"
+    },
+    {
+      "site": "clock",
+      "pos": {
+        "x": 2.5,
+        "y": 10,
+        "z": -16.5
+      },
+      "name": "Clock"
+    },
+    {
+      "site": "west",
+      "pos": {
+        "x": -21.85,
+        "y": 9,
+        "z": -4.4
+      },
+      "name": "Radio Station"
+    },
+    {
+      "site": "east",
+      "pos": {
+        "x": 14.65,
+        "y": 9,
+        "z": -1.3
+      },
+      "name": "Café"
+    }
+  ],
+  "route": {
+    "tuned": 0,
+    "required": 1,
+    "past": false,
+    "rightTurn": false,
+    "wide": false,
+    "trace": []
+  },
+  "movement": {
+    "vaults": 0,
+    "landings": 0,
+    "glideSeconds": 0,
+    "stunts": 0,
+    "notes": 0,
+    "notesAvailable": 18,
+    "flow": 0,
+    "bestFlow": 0,
+    "airBurstReady": true,
+    "windLift": false
+  },
+  "time": 0.016666666666666666,
+  "recoveries": 0,
+  "assisted": false,
+  "mistakes": 0,
+  "feedback": "",
+  "assets": "Local Tripo courier loaded",
+  "campaign": {
+    "movementSeconds": 40.10000000000008,
+    "recoveries": 0,
+    "mistakes": 1,
+    "assisted": false,
+    "notes": 8,
+    "bestFlow": 5
+  },
+  "art": {
+    "courier": true,
+    "glider": true,
+    "bones": 65,
+    "clips": [
+      "idle",
+      "run",
+      "jump_down",
+      "jump",
+      "land"
+    ],
+    "activeClip": "idle",
+    "equipmentBone": "mixamorigSpine2",
+    "grip": {
+      "active": false,
+      "left": 0.0027756197584037742,
+      "right": 0.004088717705915029
+    },
+    "buildings": 67,
+    "error": ""
+  },
+  "camera": {
+    "yaw": -1.5707963267948966,
+    "pitch": 0.245
+  },
+  "audio": {
+    "ready": true,
+    "muted": false,
+    "context": "running",
+    "musicVolume": 0.72,
+    "effectsVolume": 0.75,
+    "windVolume": 0.2,
+    "error": ""
+  },
+  "performance": {
+    "fps": null,
+    "clock": "deterministic",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+    "drawCalls": 153,
+    "triangles": 977382
+  }
+}

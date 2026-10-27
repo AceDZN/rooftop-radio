@@ -1,39 +1,36 @@
 # Rooftop Radio playtest evidence
 
-26 October 2026. Pure-input simulation, deterministic rendered capture and real-time hardware measurements are distinguished below.
+27 October 2026. This records the parkour-delivery redesign after the human's ambiguity, collision and fun feedback. Simulation, actual input captures and real-time hardware measurement remain distinct.
 
-## Simulation and independent semantics
+## Simulation and independent review
 
-41 tests across five files pass. The independent controller supplies ordinary movement/jump/glide/tune inputs and public lifecycle controls. It never writes player position, evidence, checkpoint, level or completion state.
+50 tests across seven files pass. Controllers use ordinary movement/jump/glide/tune/burst inputs and public lifecycle controls; they never assign player position, evidence, level or completion.
 
-- Direct jump/glide and a broad alternate route both reach the first relay. Both ramp directions work.
-- Full campaign covers fresh greenhouse passage, southbound right=west, fragile parcel loss/replacement/full awning route, then bell→greenhouse→east with northbound right=east and café reassignment.
-- Hard-coded fixtures cover all compass headings, wrong-relay correction, ordered transmission, near misses, stale evidence and actual turn departure.
-- A partial awning touch followed by a direct glide is rejected. Wide-route evidence requires crossing the full laundry→receiver corridor.
-- A grounded low-wall vault has distinct behavior/events. Jumping away does not falsely vault. A real drop onto the spring awning bounces and can deliver without recovery.
-- Planning/help/vocabulary/audio reading freeze movement time. Campaign recovery totals remain accumulated. Events distinguish parcel drops and first decisions without student identities.
-- Two skeleton-chain tests verify arm-target reach and wrist orientation through rotated parents.
+- Static Radio Station/Café names, one authored active stage, ordered radios, fresh greenhouse passage and traveller-relative right turns have hard-coded semantic fixtures.
+- The parcel starts facing west at x3. Two crossings share one gap and destination. The beam drops the parcel; a partial stripe touch, reverse traversal and direct airborne delivery cannot bank the wider crossing; a full westbound striped crossing succeeds.
+- Water-tower center/open legs and café aisle remain traversable. Round feet, the clock plinth and kiosk sides block entry. The open greenhouse doorway admits the courier over its low sill; its interior benches remain solid.
+- Radios sit beside the glasshouse/belfry. Radio Station uses its visible blue cabinet; café delivery uses its service-counter front. Both variants have exactly six fixed interaction targets, with no duplicate optional laundry/antenna/mural radios or invisible cabinet/counter radio boxes.
+- Air burst rejects ground use, works once airborne, cannot repeat during that flight, freezes during reading pause and recharges on landing. Notes require actual physical proximity and collect once per job.
+- Dedicated wall vault, spring bounce, recovery, both ramp directions, first glide, accessible broad alternate route, full campaign and accumulated totals retain ordinary-input coverage. Skeleton-chain target/orientation tests remain.
 
-## Full rendered campaign
+## Actual keyboard campaign
 
-The final preview4231 campaign at1600×900 used real keyboard events with deterministic stepping and GPU draws at capture boundaries. All five jobs completed; campaign reached `won` in92.9 simulated movement seconds with one accumulated recovery, two rejected relay tunes, no assistance and a distinct parcel-drop event. Browser errors are empty. The imported courier/glider,65 joints, actual animation names, spine socket and67 building modules were present throughout.
+Final preview4231 at1600×900 reached `won` through all five jobs in 89.3 simulated movement seconds, with one parcel recovery, two deliberate rejected tunes, no assistance, 18 signal notes and best flow 11. Errors are empty. Correct physical passage/turn/stripe evidence was emitted; static destinations and the new adjacent radios were used.
 
-Current actual screenshots and matching states are in `docs/gameplay-captures`. First glide02, width choice07 and completion12 were opened and inspected. Running and side-grip development views also confirmed attached folded gear and hands at the bar. First-glide wrist target distances are below5mm; numeric distance is supplemented by actual image inspection.
+`docs/gameplay-captures` contains refreshed actual frames and matching text. Frame07-width-spawn is the exact x=3 / time=0 parcel start, before movement; both crossing choices, labels and the blue station cabinet/mast are visible. The independent reviewer inspected it as well as the first radio beside the glasshouse and the actual café service-counter delivery. The course/landmarks are real Three.js geometry, not generated screenshot substitutes.
 
-The installed `develop-web-game/scripts/web_game_playwright_client.js` was rerun unchanged. A temporary local preload selected the real Metal browser backend instead of the client's hard-coded SwiftShader. Its five-second click wait expired during asset loading; the Enter action fallback then started play. The captured canvas/state show real gliding, loaded models, active grip and no error artifact, stored as18-installed-client. Earlier software-only attempts stalled under heavy shared-host load; they are not performance measurements.
+The installed `develop-web-game/scripts/web_game_playwright_client.js` was run with the original choreography client and a temporary preload selecting actual Metal rather than hard-coded SwiftShader. Its current canvas/state show gliding inside the wind lift, loaded 65-joint courier, correct clips, spine-mounted equipment and active real-bone grip. No error artifact was produced. Hand targets in this smaller-wing capture are within 1cm; images were inspected in addition to numbers. The minor departure-label visibility cleanup does not change movement/rules.
 
-## Phone, camera and audio
+## Phone, controls and audio
 
-Actual390×844 CDP touch input completes the first mission through physical movement, held jump/glide and relay tuning. Pause/help/vocabulary/hint/restart/mute/reduced-motion/fullscreen checks pass. The blur event handler is exercised synthetically; that is not an OS app-switch test. Phone panels have no horizontal overflow and keep English LTR/Hebrew RTL.
+Real 390×844 CDP touch input completes a physical jump/glide, approaches the relocated greenhouse radio and delivers successfully. The added touch air burst works, spends its charge and recharges after landing. Camera mouse-right0→.28, down-pitch.245→.395, touch-right.28→.52 and C reset0/.245 pass without changing route evidence. Reading/help/vocabulary/hint/restart/mute/reduced-motion/fullscreen handlers pass. Blur is dispatched synthetically; it is not an OS app-switch measurement.
 
-Actual mouse drag-right changes yaw0→.28; downward drag changes pitch.245→.395. Touch-right changes yaw.28→.52. C resets0/.245. Camera movement leaves route evidence unchanged. Portrait flight pulls back/rises and centers the courier so the wing and landing fit better.
-
-All three native sliders respond to real touch. Focused ArrowUp adjusts the range without being intercepted by movement. Music/effects/wind settings51/58/21 persist across reload, mute persists correctly, and the original local score is decoded with an AudioContext running after a gesture. Audio reading remains paused. Final `controls-results.json` has `passed:true`, preview4231 and errors[]. Captures13–18 were opened and inspected. Subjective musical taste and balance remain human judgments.
+All three native volume sliders respond to touch and focused keyboard input;51/58/21 values persist reload. The original score is decoded and the AudioContext runs after a gesture; reading freezes movement time and ducks music. Current controls result is `passed:true`, errors[]. Phone planning, glide, delivery, air-burst, vocabulary, paused and audio panels were opened and inspected. Flow and burst indicators have separate mobile positions. The old test's rightward launch aimed through a newly solid water radio; its route was corrected to the clear straight launch, matching the intended first jump.
 
 ## Hardware and payload
 
-An actual requestAnimationFrame run, without advanceTime, used the Apple M2 Max Metal renderer at1600×900 and DPR1. Seven samples measured58–60FPS,99–128 draw calls and approximately842–844 thousand triangles including shadow draws, with no browser errors. Samples are in `hardware-performance.json`. This short check does not establish performance on other devices or sustained thermal load. Deterministic captures correctly report FPS as unavailable.
+A real requestAnimationFrame run (no advanceTime),1600×900/DPR1 on Apple M2 Max Metal sampled 54–60FPS, 142–160 draw calls and approximately 978–982 thousand triangles including shadows. Samples and renderer string are in `hardware-performance.json`, errors[]. This short desktop check does not establish actual-phone, low-end or sustained thermal performance. Deterministic captures report FPS unavailable.
 
-`npm run build` passes. Final static output is approximately10.26MB, including the local score, Rubik and all eight GLBs. Each model is under3MB. JS is713.31kB raw /186.31kB gzip; CSS11.28kB raw /3.44kB gzip. The expected Vite large-chunk advisory is not a build failure. No runtime AI, external model/font request, server or production deployment is needed.
+`npm run build` passes. Static output is 10,308,247bytes including all local models, font and score; every GLB remains below 3MB. Current JS is 762.29kB raw; CSS 12.27kB. The Vite large-chunk advisory is expected for this Three.js bundle. No new generation credits, backend, runtime AI, remote model/font dependency or production deployment were used.
 
-Art provenance, rights, source assets, native Blender projects and optimization checks are in `ASSETS.md` and `docs/art/architecture/PROVENANCE.md`. `VISUAL_REVIEW.md` records actual target comparisons and remaining stylization. Automated verification establishes behavior; it does not establish fun or learning gains.
+These checks establish mechanics, clarity of the captured comparison and simulated solvability. They do not quantify a 10× fun improvement or learning gain. Human play and musical/control preferences remain the next evidence. Collision uses authored structural boxes/cylinders/top envelopes, with decorative fine wire, foliage and laundry excluded; it is not exact mesh-triangle physics.

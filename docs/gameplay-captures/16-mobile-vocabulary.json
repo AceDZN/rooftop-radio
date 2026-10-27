@@ -3,8 +3,8 @@
   "coordinateSystem": "meters; x east, y up, z south; north is -z",
   "job": {
     "number": 1,
-    "title": "האות הראשון",
-    "english": "From the water tower, face the greenhouse. Tune the relay next to the greenhouse.",
+    "title": "נחיתה ראשונה",
+    "english": "Deliver the signal to the radio next to the greenhouse.",
     "transfer": false,
     "startingHeading": "north"
   },
@@ -35,7 +35,7 @@
     {
       "site": "water",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 10,
         "z": 37.5
       },
@@ -44,25 +44,25 @@
     {
       "site": "greenhouse",
       "pos": {
-        "x": 3.5,
+        "x": -0.5,
         "y": 9,
-        "z": 19.5
+        "z": 22.2
       },
       "name": "Greenhouse"
     },
     {
       "site": "bell",
       "pos": {
-        "x": 3.5,
+        "x": -2.4,
         "y": 9,
-        "z": 1.5
+        "z": -3.3
       },
       "name": "Bell tower"
     },
     {
       "site": "clock",
       "pos": {
-        "x": 3.5,
+        "x": 2.5,
         "y": 10,
         "z": -16.5
       },
@@ -71,47 +71,20 @@
     {
       "site": "west",
       "pos": {
-        "x": -14.5,
+        "x": -21.85,
         "y": 9,
-        "z": 1.5
+        "z": -4.4
       },
-      "name": "Receiver"
+      "name": "Radio Station"
     },
     {
       "site": "east",
       "pos": {
-        "x": 21.5,
+        "x": 14.65,
         "y": 9,
-        "z": 1.5
+        "z": -1.3
       },
       "name": "Café"
-    },
-    {
-      "site": "laundry",
-      "pos": {
-        "x": -14.5,
-        "y": 9,
-        "z": 19.5
-      },
-      "name": "Laundry"
-    },
-    {
-      "site": "antenna",
-      "pos": {
-        "x": -14.5,
-        "y": 10,
-        "z": 37.5
-      },
-      "name": "Antenna terrace"
-    },
-    {
-      "site": "mural",
-      "pos": {
-        "x": -14.5,
-        "y": 10,
-        "z": -16.5
-      },
-      "name": "Mural"
     }
   ],
   "route": {
@@ -126,7 +99,13 @@
     "vaults": 0,
     "landings": 0,
     "glideSeconds": 0,
-    "stunts": 0
+    "stunts": 0,
+    "notes": 0,
+    "notesAvailable": 18,
+    "flow": 0,
+    "bestFlow": 0,
+    "airBurstReady": true,
+    "windLift": false
   },
   "time": 0.016666666666666666,
   "recoveries": 0,
@@ -138,7 +117,9 @@
     "movementSeconds": 0,
     "recoveries": 0,
     "mistakes": 0,
-    "assisted": false
+    "assisted": false,
+    "notes": 0,
+    "bestFlow": 0
   },
   "art": {
     "courier": true,
@@ -155,8 +136,8 @@
     "equipmentBone": "mixamorigSpine2",
     "grip": {
       "active": false,
-      "left": 0.004233151221624061,
-      "right": 0.004875559250792806
+      "left": 0.004330529640335619,
+      "right": 0.009551142673772918
     },
     "buildings": 67,
     "error": ""
@@ -178,7 +159,7 @@
     "fps": null,
     "clock": "deterministic",
     "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
-    "drawCalls": 135,
-    "triangles": 843872
+    "drawCalls": 149,
+    "triangles": 980816
   }
 }

@@ -6,21 +6,24 @@ function ticks(s:Simulation,n:number,input:Partial<Input>={}){for(let i=0;i<n;i+
 // A steering controller supplies ordinary analog movement; it never writes position,
 // evidence, level, checkpoint or completion state.
 function walk(s:Simulation,x:number,z:number,glide=false){
+  if(s.relays.some(r=>Math.hypot(r.pos.x-x,r.pos.z-z)<.15)){if(Math.abs(s.p.x-x)>Math.abs(s.p.z-z))x+=Math.sign(s.p.x-x)*1.6;else z+=Math.sign(s.p.z-z||1)*1.6;}
+  if(Math.abs(x)<.5&&Math.abs(z-10)<.2)z=3;
   for(let i=0;i<900;i++){
     const dx=x-s.p.x,dz=s.p.z-z;
     if(Math.hypot(dx,dz)<.12){ticks(s,18);return;}
-    s.update(dt,{...idle,x:Math.max(-1,Math.min(1,dx*3/SPEED)),forward:Math.max(-1,Math.min(1,dz*3/SPEED)),glide});
+    const crossing=Math.abs(s.p.x)<2&&((dz>0&&s.p.z<14.5&&s.p.z>11.5&&z<8)||(dz<0&&s.p.z>3.5&&s.p.z<6.5&&z>11));
+    s.update(dt,{...idle,x:Math.max(-1,Math.min(1,dx*3/SPEED)),forward:Math.max(-1,Math.min(1,dz*3/SPEED)),jump:crossing&&s.onGround,glide:glide||!s.onGround});
     if(s.mode!=='play')throw Error(`Movement left play: ${s.text()}`);
   }
   throw Error(`Could not reach (${x},${z}): ${s.text()}`);
 }
 function tune(s:Simulation){ticks(s,1,{interact:true});ticks(s,1);}
 function firstGlide(s:Simulation){
-  s.start();walk(s,0,31.5);ticks(s,1,{forward:1,jump:true});walk(s,3.5,19.5,true);ticks(s,160);tune(s);
+  s.start();walk(s,0,31.5);ticks(s,1,{forward:1,jump:true});walk(s,1,22,true);ticks(s,160);tune(s);
   expect(s.mode).toBe('success');expect(s.glideSeconds).toBeGreaterThan(.1);
 }
-function greenhouseToBell(s:Simulation){walk(s,0,10);walk(s,0,0);walk(s,2.5,1.5);tune(s);}
-function broadToGreen(s:Simulation){walk(s,0,36);walk(s,-18,36);walk(s,-18,18);walk(s,-6,18);walk(s,-6,22);walk(s,3.5,22);walk(s,3.5,19.5);}
+function greenhouseToBell(s:Simulation){walk(s,0,10);walk(s,0,0);walk(s,-2.4,-3.3);tune(s);}
+function broadToGreen(s:Simulation){walk(s,0,36);walk(s,-18,36);walk(s,-18,18);walk(s,-6,18);walk(s,3.5,18);walk(s,-.5,22.2);}
 function toThird(s:Simulation){
   firstGlide(s);s.next();s.start();broadToGreen(s);tune(s);
   expect(s.evidence.progress).toBe(1);expect(s.evidence.past).toBe(false);
@@ -49,7 +52,7 @@ describe('independent simulation input paths',()=>{
     expect(s.events.filter(e=>e.type==='awning-bounce')).toHaveLength(1);
     expect(s.p.y).toBe(8.3);expect(s.v.y).toBeGreaterThan(10);expect(s.onGround).toBe(false);
     expect(s.events.some(e=>e.type==='jump')).toBe(false);
-    walk(s,0,22,true);ticks(s,160);walk(s,3.5,19.5);tune(s);
+    walk(s,0,22,true);ticks(s,160);walk(s,-.5,22.2);tune(s);
     expect(s.mode).toBe('success');expect(s.currentSite).toBe('greenhouse');expect(s.recoveries).toBe(0);
   });
   it('performs a satisfying first jump/glide and completes by physical tuning',()=>{
@@ -59,7 +62,7 @@ describe('independent simulation input paths',()=>{
     expect(s.elapsed).toBeLessThan(30);
   });
   it('supports a broad alternate first path without precise jumping',()=>{
-    const s=new Simulation(1);s.start();walk(s,0,36);walk(s,-18,36);walk(s,-18,18);walk(s,-6,18);walk(s,-6,22);walk(s,3.5,22);walk(s,3.5,19.5);tune(s);
+    const s=new Simulation(1);s.start();walk(s,0,36);walk(s,-18,36);walk(s,-18,18);walk(s,-6,18);walk(s,3.5,18);walk(s,-.5,22.2);tune(s);
     expect(s.mode).toBe('success');expect(s.recoveries).toBe(0);expect(s.stunts).toBe(0);
   });
   it('walks down and back up an edge-to-edge bridge ramp without jumping or recovery',()=>{
@@ -84,29 +87,27 @@ describe('independent simulation input paths',()=>{
     expect(s.recoveries).toBeGreaterThan(0);expect(s.evidence.progress).toBe(0);expect(s.mode).toBe('play');
     expect(s.checkpoint.y).toBeGreaterThan(8);
   });
-  it('rejects a fragile delivery after only touching the first awning then gliding across the direct route',()=>{
-    const s=new Simulation(1);toThird(s);walk(s,0,0);walk(s,-14,0);walk(s,-15.5,1.5);tune(s);expect(s.mode).toBe('success');
-    s.next();s.start();expect(s.job.id).toBe(4);
-    walk(s,0,18);walk(s,0,22);walk(s,-6,22);walk(s,-6,18);walk(s,-9,18);
-    walk(s,-6,18);walk(s,-6,22);walk(s,0,22);walk(s,0,0);walk(s,-4.7,0);
-    ticks(s,1,{x:-1,jump:true});walk(s,-14,0,true);ticks(s,160);walk(s,-15.5,1.5);tune(s);
-    expect(s.recoveries).toBe(0);expect(s.mode).toBe('play');
+  it('rejects a fragile delivery after a partial stripe then a glide over the beam',()=>{
+    const s=new Simulation(1);toThird(s);walk(s,0,-2);walk(s,-14,-2);walk(s,-21.85,-4.4);tune(s);expect(s.mode).toBe('success');
+    s.next();s.start();walk(s,0,3.3);walk(s,-8,3.3);expect(s.evidence.wide).toBe(false);walk(s,0,3.3);
+    walk(s,0,-2);walk(s,-4.7,-2);ticks(s,1,{x:-1,jump:true});walk(s,-14,-2,true);ticks(s,160);walk(s,-21.85,-4.4);tune(s);
+    expect(s.recoveries).toBe(0);expect(s.mode).toBe('play');expect(s.evidence.wide).toBe(false);
   },30_000);
   it('plays all five contracts, emits actual route evidence and replaces a dropped parcel',()=>{
     const s=new Simulation(1);toThird(s);expect(s.job.id).toBe(3);
     walk(s,0,0);expect(s.evidence.junction).toBe(false);
-    walk(s,-8,0);expect(s.evidence.junction).toBe(true);
-    walk(s,-14,0);walk(s,-15.5,1.5);tune(s);expect(s.mode).toBe('success');
-    s.next();s.start();expect(s.job.id).toBe(4);walk(s,0,0);
+    walk(s,0,-2);walk(s,-8,-2);expect(s.evidence.junction).toBe(true);
+    walk(s,-14,-2);walk(s,-21.85,-4.4);tune(s);expect(s.mode).toBe('success');
+    s.next();s.start();expect(s.job.id).toBe(4);walk(s,0,-2);
     for(let i=0;i<180&&s.recoveries===0;i++)ticks(s,1,{x:-1});
     ticks(s,30);expect(s.recoveries).toBe(1);expect(s.evidence.damaged).toBe(false);expect(s.evidence.wide).toBe(false);expect(s.evidence.progress).toBe(0);
-    walk(s,0,0);walk(s,0,18);walk(s,0,22);walk(s,-6,22);walk(s,-6,18);walk(s,-18,18);walk(s,-18,0);walk(s,-15.5,1.5);tune(s);
+    walk(s,0,3.3);walk(s,-14,3.3);walk(s,-21.85,-4.4);tune(s);
     expect(s.mode).toBe('success');expect(s.evidence.wide).toBe(true);
     s.next();s.start();expect(s.job.id).toBe(5);expect(s.job.hint).toBeNull();s.hint();expect(s.assisted).toBe(false);
     broadToGreen(s);greenhouseToBell(s);expect(s.evidence.progress).toBe(1);
-    walk(s,0,0);walk(s,0,18);walk(s,3.5,19.5);tune(s);expect(s.evidence.progress).toBe(2);expect(s.evidence.past).toBe(false);expect(s.evidence.junction).toBe(false);
+    walk(s,0,0);walk(s,0,18);walk(s,-.5,22.2);tune(s);expect(s.evidence.progress).toBe(2);expect(s.evidence.past).toBe(false);expect(s.evidence.junction).toBe(false);
     walk(s,0,10);walk(s,0,0);walk(s,8,0);expect(s.evidence.past).toBe(true);expect(s.evidence.junction).toBe(true);
-    walk(s,18,0);walk(s,20.5,1.5);tune(s);expect(s.mode).toBe('success');s.next();expect(s.mode).toBe('won');
+    walk(s,12,0);walk(s,14.65,0);walk(s,14.65,-1.3);tune(s);expect(s.mode).toBe('success');s.next();expect(s.mode).toBe('won');
     // Parcel loss is tracked as recovery; mistakes currently counts rejected relay tunes.
     // The final job had zero recoveries, so this specifically checks campaign aggregation.
     expect(s.recoveries).toBe(0);expect(s.totals.recoveries).toBe(1);

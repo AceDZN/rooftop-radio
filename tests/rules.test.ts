@@ -10,8 +10,8 @@ describe('contract evidence',()=>{
     expect(complete(job,e)).toBe(true);expect(e.mistakes).toBe(1);
   });
   it('keeps a near-side approach distinct from past',()=>{expect(beyondGreenhouse(11.51)).toBe(false);expect(beyondGreenhouse(11.49)).toBe(true);});
-  it('right from opposite approaches reverses the compass direction',()=>{expect(turn('north','right')).toBe('east');expect(turn('south','right')).toBe('west');});
-  it('new-context transfer requires a new order and opposite receiver',()=>{
+  it('right from reversed approaches changes the compass direction',()=>{expect(turn('north','right')).toBe('east');expect(turn('south','right')).toBe('west');});
+  it('new-context transfer requires a new order and a right turn towards the static café',()=>{
     const job=contracts()[4];let e=freshEvidence();
     e=observe(job,e,{type:'tune',site:'greenhouse'});expect(e.progress).toBe(0);
     for(const event of [{type:'tune',site:'bell'},{type:'tune',site:'greenhouse'},{type:'past'},{type:'junction',approach:'north'},{type:'depart',direction:'east'},{type:'tune',site:'east'}] as const)e=observe(job,e,event);

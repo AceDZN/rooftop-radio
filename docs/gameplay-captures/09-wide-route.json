@@ -3,32 +3,32 @@
   "coordinateSystem": "meters; x east, y up, z south; north is -z",
   "job": {
     "number": 4,
-    "title": "מרחב למטען",
-    "english": "From the bell tower, carry the glass parcel. It needs space: the narrow beam can shake it loose. The direct crossing is narrower than the awning route. Take the wider awning route to the receiver opposite the café.",
+    "title": "מקום למטען",
+    "english": "The glass parcel needs space. Of the two crossings to Radio Station, take the wider striped bridge and deliver it.",
     "transfer": false,
-    "startingHeading": "south"
+    "startingHeading": "west"
   },
   "player": {
     "position": {
-      "x": -15.623250724252232,
+      "x": -20.15740907583567,
       "y": 9,
-      "z": 1.3999999999999853
+      "z": -4.246173157302031
     },
     "velocity": {
       "x": 0,
       "y": 0,
       "z": 0
     },
-    "facingYaw": 3.141592653589793,
+    "facingYaw": -1.5707963267948966,
     "grounded": true,
     "gliding": false,
     "stamina": 1
   },
   "currentRoof": "west",
   "checkpoint": {
-    "x": -15.623250724252232,
+    "x": -20.15740907583567,
     "y": 9,
-    "z": 1.3999999999999853
+    "z": -4.246173157302031
   },
   "nearestRelay": "west",
   "relays": [
@@ -44,18 +44,18 @@
     {
       "site": "greenhouse",
       "pos": {
-        "x": 3.5,
+        "x": -0.5,
         "y": 9,
-        "z": 19.5
+        "z": 22.2
       },
       "name": "Greenhouse"
     },
     {
       "site": "bell",
       "pos": {
-        "x": 2.5,
+        "x": -2.4,
         "y": 9,
-        "z": 1.5
+        "z": -3.3
       },
       "name": "Bell tower"
     },
@@ -71,47 +71,20 @@
     {
       "site": "west",
       "pos": {
-        "x": -15.5,
+        "x": -21.85,
         "y": 9,
-        "z": 1.5
+        "z": -4.4
       },
-      "name": "Receiver"
+      "name": "Radio Station"
     },
     {
       "site": "east",
       "pos": {
-        "x": 20.5,
+        "x": 14.65,
         "y": 9,
-        "z": 1.5
+        "z": -1.3
       },
       "name": "Café"
-    },
-    {
-      "site": "laundry",
-      "pos": {
-        "x": -15.5,
-        "y": 9,
-        "z": 19.5
-      },
-      "name": "Laundry"
-    },
-    {
-      "site": "antenna",
-      "pos": {
-        "x": -15.5,
-        "y": 10,
-        "z": 37.5
-      },
-      "name": "Antenna terrace"
-    },
-    {
-      "site": "mural",
-      "pos": {
-        "x": -15.5,
-        "y": 10,
-        "z": -16.5
-      },
-      "name": "Mural"
     }
   ],
   "route": {
@@ -121,8 +94,6 @@
     "rightTurn": false,
     "wide": true,
     "trace": [
-      "greenhouse",
-      "laundry",
       "west"
     ]
   },
@@ -130,19 +101,27 @@
     "vaults": 0,
     "landings": 0,
     "glideSeconds": 0,
-    "stunts": 0
+    "stunts": 0,
+    "notes": 3,
+    "notesAvailable": 18,
+    "flow": 3,
+    "bestFlow": 3,
+    "airBurstReady": true,
+    "windLift": false
   },
-  "time": 19.383333333333514,
+  "time": 11.150000000000134,
   "recoveries": 1,
   "assisted": false,
   "mistakes": 0,
-  "feedback": "האות הגיע. שידור נקי!",
+  "feedback": "המסירה הגיעה ל־⁦Radio Station⁩!",
   "assets": "Local Tripo courier loaded",
   "campaign": {
-    "movementSeconds": 35.933333333333344,
+    "movementSeconds": 40.10000000000008,
     "recoveries": 0,
     "mistakes": 1,
-    "assisted": false
+    "assisted": false,
+    "notes": 8,
+    "bestFlow": 5
   },
   "art": {
     "courier": true,
@@ -159,14 +138,14 @@
     "equipmentBone": "mixamorigSpine2",
     "grip": {
       "active": false,
-      "left": 0.004237233071224739,
-      "right": 0.004881062797205857
+      "left": 0.0027756197584037742,
+      "right": 0.004088717705915029
     },
     "buildings": 67,
     "error": ""
   },
   "camera": {
-    "yaw": 3.141592653589793,
+    "yaw": -1.5707963267948966,
     "pitch": 0.245
   },
   "audio": {
@@ -182,7 +161,7 @@
     "fps": null,
     "clock": "deterministic",
     "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
-    "drawCalls": 142,
-    "triangles": 844128
+    "drawCalls": 126,
+    "triangles": 973582
   }
 }

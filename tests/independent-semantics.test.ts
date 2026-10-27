@@ -1,81 +1,87 @@
 import {describe, expect, it} from 'vitest';
-import {CONNECTIONS, SITE, contracts, siteName, type SiteId} from '../src/content';
+import {CONNECTIONS, SITE, contracts, activeBrief, siteName, type SiteId} from '../src/content';
 import {beyondGreenhouse, complete, freshEvidence, observe, turn, type RouteEvent} from '../src/rules';
 
-// The expected compass table is specified here independently of production math.
+// Expected compass truth is specified independently of production turn math.
 const turns = [
   ['north','right','east'], ['east','right','south'],
   ['south','right','west'], ['west','right','north'],
   ['north','left','west'], ['east','left','north'],
   ['south','left','east'], ['west','left','south'],
 ] as const;
-const run = (index:number, events:RouteEvent[]) => events.reduce((s,e)=>observe(contracts()[index],s,e),freshEvidence());
+const run=(index:number,events:RouteEvent[])=>events.reduce((s,e)=>observe(contracts()[index],s,e),freshEvidence());
 
 describe('independent English truth fixtures',()=>{
-  it.each(turns)('%s then %s means %s irrespective of camera', (heading,side,expected)=>{
+  it('authors one current stage for each ordered radio decision',()=>{
+    const jobs=contracts();
+    expect(jobs.map(j=>j.order)).toEqual([['greenhouse'],['greenhouse','bell'],['west'],['west'],['bell','greenhouse','east']]);
+    expect(jobs[0].english).toBe('Deliver the signal to the radio next to the greenhouse.');
+    expect(activeBrief(jobs[1],0)).toBe('First, tune the greenhouse radio.');
+    expect(activeBrief(jobs[1],1)).toBe('Go past the greenhouse. Tune the bell-tower radio.');
+    expect(activeBrief(jobs[4],0)).toBe('First, tune the bell-tower radio.');
+    expect(activeBrief(jobs[4],1)).toBe('Next, tune the greenhouse radio.');
+    expect(activeBrief(jobs[4],2)).toBe('Face the bell tower. Go past the greenhouse, turn right at the bell tower and deliver to the café.');
+    expect(activeBrief(jobs[4],3)).toBe(activeBrief(jobs[4],2));
+    for(const job of jobs){
+      expect(job.stages.length).toBe(job.order.length);
+      expect(job.english).not.toMatch(/opposite|receiver|moved/i);
+    }
+  });
+  it.each(turns)('%s then %s means %s irrespective of camera',(heading,side,expected)=>{
     expect(turn(heading,side)).toBe(expected);
   });
-  it('treats approaching and reaching the greenhouse edge as distinct from beyond it',()=>{
-    expect(beyondGreenhouse(30)).toBe(false);
-    expect(beyondGreenhouse(18)).toBe(false);
-    expect(beyondGreenhouse(11.501)).toBe(false);
-    expect(beyondGreenhouse(11.5)).toBe(false);
-    expect(beyondGreenhouse(11.499)).toBe(true);
-    expect(beyondGreenhouse(0)).toBe(true);
+  it('distinguishes approaching the greenhouse and its edge from moving beyond it',()=>{
+    for(const z of [30,18,11.501,11.5])expect(beyondGreenhouse(z)).toBe(false);
+    expect(beyondGreenhouse(11.499)).toBe(true);expect(beyondGreenhouse(0)).toBe(true);
   });
-  it('keeps an unrelated first receiver recoverable and distinct from the greenhouse destination',()=>{
+  it('keeps a wrong first radio recoverable and different from the greenhouse destination',()=>{
     const wrong=run(0,[{type:'tune',site:'east'}]);
-    expect(wrong.progress).toBe(0);
-    expect(wrong.mistakes).toBe(1);
+    expect(wrong.progress).toBe(0);expect(wrong.mistakes).toBe(1);
+    expect(wrong.last).toContain('Café');expect(wrong.last).toContain('Deliver the signal to the radio next to the greenhouse.');
     const recovered=observe(contracts()[0],wrong,{type:'tune',site:'greenhouse'});
     expect(complete(contracts()[0],recovered)).toBe(true);
   });
-  it('requires first relay, actual passage, then second relay',()=>{
-    const wrongOrder=run(1,[{type:'tune',site:'bell'}]);
-    expect(wrongOrder.progress).toBe(0);
-    const towardsOnly=run(1,[{type:'tune',site:'greenhouse'},{type:'tune',site:'bell'}]);
-    expect(complete(contracts()[1],towardsOnly)).toBe(false);
-    const recovered=observe(contracts()[1],observe(contracts()[1],towardsOnly,{type:'past'}),{type:'tune',site:'bell'});
-    expect(complete(contracts()[1],recovered)).toBe(true);
+  it('requires first radio, actual passage, then second radio and permits correction',()=>{
+    expect(run(1,[{type:'tune',site:'bell'}]).progress).toBe(0);
+    const towards=run(1,[{type:'tune',site:'greenhouse'},{type:'tune',site:'bell'}]);
+    expect(complete(contracts()[1],towards)).toBe(false);expect(towards.last).toContain('Go past the greenhouse.');
+    const corrected=observe(contracts()[1],observe(contracts()[1],towards,{type:'past'}),{type:'tune',site:'bell'});
+    expect(complete(contracts()[1],corrected)).toBe(true);
   });
-  it('does not bank a past event before the ordered greenhouse instruction',()=>{
+  it('does not bank a passage before the ordered greenhouse tune',()=>{
     const stale=run(1,[{type:'past'},{type:'tune',site:'greenhouse'},{type:'tune',site:'bell'}]);
     expect(complete(contracts()[1],stale)).toBe(false);
   });
-  it('requires a southbound junction approach in contract three',()=>{
-    const wrongHeading=run(2,[{type:'junction',approach:'north'},{type:'depart',direction:'west'},{type:'tune',site:'west'}]);
-    expect(complete(contracts()[2],wrongHeading)).toBe(false);
-    const rightHeading=run(2,[{type:'junction',approach:'south'},{type:'depart',direction:'west'},{type:'tune',site:'west'}]);
-    expect(complete(contracts()[2],rightHeading)).toBe(true);
+  it('requires southbound approach and westward right departure for Radio Station',()=>{
+    const wrong=run(2,[{type:'junction',approach:'north'},{type:'depart',direction:'west'},{type:'tune',site:'west'}]);
+    expect(complete(contracts()[2],wrong)).toBe(false);
+    expect(wrong.last).toContain('Turn right at the bell tower.');
+    const right=run(2,[{type:'junction',approach:'south'},{type:'depart',direction:'west'},{type:'tune',site:'west'}]);
+    expect(complete(contracts()[2],right)).toBe(true);
   });
-  it('rejects an approach without a departure, a left departure and a straight departure',()=>{
-    for (const events of [
+  it('rejects an approach with no departure, a left departure or a straight departure',()=>{
+    for(const events of [
       [{type:'junction',approach:'south'},{type:'tune',site:'west'}],
       [{type:'junction',approach:'south'},{type:'depart',direction:'east'},{type:'tune',site:'west'}],
       [{type:'junction',approach:'south'},{type:'depart',direction:'south'},{type:'tune',site:'west'}],
-    ] as RouteEvent[][]) expect(complete(contracts()[2],run(2,events))).toBe(false);
+    ] as RouteEvent[][])expect(complete(contracts()[2],run(2,events))).toBe(false);
   });
-  it('keeps a narrow direct delivery distinct from a wide-path parcel delivery',()=>{
-    const narrow=run(3,[{type:'tune',site:'west'}]);
-    expect(complete(contracts()[3],narrow)).toBe(false);
-    const wide=run(3,[{type:'wide'},{type:'tune',site:'west'}]);
-    expect(complete(contracts()[3],wide)).toBe(true);
-    const damaged=run(3,[{type:'damage'},{type:'wide'},{type:'tune',site:'west'}]);
-    expect(complete(contracts()[3],damaged)).toBe(false);
+  it('requires the completed wider striped crossing and an intact parcel',()=>{
+    const direct=run(3,[{type:'tune',site:'west'}]);
+    expect(complete(contracts()[3],direct)).toBe(false);expect(direct.last).toContain('Take the wider striped bridge.');
+    expect(complete(contracts()[3],run(3,[{type:'wide'},{type:'tune',site:'west'}]))).toBe(true);
+    expect(complete(contracts()[3],run(3,[{type:'damage'},{type:'wide'},{type:'tune',site:'west'}]))).toBe(false);
   });
-  it('changes the physical transfer receiver and retains an explicit new order',()=>{
+  it('keeps landmark identities fixed while transferring order and approach',()=>{
     const transfer=contracts()[4];
-    expect(transfer.start).toBe('water');
-    expect(transfer.facing).toBe('north');
-    expect(transfer.order).toEqual(['bell','greenhouse','east']);
-    expect(siteName('west',true)).toBe('Café');
-    expect(siteName('east',true)).toBe('Receiver');
-    expect(transfer.hint).toBeNull();
-    expect(transfer.vocabulary.length).toBeGreaterThan(0);
-    const memorizedOldReceiver=run(4,[{type:'tune',site:'bell'},{type:'tune',site:'greenhouse'},{type:'past'},{type:'junction',approach:'north'},{type:'depart',direction:'east'},{type:'tune',site:'west'}]);
-    expect(complete(transfer,memorizedOldReceiver)).toBe(false);
-    const corrected=observe(transfer,memorizedOldReceiver,{type:'tune',site:'east'});
-    expect(complete(transfer,corrected)).toBe(true);
+    expect(transfer.start).toBe('water');expect(transfer.facing).toBe('north');
+    expect(contracts()[2].facing).toBe('south');expect(transfer.order).toEqual(['bell','greenhouse','east']);
+    expect(siteName('west',false)).toBe('Radio Station');expect(siteName('west',true)).toBe('Radio Station');
+    expect(siteName('east',false)).toBe('Café');expect(siteName('east',true)).toBe('Café');
+    expect(transfer.hint).toBeNull();expect(transfer.vocabulary.length).toBeGreaterThan(0);
+    const previousDestination=run(4,[{type:'tune',site:'bell'},{type:'tune',site:'greenhouse'},{type:'past'},{type:'junction',approach:'north'},{type:'depart',direction:'east'},{type:'tune',site:'west'}]);
+    expect(complete(transfer,previousDestination)).toBe(false);
+    expect(complete(transfer,observe(transfer,previousDestination,{type:'tune',site:'east'}))).toBe(true);
   });
   it('requires fresh passage after returning to the greenhouse in transfer',()=>{
     const stale=run(4,[{type:'past'},{type:'junction',approach:'north'},{type:'tune',site:'bell'},{type:'tune',site:'greenhouse'},{type:'tune',site:'east'}]);
@@ -83,40 +89,37 @@ describe('independent English truth fixtures',()=>{
   });
 });
 
-// These path traces are hand-authored route oracles, not generated from production adjacency.
+// Hand-authored roof traces do not derive expected adjacency or coordinates from helpers.
 const edgeFor=(a:SiteId,b:SiteId)=>CONNECTIONS.find(e=>(e.a===a&&e.b===b)||(e.a===b&&e.b===a));
 const length=(path:SiteId[])=>path.slice(1).reduce((sum,b,i)=>sum+Math.hypot(SITE[b].x-SITE[path[i]].x,SITE[b].z-SITE[path[i]].z),0);
 describe('independent authored geometry oracle',()=>{
   it.each([
-    ['water','greenhouse'],
-    ['water','antenna','laundry','greenhouse'],
-    ['bell','greenhouse','laundry','west'],
-    ['clock','mural','west'],
-  ] as SiteId[][])('supports route %j with reachable roof connections',(...path)=>{
+    ['water','greenhouse'],['water','antenna','laundry','greenhouse'],
+    ['bell','greenhouse','laundry','west'],['clock','mural','west'],
+  ] as SiteId[][])('supports route %j through reachable roof connections',(...path)=>{
     path.slice(1).forEach((b,i)=>{
-      const a=path[i];
-      expect(edgeFor(a,b)).toBeDefined();
+      const a=path[i];expect(edgeFor(a,b)).toBeDefined();
       const dx=Math.max(0,Math.abs(SITE[a].x-SITE[b].x)-(SITE[a].w+SITE[b].w)/2);
       const dz=Math.max(0,Math.abs(SITE[a].z-SITE[b].z)-(SITE[a].d+SITE[b].d)/2);
       expect(Math.hypot(dx,dz)).toBeLessThanOrEqual(5);
       expect(Math.abs(SITE[a].y-SITE[b].y)).toBeLessThanOrEqual(1);
     });
   });
-  it('makes the awning path wider and longer than the named direct crossing',()=>{
-    const direct=edgeFor('bell','west')!;
-    expect(direct.kind).toBe('narrow');
-    expect(direct.width).toBe(1.15);
-    const widePath:SiteId[]=['bell','greenhouse','laundry','west'];
-    widePath.slice(1).forEach((b,i)=>expect(edgeFor(widePath[i],b)!.width).toBeGreaterThanOrEqual(3.4));
+  it('keeps the exploration loop separate from the two direct parcel crossings',()=>{
     expect(length(['bell','west'])).toBe(18);
-    expect(length(widePath)).toBe(54);
+    expect(length(['bell','greenhouse','laundry','west'])).toBe(54);
+    const parcel=contracts()[3];expect(parcel.start).toBe('bell');expect(parcel.facing).toBe('west');expect(parcel.order).toEqual(['west']);
+    expect(activeBrief(parcel,0)).toContain('Of the two crossings to Radio Station');
+    expect(activeBrief(parcel,0)).toContain('wider striped bridge');
+    expect(activeBrief(parcel,0)).not.toMatch(/laundry|awning/i);
   });
-  it('places the regular café and receiver opposite one another across the bell junction',()=>{
-    expect(SITE.east.x).toBe(18);
-    expect(SITE.west.x).toBe(-18);
-    expect(SITE.east.z).toBe(0);
-    expect(SITE.west.z).toBe(0);
-    expect(SITE.clock.z).toBe(-18);
-    expect(SITE.water.z).toBe(36);
+  it('makes the greenhouse-to-bell connection a real parkour gap',()=>{
+    expect(edgeFor('greenhouse','bell')?.kind).toBe('gap');
+  });
+  it('keeps named landmarks at fixed coordinates across every job',()=>{
+    expect(SITE.east.x).toBe(18);expect(SITE.west.x).toBe(-18);
+    expect(SITE.east.z).toBe(0);expect(SITE.west.z).toBe(0);
+    expect(SITE.clock.z).toBe(-18);expect(SITE.water.z).toBe(36);
+    for(const id of Object.keys(SITE) as SiteId[])expect(siteName(id,true)).toBe(siteName(id,false));
   });
 });

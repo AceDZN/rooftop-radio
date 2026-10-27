@@ -3,16 +3,16 @@
   "coordinateSystem": "meters; x east, y up, z south; north is -z",
   "job": {
     "number": 3,
-    "title": "ימינה ביחס להליכה",
-    "english": "From the clock, face the bell tower. Go straight to the bell tower. Turn right. Tune the receiver opposite the café.",
+    "title": "פנייה לתחנה",
+    "english": "From the clock, face the bell tower. Turn right at the bell tower and deliver to Radio Station.",
     "transfer": false,
     "startingHeading": "south"
   },
   "player": {
     "position": {
-      "x": -15.340000000000018,
+      "x": -20.09858223313771,
       "y": 9,
-      "z": 1.3000000000000191
+      "z": -4.49120453791781
     },
     "velocity": {
       "x": 0,
@@ -26,9 +26,9 @@
   },
   "currentRoof": "west",
   "checkpoint": {
-    "x": -15.340000000000018,
+    "x": -20.09858223313771,
     "y": 9,
-    "z": 1.3000000000000191
+    "z": -4.49120453791781
   },
   "nearestRelay": "west",
   "relays": [
@@ -44,18 +44,18 @@
     {
       "site": "greenhouse",
       "pos": {
-        "x": 3.5,
+        "x": -0.5,
         "y": 9,
-        "z": 19.5
+        "z": 22.2
       },
       "name": "Greenhouse"
     },
     {
       "site": "bell",
       "pos": {
-        "x": 2.5,
+        "x": -2.4,
         "y": 9,
-        "z": 1.5
+        "z": -3.3
       },
       "name": "Bell tower"
     },
@@ -71,47 +71,20 @@
     {
       "site": "west",
       "pos": {
-        "x": -15.5,
+        "x": -21.85,
         "y": 9,
-        "z": 1.5
+        "z": -4.4
       },
-      "name": "Receiver"
+      "name": "Radio Station"
     },
     {
       "site": "east",
       "pos": {
-        "x": 20.5,
+        "x": 14.65,
         "y": 9,
-        "z": 1.5
+        "z": -1.3
       },
       "name": "Café"
-    },
-    {
-      "site": "laundry",
-      "pos": {
-        "x": -15.5,
-        "y": 9,
-        "z": 19.5
-      },
-      "name": "Laundry"
-    },
-    {
-      "site": "antenna",
-      "pos": {
-        "x": -15.5,
-        "y": 10,
-        "z": 37.5
-      },
-      "name": "Antenna terrace"
-    },
-    {
-      "site": "mural",
-      "pos": {
-        "x": -15.5,
-        "y": 10,
-        "z": -16.5
-      },
-      "name": "Mural"
     }
   ],
   "route": {
@@ -129,19 +102,27 @@
     "vaults": 0,
     "landings": 1,
     "glideSeconds": 0,
-    "stunts": 0
+    "stunts": 0,
+    "notes": 2,
+    "notesAvailable": 18,
+    "flow": 3,
+    "bestFlow": 3,
+    "airBurstReady": true,
+    "windLift": false
   },
-  "time": 7.666666666666645,
+  "time": 10.300000000000091,
   "recoveries": 0,
   "assisted": false,
   "mistakes": 0,
-  "feedback": "האות הגיע. שידור נקי!",
+  "feedback": "המסירה הגיעה ל־⁦Radio Station⁩!",
   "assets": "Local Tripo courier loaded",
   "campaign": {
-    "movementSeconds": 28.2666666666667,
+    "movementSeconds": 29.79999999999999,
     "recoveries": 0,
     "mistakes": 1,
-    "assisted": false
+    "assisted": false,
+    "notes": 6,
+    "bestFlow": 5
   },
   "art": {
     "courier": true,
@@ -158,8 +139,8 @@
     "equipmentBone": "mixamorigSpine2",
     "grip": {
       "active": false,
-      "left": 0.004237233071224739,
-      "right": 0.004881062797205857
+      "left": 0.0027756197584037742,
+      "right": 0.004088717705915029
     },
     "buildings": 67,
     "error": ""
@@ -181,7 +162,7 @@
     "fps": null,
     "clock": "deterministic",
     "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
-    "drawCalls": 138,
-    "triangles": 844080
+    "drawCalls": 156,
+    "triangles": 978682
   }
 }

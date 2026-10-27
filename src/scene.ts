@@ -1,8 +1,11 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
-import {SITES,siteName,type SiteId} from './content';
+import {SITES,type SiteId} from './content';
 import {SURFACES,OBSTACLES,surfaceHeight,type Simulation} from './sim';
+import {createLandmarks} from './landmark-kit';
+import {CITY_BLOCKS,COURSE_SOLIDS,SIGNAL_NOTES,WIND_LIFTS} from './course';
+import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import {orientBoneWorld,solveArm} from './arm-ik';
 
 const colors={stone:0xf3dfba,trim:0xffedcf,terra:0xc16b4b,teal:0x277f80,brass:0xc99b4d,shadow:0x213d53};
@@ -22,9 +25,9 @@ export class World {
   private courierObject:T.Object3D|null=null;private bones=new Map<string,T.Bone>();private boneRest=new Map<string,T.Quaternion>();
   private gearSocket:T.Object3D|null=null;private gripHardware=new T.Group();private courierBaseY=0;private soleOffset=0;
   private gripErrors={left:0,right:0};private gripActive=false;
-  private labels=new Map<SiteId,T.Sprite>();private relays=new Map<SiteId,T.Group>();private cafe=new T.Group();private receiverDecor=new T.Group();
+  private labels=new Map<SiteId,T.Sprite>();private relays=new Map<SiteId,T.Group>();private courseDecor=new T.Group();private noteMeshes:T.Group[]=[];private windStreaks:T.InstancedMesh|null=null;private lastNotes=new Set<number>();private landingRing:T.Mesh|null=null;private dustClock=0;
   private foundations=new T.Group();private skyline=new T.Group();private buildingKit=new T.Group();private buildingCount=0;
-  private lastTransfer=false;private firstCamera=true;private particles:{mesh:T.Mesh;vel:T.Vector3;life:number}[]=[];private wingOpen=0;private wingBank=0;private time=0;private wasGrounded=true;private landTime=0;private previousYaw=0;
+  private firstCamera=true;private particles:{mesh:T.Mesh;vel:T.Vector3;life:number}[]=[];private wingOpen=0;private wingBank=0;private time=0;private wasGrounded=true;private landTime=0;private previousYaw=0;
   rigLoaded=false;gliderLoaded=false;assetError='';fps=60;rendererName='unavailable';cameraPitch=.245;private frames:number[]=[];
   constructor(public canvas:HTMLCanvasElement){
     this.renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -32,11 +35,11 @@ export class World {
     const gl=this.renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');this.rendererName=debug?String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL)):'unavailable';const software=/swiftshader|llvmpipe/i.test(this.rendererName);if(software)this.renderer.setPixelRatio(1);
     this.scene.background=new T.Color(0x9ed0dd);this.scene.fog=new T.Fog(0xb3d1d7,65,175);
     this.scene.add(new T.HemisphereLight(0xe0f3ff,0x796d73,2.0));const sun=new T.DirectionalLight(0xffead0,3.2);sun.position.set(-30,65,25);sun.castShadow=true;sun.shadow.mapSize.set(software?512:2048,software?512:2048);sun.shadow.camera.left=-62;sun.shadow.camera.right=62;sun.shadow.camera.top=65;sun.shadow.camera.bottom=-65;sun.shadow.camera.far=140;sun.shadow.bias=-.0006;sun.shadow.normalBias=.06;this.scene.add(sun);
-    this.scene.add(this.foundations,this.skyline,this.buildingKit);this.buildDistrict();this.mergeArchitecture();this.buildPlayer();this.scene.add(this.player);this.resize();
+    this.scene.add(this.foundations,this.skyline,this.buildingKit);this.buildDistrict();this.mergeArchitecture();this.buildPlayer();this.scene.add(this.player);this.buildCourse();this.resize();
   }
   resize(){const w=this.canvas.clientWidth,h=this.canvas.clientHeight;this.renderer.setSize(w,h,false);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();}
   private mergeArchitecture(){
-    this.mergeStatic(this.scene,[this.cafe,this.receiverDecor,this.foundations,this.skyline]);
+    this.mergeStatic(this.scene,[this.foundations,this.skyline]);
     this.mergeStatic(this.foundations);this.mergeStatic(this.skyline);
   }
   private mergeStatic(root:T.Object3D,exclude:T.Object3D[]=[]){
@@ -61,9 +64,7 @@ export class World {
     if(!details.length||!distant.length)throw Error('Building kit requires detailed and distant modules.');
     this.foundations.traverse(o=>{if(o instanceof T.Mesh)o.geometry.dispose();});this.foundations.clear();this.skyline.traverse(o=>{if(o instanceof T.Mesh)o.geometry.dispose();});this.skyline.clear();
     for(const [i,site] of SITES.entries()){const model=details[i%details.length].clone(true);model.position.set(site.x,0,site.z);model.scale.y=site.y/manifest.height;model.rotation.y=(i%4)*Math.PI/2;this.buildingKit.add(model);}
-    const blocks:{x:number;z:number}[]=[];
-    for(let row=0;row<9;row++)for(let col=0;col<9;col++){const x=(col-4)*17,z=10+(row-4)*17;if(Math.abs(x)<27&&z>-34&&z<52)continue;blocks.push({x,z});}
-    for(let i=0;i<58;i++){const block=blocks[Math.floor(i*blocks.length/58)],model=distant[i%distant.length].clone(true);model.position.set(block.x,0,block.z);const width=.70+(i%3)*.07;model.scale.set(width,.65+(i*7%9)*.11,width);model.rotation.y=(i%4)*Math.PI/2;model.traverse(o=>{if(o instanceof T.Mesh)o.castShadow=false;});this.buildingKit.add(model);}
+    for(const block of CITY_BLOCKS){const model=distant[block.variant].clone(true);model.position.set(block.x,0,block.z);model.scale.set(block.width,block.heightScale,block.width);model.rotation.y=block.rotation;model.traverse(o=>{if(o instanceof T.Mesh)o.castShadow=false;});this.buildingKit.add(model);}
     this.buildingCount=SITES.length+58;this.mergeStatic(this.buildingKit);
   }
   private buildDistrict(){
@@ -84,57 +85,61 @@ export class World {
       }
       // Low parapets keep silhouettes detailed while the travel corridors stay open.
       for(const side of [-1,1]){box(this.foundations,s.x+side*5.4,s.y+.2,s.z+5.7,2,.42,.35,mats.trim);box(this.foundations,s.x+side*5.4,s.y+.2,s.z-5.7,2,.42,.35,mats.trim);}
-      for(const off of [-4.8,4.8]){cylinder(this.scene,s.x+off,s.y+.28,s.z+4.7,.36,.55,mats.terra);const leaf=new T.Mesh(new T.IcosahedronGeometry(.65,0),mats.leaf);leaf.position.set(s.x+off,s.y+.85,s.z+4.7);leaf.castShadow=true;this.scene.add(leaf);}
-      const sign=label(s.name);sign.position.set(s.x,s.y+3,s.z-4.9);this.scene.add(sign);this.labels.set(s.id,sign);
+      const sign=label(s.name,3.1);const anchors:Partial<Record<SiteId,[number,number,number]>>={greenhouse:[-3.65,13.2,22.28],west:[-21.85,13.6,-4.4],east:[14.65,12.8,-3.8]};const anchor=anchors[s.id];if(anchor)sign.position.set(...anchor);else sign.position.set(s.x,s.y+2.1,s.z-4.9);this.scene.add(sign);this.labels.set(s.id,sign);
     }
     for(const s of SURFACES.filter(s=>s.kind!=='roof'&&s.kind!=='deck')){
-      const y=surfaceHeight(s,s.x,s.z);const bridge=box(this.scene,s.x,y-.13,s.z,s.w,.24,s.d,s.kind==='awning'?mats.teal:s.kind==='narrow'?mats.wood:mats.trim);
+      const y=surfaceHeight(s,s.x,s.z);const bridge=box(this.scene,s.x,y-.13,s.z,s.w,.24,s.d,s.id.startsWith('spring')?mats.terra:s.kind==='awning'?mats.teal:s.kind==='narrow'?mats.wood:mats.trim);
       if(s.ramp){const r=s.ramp;if(r.ax!==r.bx)bridge.rotation.z=Math.atan2(r.by-r.ay,r.bx-r.ax);else bridge.rotation.x=-Math.atan2(r.by-r.ay,r.bz-r.az);}
-      if(s.kind==='awning'){
+      if(s.id==='radio-striped'||s.id.startsWith('spring')){
         const horizontal=s.w>s.d;for(let n=-2;n<=2;n++){if(horizontal)box(this.scene,s.x+n*1.35,y+.02,s.z,.25,.045,s.d,mats.trim,false);else box(this.scene,s.x,y+.02,s.z+n*1.35,s.w,.045,.25,mats.trim,false);}
         for(const side of [-1,1]){const x=s.x+(horizontal?0:side*s.w/2),z=s.z+(horizontal?side*s.d/2:0);box(this.scene,x,y-.5,z,horizontal?s.w:.08,.65,horizontal?.08:s.d,mats.teal,false);}
       }
     }
     for(const o of OBSTACLES.filter(o=>o.kind==='wall'))box(this.scene,o.x,o.y+o.h/2,o.z,o.w,o.h,o.d,mats.trim);
-    this.greenhouse();this.tower(false);this.tower(true);this.waterTower();this.laundry();this.antennaAndMural();
-    const narrow=label('Direct crossing · 1.15 m',4.2);narrow.position.set(-9,10.5,0);this.scene.add(narrow);
-    const wide=label('Awning route · 4.4 m',4.2);wide.position.set(-9,10.6,18);this.scene.add(wide);
-    this.buildCafe();this.buildReceiver();this.scene.add(this.cafe,this.receiverDecor);
-    for(const id of ['west','east'] as const)this.placeDestination(id);
+    const landmarks=createLandmarks();this.scene.add(landmarks.group);
+    for(const rail of COURSE_SOLIDS)box(this.scene,rail.x,rail.y+rail.h/2,rail.z,rail.w,rail.h,rail.d,mats.wood);
+    const narrow=label('Wooden beam',2.8);narrow.position.set(-9,9.6,-2);this.scene.add(narrow);
+    const wide=label('Striped bridge',3.1);wide.position.set(-9,9.6,3.3);this.scene.add(wide);
     // City skyline and sea: geometry occupies the horizon without extending the game map.
     const sea=new T.Mesh(new T.PlaneGeometry(500,350),material(0x6da5b5,.28));sea.rotation.x=-Math.PI/2;sea.position.set(0,-.1,-135);this.scene.add(sea);
     for(let i=0;i<55;i++){const angle=i/55*Math.PI*2,r=70+(i%4)*7,x=Math.sin(angle)*r,z=10+Math.cos(angle)*r,h=5+(i*7%13);box(this.skyline,x,h/2,z,5+(i%3),h,5+(i%4),material(i%3===0?0xcba98b:0xe0c5a2),false);box(this.skyline,x,h,z,6.5,.35,6.5,mats.terra,false);}
     for(let i=0;i<7;i++){const hill=new T.Mesh(new T.ConeGeometry(35+i*2,18+i%3*6,5),material(0x93b3bb));hill.position.set(-150+i*48,-2,-115-i%2*20);this.scene.add(hill);}
   }
-  private greenhouse(){const g=new T.Group();g.position.set(-3.6,9,18);box(g,0,.15,0,3.7,.3,5,mats.trim);box(g,0,1.65,0,3.5,3,4.8,mats.glass,false);
-    for(const x of [-1.8,0,1.8])for(const z of [-2.5,0,2.5])box(g,x,1.8,z,.07,3.6,.07,mats.teal,false);
-    for(const y of [.4,2.1,3.2]){box(g,0,y,-2.5,3.7,.07,.07,mats.teal,false);box(g,0,y,2.5,3.7,.07,.07,mats.teal,false);box(g,-1.8,y,0,.07,.07,5,mats.teal,false);box(g,1.8,y,0,.07,.07,5,mats.teal,false);}
-    const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute([-1.8,3.2,-2.5,0,4.3,-2.5,1.8,3.2,-2.5,-1.8,3.2,2.5,0,4.3,2.5,1.8,3.2,2.5],3));geometry.setIndex([0,3,1,1,3,4,1,4,2,2,4,5,0,1,2,3,5,4]);geometry.computeVertexNormals();g.add(new T.Mesh(geometry,mats.glass));
-    for(let i=0;i<8;i++){cylinder(g,(i%2)*2-1,.6,Math.floor(i/2)*1.2-1.8,.3,.6,mats.terra);const plant=new T.Mesh(new T.IcosahedronGeometry(.6,1),mats.leaf);plant.position.set(i%2*2-1,1.3,Math.floor(i/2)*1.2-1.8);g.add(plant);}this.scene.add(g);}
-  private tower(clock:boolean){const g=new T.Group();g.position.set(clock?-3.6:-4.8,clock?10:9,clock?-20:-4.8);box(g,0,3.6,0,3,7.2,3,mats.stone);box(g,0,7.3,0,3.6,.35,3.6,mats.trim);
-    for(const x of [-1.2,1.2])for(const z of [-1.2,1.2])box(g,x,8.7,z,.45,2.6,.45,mats.stone);box(g,0,10,0,3.6,.4,3.6,mats.trim);
-    const roof=new T.Mesh(new T.ConeGeometry(2.6,2,4),mats.terra);roof.rotation.y=Math.PI/4;roof.position.y=11.2;roof.castShadow=true;g.add(roof);
-    if(clock){for(const z of [-1.51,1.51]){const face=new T.Mesh(new T.CircleGeometry(.9,32),mats.trim);face.position.set(0,5.5,z);if(z<0)face.rotation.y=Math.PI;g.add(face);box(g,0,5.7,z*1.002,.07,.6,.05,mats.dark);box(g,.23,5.5,z*1.002,.5,.07,.05,mats.dark);}}
-    else {cylinder(g,0,8.2,0,.65,1.1,mats.brass,.3);cylinder(g,0,7.6,0,.9,.2,mats.brass);}
-    if(!clock)g.scale.set(.8,1,.8);this.scene.add(g);}
-  private waterTower(){const g=new T.Group();g.position.set(-3.6,10,38);for(const x of [-1.2,1.2])for(const z of [-1.2,1.2])box(g,x,1.3,z,.16,2.6,.16,mats.dark);cylinder(g,0,3.4,0,1.7,2.8,mats.teal);cylinder(g,0,4.9,0,1.8,.2,mats.brass);this.scene.add(g);}
-  private laundry(){const g=new T.Group();g.position.set(-18,9,18);for(const x of [-4,4])cylinder(g,x,1.4,-3,.06,2.8,mats.dark);const line=box(g,0,2.6,-3,8,.035,.035,mats.dark,false);line.rotation.z=.02;for(let i=0;i<5;i++){const cloth=box(g,-2.7+i*1.3,2,-3,1.05,1.3,.035,i%2?mats.teal:mats.trim,false);cloth.rotation.z=(i%3-1)*.1;}this.scene.add(g);}
-  private antennaAndMural(){
-    cylinder(this.scene,-21,12,34,.1,6,mats.brass);for(let i=0;i<4;i++){const arm=box(this.scene,-21,12+i*.8,34,4-i*.5,.06,.06,mats.brass);arm.rotation.y=i*.25;}
-    box(this.scene,-21,10.4,34,3,.8,2.5,mats.teal);
-    box(this.scene,-21,11.5,-20,5,3,.2,mats.trim);
-    for(let i=0;i<4;i++){const wave=new T.Mesh(new T.TorusGeometry(.5+i*.4,.07,5,24,Math.PI),i%2?mats.terra:mats.teal);wave.position.set(-21,10.5,-19.87);this.scene.add(wave);}
+  private buildCourse(){
+    this.scene.add(this.courseDecor);
+    const noteMaterial=new T.MeshStandardMaterial({color:0xffd57b,emissive:0x9b5c17,emissiveIntensity:.45,roughness:.3,metalness:.65});
+    for(const note of SIGNAL_NOTES){const g=new T.Group();
+      const head=new T.Mesh(new T.SphereGeometry(.13,10,7),noteMaterial);head.scale.set(1.25,.7,.65);g.add(head);
+      box(g,.12,.2,0,.045,.42,.045,noteMaterial,false);const flag=box(g,.20,.37,0,.21,.065,.045,noteMaterial,false);flag.rotation.z=-.3;
+      const halo=new T.Mesh(new T.TorusGeometry(.29,.012,4,20),noteMaterial);halo.rotation.y=Math.PI/2;g.add(halo);g.position.set(note.x,note.y,note.z);this.mergeStatic(g);this.courseDecor.add(g);this.noteMeshes.push(g);}
+    const airMaterial=new T.MeshBasicMaterial({color:0xdbf9f5,transparent:true,opacity:.35,depthWrite:false});
+    this.windStreaks=new T.InstancedMesh(new T.CylinderGeometry(.012,.012,.55,4),airMaterial,WIND_LIFTS.length*16);this.windStreaks.frustumCulled=false;this.courseDecor.add(this.windStreaks);
+    this.landingRing=new T.Mesh(new T.RingGeometry(.6,.66,40),new T.MeshBasicMaterial({color:0xffd481,transparent:true,opacity:0,depthWrite:false,side:T.DoubleSide}));this.landingRing.rotation.x=-Math.PI/2;this.courseDecor.add(this.landingRing);
   }
-  private buildCafe(){box(this.cafe,-3.5,1.5,-2.3,4,3,4,mats.stone);const canopy=box(this.cafe,0,2.7,2,7,.12,3,mats.teal);canopy.rotation.x=-.06;for(const x of [-2.7,2.7])cylinder(this.cafe,x,1.3,3,.06,2.6,mats.dark);for(const x of [-2,2]){cylinder(this.cafe,x,.9,1.8,.65,.12,mats.wood);cylinder(this.cafe,x,.4,1.8,.08,.8,mats.dark);}const sign=label('CAFÉ',2);sign.position.set(-3.4,2,-.2);this.cafe.add(sign);}
-  private buildReceiver(){const dish=new T.Mesh(new T.SphereGeometry(1.2,20,12,0,Math.PI*2,0,.7),mats.trim);dish.rotation.x=-.7;dish.position.set(-3,2.5,-2);dish.castShadow=true;this.receiverDecor.add(dish);cylinder(this.receiverDecor,-3,1,-2,.12,2,mats.brass);box(this.receiverDecor,-3,.3,-2,2,.6,2,mats.teal);}
-  private placeDestination(_id:SiteId){this.cafe.position.set(18,9,0);this.receiverDecor.position.set(-18,9,0);}
+  private puff(point:T.Vector3,color:number,count=5){
+    if(this.particles.length>70)return;for(let i=0;i<count;i++){const mesh=new T.Mesh(new T.SphereGeometry(.045,5,4),material(color));mesh.position.copy(point);this.scene.add(mesh);this.particles.push({mesh,vel:new T.Vector3(Math.cos(i*2.4)*1.2,.5+Math.sin(i)*.3,Math.sin(i*2.4)*1.2),life:.5});}
+  }
+  private animateCourse(sim:Simulation,dt:number,reduced:boolean){
+    if(this.lastNotes.size>sim.notes.size)this.lastNotes.clear();
+    for(const [i,g] of this.noteMeshes.entries()){const note=SIGNAL_NOTES[i];g.visible=!sim.notes.has(i);g.position.y=note.y+(reduced?0:Math.sin(this.time*2.4+i)*.12);g.rotation.y=this.time*.9+i;
+      if(sim.notes.has(i)&&!this.lastNotes.has(i)){this.puff(new T.Vector3(note.x,note.y,note.z),0xffd778,7);this.lastNotes.add(i);}}
+    if(this.windStreaks){const dummy=new T.Object3D();for(let i=0;i<WIND_LIFTS.length*16;i++){const wind=WIND_LIFTS[Math.floor(i/16)],phase=(i%16)/16,angle=phase*Math.PI*2+this.time*.8,radius=wind.r*(.6+Math.sin(phase*24)*.18);dummy.position.set(wind.x+Math.cos(angle)*radius,wind.y+((phase+this.time*.25)%1)*wind.h,wind.z+Math.sin(angle)*radius);dummy.rotation.z=.2*Math.sin(angle);dummy.updateMatrix();this.windStreaks.setMatrixAt(i,dummy.matrix);}this.windStreaks.instanceMatrix.needsUpdate=true;}
+    if(this.landingRing){this.landingRing.visible=sim.landingPulse>0;this.landingRing.position.set(sim.p.x,sim.p.y+.035,sim.p.z);this.landingRing.scale.setScalar(1+(1-sim.landingPulse)*2);(this.landingRing.material as T.MeshBasicMaterial).opacity=sim.landingPulse*.45;}
+    this.dustClock+=dt;if(sim.mode==='play'&&this.dustClock>.11&&Math.hypot(sim.v.x,sim.v.z)>3){this.dustClock=0;if(sim.onGround)this.puff(new T.Vector3(sim.p.x,sim.p.y+.08,sim.p.z),0xdda684,2);else if(sim.dashPulse>.1)this.puff(new T.Vector3(sim.p.x,sim.p.y+1,sim.p.z),0xd6f5ed,3);}
+  }
   private buildPlayer(){
     this.player.add(this.character,this.wing,this.parcel,this.devMarker);
     const capsule=new T.Mesh(new T.CapsuleGeometry(.32,1,6,12),mats.teal);capsule.position.y=.85;capsule.castShadow=true;this.devMarker.add(capsule);const dev=label('RIG PENDING',1.8);dev.position.y=2;this.devMarker.add(dev);
     // The wing is an authored rigid cloth assembly, distinct from skeletal character animation.
     const geo=new T.BufferGeometry();const positions=[-3,0,.35,-1.6,.45,-.5,0,.65,-1.1,1.6,.45,-.5,3,0,.35,-3,0,1.3,-1.6,.35,1,0,.5,.8,1.6,.35,1,3,0,1.3];geo.setAttribute('position',new T.Float32BufferAttribute(positions,3));geo.setIndex([0,5,1,1,5,6,1,6,2,2,6,7,2,7,3,3,7,8,3,8,4,4,8,9]);geo.computeVertexNormals();this.wing.add(new T.Mesh(geo,new T.MeshStandardMaterial({color:0xf4e5c2,side:T.DoubleSide,roughness:.95})));
     for(let i=0;i<5;i++){const a=new T.Vector3(...positions.slice(i*3,i*3+3) as [number,number,number]);const b=new T.Vector3(...positions.slice((i+5)*3,(i+5)*3+3) as [number,number,number]);const curve=new T.LineCurve3(a,b);this.wing.add(new T.Mesh(new T.TubeGeometry(curve,1,.025,5,false),mats.brass));}
-    this.wing.position.set(0,2,0);box(this.parcel,0,0,0,.55,.5,.32,mats.terra);box(this.parcel,0,0,.17,.1,.5,.02,mats.trim);this.parcel.visible=false;
+    this.wing.position.set(0,2,0);
+    const glass=new T.MeshStandardMaterial({color:0xa6dcd8,roughness:.17,metalness:.08,transparent:true,opacity:.78});
+    for(const x of [-.61,.61])for(const z of [-.21,.21])box(this.parcel,x,0,z,.05,.54,.05,mats.wood);
+    for(const y of [-.25,.23])for(const z of [-.21,.21])box(this.parcel,0,y,z,1.27,.055,.055,mats.wood);
+    box(this.parcel,0,-.25,0,1.27,.06,.44,mats.wood);for(const x of [-.42,-.14,.14,.42]){cylinder(this.parcel,x,-.04,0,.085,.31,glass);cylinder(this.parcel,x,.15,0,.037,.10,mats.brass);}
+    for(const x of [-.37,.37])box(this.parcel,x,0,.246,.045,.57,.024,mats.trim,false);
+    this.mergeStatic(this.parcel);this.parcel.visible=false;
   }
   async loadCourier(path:string){
     try{const gltf=await new GLTFLoader().loadAsync(path);const object=gltf.scene;object.traverse(o=>{if(o instanceof T.SkinnedMesh)this.skeletonBones=Math.max(this.skeletonBones,o.skeleton.bones.length);if(o instanceof T.Bone){const name=o.name.replace(/^mixamorig[:_]?/,'');this.bones.set(name,o);this.boneRest.set(name,o.quaternion.clone());}});if(!this.skeletonBones||gltf.animations.length===0)throw Error('Courier GLB requires a real skeleton and animation clips.');const bounds=new T.Box3().setFromObject(object);const size=bounds.getSize(new T.Vector3());const scale=1.85/size.y;object.scale.setScalar(scale);object.position.y=-bounds.min.y*scale;object.rotation.y=Math.PI;object.traverse(o=>{if(o instanceof T.Mesh){o.castShadow=true;o.receiveShadow=true;}});this.character.add(object);this.courierObject=object;this.courierBaseY=object.position.y;this.player.updateWorldMatrix(true,true);
@@ -162,7 +167,7 @@ export class World {
     this.player.updateWorldMatrix(true,true);const rotation=this.character.getWorldQuaternion(new T.Quaternion()),back=new T.Vector3(0,0,.24).applyQuaternion(rotation);
     const point=spine.getWorldPosition(new T.Vector3()).add(back).add(new T.Vector3(0,-.05,0));
     const world=new T.Matrix4().compose(point,rotation,new T.Vector3(1,1,1));const local=spine.matrixWorld.clone().invert().multiply(world);
-    const socket=new T.Object3D();socket.name='RadioGearSocket';local.decompose(socket.position,socket.quaternion,socket.scale);spine.add(socket);socket.add(this.wing,this.parcel);this.parcel.position.set(0,-.28,.25);this.gearSocket=socket;
+    const socket=new T.Object3D();socket.name='RadioGearSocket';local.decompose(socket.position,socket.quaternion,socket.scale);spine.add(socket);socket.add(this.wing,this.parcel);this.parcel.position.set(0,-.40,.12);this.gearSocket=socket;
   }
   private animateCharacter(sim:Simulation,dt:number){
     if(!this.mixer)return;
@@ -203,7 +208,7 @@ export class World {
     this.time+=dt;
     this.player.position.set(sim.p.x,sim.p.y,sim.p.z);this.player.rotation.y=-sim.yaw;this.parcel.visible=sim.job.fragile;
     this.wingOpen=T.MathUtils.damp(this.wingOpen,sim.gliding?1:0,12,dt);
-    this.wing.scale.set(.12+this.wingOpen*.88,.3+this.wingOpen*.7,.25+this.wingOpen*.75);this.wing.visible=this.gliderLoaded||this.wingOpen>.02;
+    this.wing.scale.set((.12+this.wingOpen*.88)*.74,(.3+this.wingOpen*.7)*.74,(.25+this.wingOpen*.75)*.74);this.wing.visible=this.gliderLoaded||this.wingOpen>.02;
     if(dt>0){const rate=Math.atan2(Math.sin(sim.yaw-this.previousYaw),Math.cos(sim.yaw-this.previousYaw))/dt;this.previousYaw=sim.yaw;const sideSpeed=sim.v.x*Math.cos(sim.yaw)+sim.v.z*Math.sin(sim.yaw);const bank=reduced?0:T.MathUtils.clamp(rate*.10-sideSpeed*.025,-.28,.28)*this.wingOpen;this.wingBank=T.MathUtils.damp(this.wingBank,bank,8,dt);}
     this.animateCharacter(sim,sim.mode==='play'?dt:0);
     // The folded pack follows the spine. The deployed aerofoil stays level as the torso moves.
@@ -215,12 +220,18 @@ export class World {
       const local=this.gearSocket.worldToLocal(point);this.wing.position.set(0,-.15,0).lerp(local,this.wingOpen);
     }else this.wing.position.set(0,2,0);
     this.updateGrip(sim);
-    if(this.lastTransfer!==sim.job.transfer){this.lastTransfer=sim.job.transfer;for(const s of SITES){const old=this.labels.get(s.id)!;const sign=label(siteName(s.id,sim.job.transfer));sign.position.copy(old.position);this.scene.remove(old);(old.material as T.SpriteMaterial).map?.dispose();this.labels.set(s.id,sign);this.scene.add(sign);}this.cafe.position.x=sim.job.transfer?-18:18;this.receiverDecor.position.x=sim.job.transfer?18:-18;}
-    for(const [id,sign] of this.labels){const dx=sign.position.x-sim.p.x,dz=sign.position.z-sim.p.z;sign.visible=id!==sim.currentSite&&dx*Math.sin(sim.yaw)-dz*Math.cos(sim.yaw)>-3&&Math.hypot(dx,dz)>4;}
-    for(const relay of sim.relays){let g=this.relays.get(relay.site);if(!g){g=new T.Group();box(g,0,.45,0,.8,.9,.55,mats.teal);cylinder(g,0,1.1,0,.045,1.2,mats.brass);const ring=new T.Mesh(new T.TorusGeometry(.37,.055,6,20),mats.brass);ring.position.y=1.15;g.add(ring);box(g,0,.1,0,1.2,.2,1,mats.trim);this.scene.add(g);this.relays.set(relay.site,g);}g.position.set(relay.pos.x,relay.pos.y,relay.pos.z);}
+    for(const [id,sign] of this.labels){const dx=sign.position.x-sim.p.x,dz=sign.position.z-sim.p.z;sign.visible=id!==sim.currentSite&&id!==sim.lastSite&&dx*Math.sin(sim.yaw)-dz*Math.cos(sim.yaw)>-3&&Math.hypot(dx,dz)>4&&Math.hypot(dx,dz)<29;}
+    for(const relay of sim.relays){if(relay.site==='west'||relay.site==='east')continue;let g=this.relays.get(relay.site);if(!g){g=new T.Group();
+      const body=new T.Mesh(new RoundedBoxGeometry(.8,.9,.55,2,.08),mats.teal);body.position.y=.45;body.castShadow=true;g.add(body);
+      box(g,0,.45,.29,.66,.7,.04,mats.trim,false);
+      for(let i=0;i<6;i++)box(g,-.12,.31+i*.065,.32,.32,.026,.025,mats.dark,false);
+      for(const y of [.3,.62]){const dial=cylinder(g,.23,y,.34,.075,.065,mats.brass);dial.rotation.x=Math.PI/2;}
+      cylinder(g,-.22,1.22,0,.025,.75,mats.brass);cylinder(g,.21,1.13,0,.023,.58,mats.dark);
+      box(g,0,.025,0,1,.05,.75,mats.wood);this.mergeStatic(g);this.scene.add(g);this.relays.set(relay.site,g);}g.position.set(relay.pos.x,relay.pos.y,relay.pos.z);}
+    this.animateCourse(sim,dt,reduced);
     const forward=new T.Vector3(Math.sin(sim.yaw),0,-Math.cos(sim.yaw)),distance=5+this.wingOpen*(this.camera.aspect<.8?4:.8);const desired=new T.Vector3(sim.p.x-forward.x*distance+Math.cos(sim.yaw)*(this.camera.aspect<.8?0:.8),sim.p.y+1.5+Math.tan(this.cameraPitch)*8+this.wingOpen*(this.camera.aspect<.8?1.8:1.1),sim.p.z-forward.z*distance+Math.sin(sim.yaw)*(this.camera.aspect<.8?0:.8));
     if(this.firstCamera){this.camera.position.copy(desired);this.firstCamera=false;}else this.camera.position.lerp(desired,1-Math.exp(-dt*(reduced?30:7)));
-    const target=new T.Vector3(sim.p.x+forward.x*3+Math.cos(sim.yaw)*(this.camera.aspect<.8?0:.9),sim.p.y+1.5,sim.p.z+forward.z*3+Math.sin(sim.yaw)*(this.camera.aspect<.8?0:.9));this.camera.lookAt(target);this.camera.fov=T.MathUtils.damp(this.camera.fov,sim.gliding&&!reduced?63:58,4,dt);this.camera.updateProjectionMatrix();
+    const target=new T.Vector3(sim.p.x+forward.x*3+Math.cos(sim.yaw)*(this.camera.aspect<.8?0:.9),sim.p.y+1.5,sim.p.z+forward.z*3+Math.sin(sim.yaw)*(this.camera.aspect<.8?0:.9));this.camera.lookAt(target);this.camera.fov=T.MathUtils.damp(this.camera.fov,!reduced&&sim.dashPulse>0?70:sim.gliding&&!reduced?63:58,4,dt);this.camera.updateProjectionMatrix();
     if(sim.signalPulse>.95&&this.particles.length===0){for(let i=0;i<18;i++){const mesh=new T.Mesh(new T.SphereGeometry(.045,4,4),mats.brass);mesh.position.set(sim.p.x,sim.p.y+1,sim.p.z);this.scene.add(mesh);this.particles.push({mesh,vel:new T.Vector3(Math.cos(i)*2,2+Math.sin(i),Math.sin(i)*2),life:1});}}
     for(let i=this.particles.length-1;i>=0;i--){const p=this.particles[i];p.life-=dt;if(p.life<=0){this.scene.remove(p.mesh);p.mesh.geometry.dispose();this.particles.splice(i,1);}else{p.mesh.position.addScaledVector(p.vel,dt);p.mesh.scale.setScalar(p.life);}}
     if(draw)this.renderer.render(this.scene,this.camera);
