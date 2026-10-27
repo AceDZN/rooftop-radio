@@ -5,6 +5,9 @@ import {siteName,activeBrief as authoredBrief} from './content';
 import {HEADING_YAW} from './course';
 import {RadioAudio} from './audio';
 import {COURIER_URL,GLIDER_URL} from './asset-config';
+import {initHost,postToHost,parseLevelParam,WorkbookSession} from './host';
+
+initHost('rooftop-radio');const hostSession=new WorkbookSession(postToHost);
 
 const app=document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML=`<canvas id="game" aria-label="שכונת הגגות — מרחב משחק תלת ממדי" tabindex="0"></canvas>
@@ -25,20 +28,20 @@ app.innerHTML=`<canvas id="game" aria-label="שכונת הגגות — מרחב 
 const $=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id) as T;
 const canvas=$<HTMLCanvasElement>('game');
 $('overlay').innerHTML='<div class="sheet"><div class="eyebrow" lang="en" dir="ltr">ROOFTOP RADIO</div><h1>פותחים תדר…</h1><p role="status">טוענים את השכונה והשליח.</p></div>';
-const sim=new Simulation();const audio=new RadioAudio();let world:World;
+const sim=new Simulation();const requestedLevel=parseLevelParam(window.location.search,sim.jobs.length);if(requestedLevel!==null){sim.level=requestedLevel;sim.resetJob();}const audio=new RadioAudio();let world:World;
 let reduced=localStorage.getItem('rr-reduced')==='true'||matchMedia('(prefers-reduced-motion: reduce)').matches;
 audio.muted=localStorage.getItem('rr-muted')==='true';
 for(const channel of ['music','effects','wind'] as const){const saved=localStorage.getItem(`rr-${channel}-volume`);if(saved!==null)audio.setVolume(channel,Number(saved));}
 let yaw=sim.yaw;const keys=new Set<string>();let drag:{id:number;x:number;y:number}|null=null;let lastMode:Mode|null=null;let audioSequence=0;let uiFrame=0;let needsFrame=true;
-try{await document.fonts.load('500 20px Rubik');world=new World(canvas);await Promise.all([COURIER_URL?world.loadCourier(COURIER_URL):Promise.resolve(),GLIDER_URL?world.loadGlider(GLIDER_URL):Promise.resolve(),world.loadArchitecture('./architecture/manifest.json')]);}catch(e){$('load-error').hidden=false;$('load-error').textContent='לא הצלחנו לפתוח את המשחק. נסו לרענן את הדף בדפדפן עם האצת חומרה. '+String(e);throw e;}
+try{await document.fonts.load('500 20px Rubik');world=new World(canvas);await Promise.all([COURIER_URL?world.loadCourier(COURIER_URL):Promise.resolve(),GLIDER_URL?world.loadGlider(GLIDER_URL):Promise.resolve(),world.loadArchitecture('./architecture/manifest.json')]);const art=world.artState();if(!art.courier||!art.glider||art.error||!art.buildings)throw Error(`Required game assets failed: ${art.error||'missing courier, glider or buildings'}`);}catch(e){$('load-error').hidden=false;$('load-error').textContent='לא הצלחנו לפתוח את המשחק. נסו לרענן את הדף בדפדפן עם האצת חומרה. '+String(e);throw e;}
 function clearInput(){keys.clear();drag=null;}
 function storage(){try{localStorage.setItem('rooftop-radio-events',JSON.stringify(sim.events));}catch{/* Local-only telemetry is optional. */}}
 function time(t:number){return `${String(Math.floor(t/60)).padStart(2,'0')}:${String(Math.floor(t%60)).padStart(2,'0')}`;}
-function start(){audio.unlock();sim.start();clearInput();canvas.focus();updateUI();}
+function start(){if(sim.mode!=='planning')return;audio.unlock();sim.start();hostSession.startLevel(sim.level+1);clearInput();canvas.focus();updateUI();}
 function pause(){sim.pause();clearInput();updateUI();}
 function resume(){sim.resume();clearInput();canvas.focus();updateUI();}
-function restart(){sim.restart();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;updateUI();}
-function campaign(){sim.level=0;sim.totalTime=0;sim.totals={recoveries:0,mistakes:0,assisted:false,notes:0,bestFlow:0};sim.variant=1-sim.variant;sim.resetJob();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;updateUI();}
+function restart(){hostSession.resetLevel();sim.restart();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;updateUI();}
+function campaign(){hostSession.resetLevel();sim.level=0;sim.totalTime=0;sim.totals={recoveries:0,mistakes:0,assisted:false,notes:0,bestFlow:0};sim.variant=1-sim.variant;sim.resetJob();yaw=sim.yaw;world.snapCamera();clearInput();lastMode=null;updateUI();}
 function showHelp(){sim.pause('help');clearInput();updateUI();}
 function fullscreen(){if(document.fullscreenElement)void document.exitFullscreen();else void document.documentElement.requestFullscreen().catch(()=>{});}
 $('pause').onclick=()=>sim.mode==='play'?pause():resume();$('read').onclick=pause;$('vocab').onclick=()=>{sim.vocabulary();clearInput();updateUI();};
@@ -109,7 +112,7 @@ function updateUI(){
   if(uiFrame++%90===0)storage();
 }
 function input():Input{if(keys.has('KeyJ'))yaw-=1/60*1.7;if(keys.has('KeyL'))yaw+=1/60*1.7;return {x:Number(keys.has('KeyD')||keys.has('ArrowRight'))-Number(keys.has('KeyA')||keys.has('ArrowLeft')),forward:Number(keys.has('KeyW')||keys.has('ArrowUp'))-Number(keys.has('KeyS')||keys.has('ArrowDown')),jump:keys.has('Space'),glide:keys.has('KeyG'),dash:keys.has('ShiftLeft')||keys.has('ShiftRight'),interact:keys.has('KeyE'),yaw};}
-function step(dt:number){sim.update(dt,input());audio.flight(sim.mode==='play'&&sim.gliding,sim.mode!=='play');for(const e of sim.events){if(e.sequence<=audioSequence)continue;audioSequence=e.sequence;if(e.type==='air-burst')audio.tone('burst');if(e.type==='signal-note')audio.tone('note');if(e.type==='jump'||e.type==='vault')audio.tone('jump');if(e.type==='awning-bounce')audio.tone('bounce');if(e.type==='landing')audio.tone('land');if(e.type==='correct-tune')audio.tone('tune');if(e.type==='complete')audio.tone('success');if(e.type==='recovery'){audio.tone('recover');clearInput();}}updateUI();}
+function step(dt:number){sim.update(dt,input());audio.flight(sim.mode==='play'&&sim.gliding,sim.mode!=='play');for(const e of sim.events){if(e.sequence<=audioSequence)continue;audioSequence=e.sequence;if(e.type==='air-burst')audio.tone('burst');if(e.type==='signal-note')audio.tone('note');if(e.type==='jump'||e.type==='vault')audio.tone('jump');if(e.type==='awning-bounce')audio.tone('bounce');if(e.type==='landing')audio.tone('land');if(e.type==='correct-tune')audio.tone('tune');if(e.type==='complete'){audio.tone('success');hostSession.completeLevel(e.job,sim.elapsed*1000);}if(e.type==='recovery'){audio.tone('recover');clearInput();}}updateUI();}
 let previous=performance.now(),accumulator=0,lastCanvasDraw=0;let manualStepping=false;
 let manualDrawTimer:number|undefined,lastManualDraw=0;
 function manualDraw(){if(manualDrawTimer!==undefined)window.clearTimeout(manualDrawTimer);manualDrawTimer=undefined;world.render(sim,0,reduced);lastManualDraw=performance.now();}
@@ -117,4 +120,4 @@ function requestManualDraw(){const delay=50-(performance.now()-lastManualDraw);i
 
 function frame(now:number){const elapsed=Math.max(0,(now-previous)/1000),dt=Math.min(.05,elapsed);previous=now;if(!manualStepping){if(sim.mode==='play'){world.recordFrame(elapsed);accumulator+=dt;while(accumulator>=1/60){step(1/60);accumulator-=1/60;}world.render(sim,dt,reduced);lastCanvasDraw=now;needsFrame=false;}else{accumulator=0;audio.flight(false,true);if(needsFrame||now-lastCanvasDraw>250){updateUI();world.render(sim,dt,reduced);lastCanvasDraw=now;needsFrame=false;}}}requestAnimationFrame(frame);}
 Object.assign(window,{render_game_to_text:()=>{const base=JSON.parse(sim.text());base.campaign={movementSeconds:sim.totalTime,...sim.totals};base.art=world.artState();base.camera={yaw,pitch:world.cameraPitch};base.audio=audio.diagnostics();base.assets=world.rigLoaded?'Local Tripo courier loaded':'Tripo rig/download pending; explicit development capsule';base.performance={fps:manualStepping?null:Math.round(world.fps),clock:manualStepping?'deterministic':'realtime',renderer:world.rendererName,drawCalls:world.renderer.info.render.calls,triangles:world.renderer.info.render.triangles};return JSON.stringify(base);},advanceTime:(ms:number,draw=true)=>{manualStepping=true;const frames=Math.max(1,Math.round(ms/(1000/60)));for(let i=0;i<frames;i++){step(1/60);world.render(sim,1/60,reduced,false);}if(draw)requestManualDraw();},drawGame:manualDraw,resumeRealtime:()=>{if(manualDrawTimer!==undefined)window.clearTimeout(manualDrawTimer);manualDrawTimer=undefined;manualStepping=false;previous=performance.now();accumulator=0;}});
-updateUI();requestAnimationFrame(frame);
+updateUI();world.render(sim,0,reduced);requestAnimationFrame(()=>hostSession.markReady());requestAnimationFrame(frame);

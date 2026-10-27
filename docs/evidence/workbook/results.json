@@ -1,0 +1,162 @@
+{
+  "origin": "http://localhost:4231",
+  "root": "/",
+  "checks": [
+    {
+      "level": 1,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 1
+      },
+      "completed": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-complete",
+        "level": 1,
+        "durationMs": 6533
+      },
+      "next": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 2
+      },
+      "durationExcludesReading": true
+    },
+    {
+      "level": 2,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 2
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 2
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 3,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 3
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 3
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 4,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 4
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 4
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 5,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 5
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 5
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "requiredAssetFailure": {
+        "messages": [
+          {
+            "source": "workbook-game",
+            "version": 1,
+            "slug": "rooftop-radio",
+            "type": "error",
+            "message": "Uncaught Error: Required game assets failed: TypeError: Failed to fetch"
+          }
+        ],
+        "visibleError": true,
+        "expectedErrors": [
+          "Error: Required game assets failed: TypeError: Failed to fetch"
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

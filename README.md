@@ -65,3 +65,7 @@ Exact built-in imagegen prompts and conceptual targets are in `docs/visual-targe
 Import as a Vite project. Build: `npm run build`; output: `dist`. Vite uses relative paths. No environment variables or rewrite service is required for this single-page static game. No production deployment was performed.
 
 No production deployment was performed. See the recorded browser checks and remaining visual differences before wider release.
+
+## Workbook player integration
+
+`?level=1..5` opens that delivery's planning screen; invalid values open the first. The version-1 host bridge posts readiness after the required local models and first rendered frame, then real launch/completion events to an allowed Workbook or localhost iframe parent. Standalone play sends nothing. Pauses, wrong radios and retries do not emit completion; durations use simulated movement time. See `docs/evidence/workbook/results.json` for the five-link, real first-delivery/next/retry and failed-model browser checks, and `tests/host.test.ts` for lifecycle/origin boundaries. The actual gameplay poster is in `workbook/poster.png`.

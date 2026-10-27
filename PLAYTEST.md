@@ -34,3 +34,7 @@ A real requestAnimationFrame run (no advanceTime),1600×900/DPR1 on Apple M2 Max
 `npm run build` passes. Static output is 10,308,247bytes including all local models, font and score; every GLB remains below 3MB. Current JS is 762.29kB raw; CSS 12.27kB. The Vite large-chunk advisory is expected for this Three.js bundle. No new generation credits, backend, runtime AI, remote model/font dependency or production deployment were used.
 
 These checks establish mechanics, clarity of the captured comparison and simulated solvability. They do not quantify a 10× fun improvement or learning gain. Human play and musical/control preferences remain the next evidence. Collision uses authored structural boxes/cylinders/top envelopes, with decorative fine wire, foliage and laundry excluded; it is not exact mesh-triangle physics.
+
+## Workbook host integration
+
+The full game now has110 passing tests, including60 independently authored host cases. Build/typecheck pass. A real same-origin iframe run opens all five `?level=N` planning screens, observes one ready and no fake start, launches each by UI, exercises reading/retries, and physically completes the first delivery before launching delivery2. Completion duration excludes a ten-second reading pause and duplicates are suppressed. Deliberately blocking the courier GLB produces a visible error/host error with no ready or level-start. Results and actual iframe images are in `docs/evidence/workbook/`; all normal-scenario browser errors are empty. The blocked-asset case records its expected error separately.
