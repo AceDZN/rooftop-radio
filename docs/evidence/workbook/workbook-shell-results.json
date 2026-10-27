@@ -1,0 +1,127 @@
+{
+  "origin": "http://localhost:4017",
+  "results": [
+    {
+      "mobile": false,
+      "poster": {
+        "loaded": true,
+        "width": 640
+      },
+      "levels": [
+        "/rooftop-radio/play?level=1",
+        "/rooftop-radio/play?level=2",
+        "/rooftop-radio/play?level=3",
+        "/rooftop-radio/play?level=4",
+        "/rooftop-radio/play?level=5"
+      ],
+      "lessons": [
+        "http://localhost:4013/grade-7/chapter-3/find-your-way",
+        "http://localhost:4013/grade-7/chapter-3/compare-two-places",
+        "http://localhost:4013/grade-7/chapter-3/read-connect-choose-route"
+      ],
+      "messages": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        },
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "level-start",
+          "level": 4
+        }
+      ],
+      "state": {
+        "mode": "planning",
+        "job": 4,
+        "art": {
+          "courier": true,
+          "glider": true,
+          "bones": 65,
+          "clips": [
+            "idle",
+            "run",
+            "jump_down",
+            "jump",
+            "land"
+          ],
+          "activeClip": "idle",
+          "equipmentBone": "mixamorigSpine2",
+          "grip": {
+            "active": false,
+            "left": 0,
+            "right": 0
+          },
+          "buildings": 67,
+          "error": ""
+        }
+      },
+      "iframe": "http://localhost:4017/play/rooftop-radio/2026-10-27/index.html?level=4"
+    },
+    {
+      "mobile": true,
+      "poster": {
+        "loaded": true,
+        "width": 390
+      },
+      "levels": [
+        "/rooftop-radio/play?level=1",
+        "/rooftop-radio/play?level=2",
+        "/rooftop-radio/play?level=3",
+        "/rooftop-radio/play?level=4",
+        "/rooftop-radio/play?level=5"
+      ],
+      "lessons": [
+        "http://localhost:4013/grade-7/chapter-3/find-your-way",
+        "http://localhost:4013/grade-7/chapter-3/compare-two-places",
+        "http://localhost:4013/grade-7/chapter-3/read-connect-choose-route"
+      ],
+      "messages": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        },
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "level-start",
+          "level": 4
+        }
+      ],
+      "state": {
+        "mode": "planning",
+        "job": 4,
+        "art": {
+          "courier": true,
+          "glider": true,
+          "bones": 65,
+          "clips": [
+            "idle",
+            "run",
+            "jump_down",
+            "jump",
+            "land"
+          ],
+          "activeClip": "idle",
+          "equipmentBone": "mixamorigSpine2",
+          "grip": {
+            "active": false,
+            "left": 0,
+            "right": 0
+          },
+          "buildings": 67,
+          "error": ""
+        }
+      },
+      "iframe": "http://localhost:4017/play/rooftop-radio/2026-10-27/index.html?level=4"
+    }
+  ],
+  "errors": [],
+  "failures": []
+}

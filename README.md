@@ -12,6 +12,8 @@ Nine original detailed landmark models share a pure collision layout with the si
 
 ## Run
 
+The approved build is published at [Rooftop Radio](https://assets.acedzn.xyz/games/rooftop-radio/2026-10-27/index.html?level=1). [Workbook integration PR 362](https://github.com/AceDZN/acedzn-tools/pull/362) is merged with five delivery links and three related lessons. The existing English Games production rollout is queued; release verification is recorded in `docs/review/WORKBOOK_RELEASE.md`.
+
 ```sh
 npm ci
 npm run dev       # http://localhost:5231 — strict port
@@ -62,7 +64,7 @@ Exact built-in imagegen prompts and conceptual targets are in `docs/visual-targe
 
 ## Static Vercel preparation
 
-Import as a Vite project. Build: `npm run build`; output: `dist`. Vite uses relative paths. No environment variables or rewrite service is required for this single-page static game. No production deployment was performed.
+For standalone hosting, import as a Vite project. Build: `npm run build`; output: `dist`. Vite uses relative paths. No environment variables or rewrite service is required for standalone play. Workbook uses the versioned R2 bundle through its existing same-origin player; no dedicated game Vercel project is needed.
 
 No production deployment was performed. See the recorded browser checks and remaining visual differences before wider release.
 
