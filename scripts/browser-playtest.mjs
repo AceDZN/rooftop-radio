@@ -39,10 +39,10 @@ try{
     await walk(0,3.3);await walk(-14,3.3);await relay('west');await shot('09-wide-route');
     await next();await broadGreen();await toBell();if((await read()).route.tuned!==1)throw Error('Transfer first stage wrong');
     await walk(0,0);await walk(0,18);await relay('greenhouse');await walk(1.2,20);await walk(0,10);await walk(0,0);await shot('10-transfer-junction');await walk(8,0);await walk(12,0);await walk(12,-1.3);await relay('east');await shot('11-transfer-success');
-    await page.click('[data-action="next"]');await shot('12-campaign-complete');
-    const final=await read();if(final.campaign.recoveries!==1||final.campaign.mistakes!==2)throw Error('Campaign totals do not match observed incidents: '+JSON.stringify(final.campaign));
+    await page.click('[data-action="next"]');await shot('12-first-five-complete');
+    const final=await read();if(final.mode!=='planning'||final.job.number!==6)throw Error('First-five regression must continue to level6');if(final.campaign.recoveries!==1||final.campaign.mistakes!==2)throw Error('Campaign totals do not match observed incidents: '+JSON.stringify(final.campaign));
     const events=await page.evaluate(()=>JSON.parse(localStorage.getItem('rooftop-radio-events')||'[]'));if(!events.some(e=>e.type==='parcel-drop'&&e.value==='narrow crossing'))throw Error('Parcel route incident missing from local events');
-    console.log(JSON.stringify({scenario:'campaign',state:await read(),errors}));
+    console.log(JSON.stringify({scenario:'first-five-baseline',state:await read(),errors}));
   }
   await fs.writeFile(`${out}/browser-errors.json`,JSON.stringify(errors,null,2));if(errors.length)throw Error(errors.join('\n'));
 }finally{await browser.close();}

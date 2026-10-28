@@ -2,6 +2,8 @@
 
 A third-person 3D radio-courier game for Hebrew-speaking learners. Jump, glide, air-burst and bounce between warm stone rooftops; English radio jobs determine which relays to tune and how to get there. The 50-level campaign grows from short deliveries to seven-stage inspections, collections, returns and fragile cargo routes. Everyone follows the same numbered campaign; there is no grade selector or grade gate.
 
+[Play the released 50-level campaign](https://assets.acedzn.xyz/games/rooftop-radio/2026-10-28/index.html). The [Workbook catalog update](https://github.com/AceDZN/acedzn-tools/pull/370) is merged.
+
 ## Current acceptance status
 
 The 50-level campaign uses a local Tripo courier with a real 65-joint skeleton, idle/run/jump/landing animation, and a separate Tripo glider. Original Blender building modules replace the temporary block façades. A locally composed instrumental score accompanies play, with separate music, effects and glide-wind controls.
@@ -55,7 +57,7 @@ Reading, help, vocabulary and focus-loss pause freeze movement and medal time. W
 - `scripts/build_architecture.py`: reproducible original Blender modules.
 - `scripts/compose_rooftop_score.py`: original instrumental score source.
 - `tests/independent-*`: hard-coded semantic truth and an input-only solvability campaign by the independent reviewer.
-- `scripts/browser-playtest.mjs`: real keyboard/pointer browser campaign and separate actual captures; no teleport or win assignment.
+- `scripts/browser-playtest.mjs`: the original five-level input regression, now checking continuation to6; `scripts/browser-campaign.mjs` checks the50-level map, save/resume and real first/final missions. No teleport or win assignment.
 
 `window.render_game_to_text()` describes observable state and coordinates. `window.advanceTime(ms)` enters deterministic manual stepping; `window.resumeRealtime()` restores normal animation. Both respect pause. The supplied develop-web-game action client is also used; see `PLAYTEST.md`.
 

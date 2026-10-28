@@ -19,3 +19,10 @@ Progress is local to the device. The map offers all 50 levels, completed badges,
 The source and authored fixture reviews do not establish human enjoyment, grade mastery or learning gains. The runtime download remains the local asset bundle; there is no backend, runtime AI or separate hosting project.
 
 The Workbook catalog/release follow-up is recorded with the final version and source commit in its release manifest. Existing older evidence documents the five-level release and remains historical.
+
+
+## Workbook release result
+
+The immutable `2026-10-28` release contains16 files /11,272,304 bytes from code checkpoint `c43ca55`; every public file matches its local SHA-256/content type/cache policy. Workbook PR370 is merged as `1f1cc663fb228f0916741f99234e3e5b029b42fb`, after its discovery CI passed.
+
+The English Games Next16 production compiler, including its TypeScript check and static generation, passes. Its built server on localhost4417 loads the actual public R2 bundle through the same-origin rewrite. Desktop and390px portrait follow home card →50-level detail/six lesson links →level50, receive ready/start, show all67 building models plus courier/glider, and expose touch controls. No JS or HTTP failures. `workbook-player-results.json` and both actual wrapper captures record this check. The existing production Vercel rollout was queued at the last check; public-catalog deployment is separate from the already playable immutable build.

@@ -1,0 +1,261 @@
+{
+  "origin": "http://localhost:4417",
+  "results": [
+    {
+      "mobile": false,
+      "poster": {
+        "loaded": true,
+        "width": 640
+      },
+      "levels": [
+        "/rooftop-radio/play?level=1",
+        "/rooftop-radio/play?level=2",
+        "/rooftop-radio/play?level=3",
+        "/rooftop-radio/play?level=4",
+        "/rooftop-radio/play?level=5",
+        "/rooftop-radio/play?level=6",
+        "/rooftop-radio/play?level=7",
+        "/rooftop-radio/play?level=8",
+        "/rooftop-radio/play?level=9",
+        "/rooftop-radio/play?level=10",
+        "/rooftop-radio/play?level=11",
+        "/rooftop-radio/play?level=12",
+        "/rooftop-radio/play?level=13",
+        "/rooftop-radio/play?level=14",
+        "/rooftop-radio/play?level=15",
+        "/rooftop-radio/play?level=16",
+        "/rooftop-radio/play?level=17",
+        "/rooftop-radio/play?level=18",
+        "/rooftop-radio/play?level=19",
+        "/rooftop-radio/play?level=20",
+        "/rooftop-radio/play?level=21",
+        "/rooftop-radio/play?level=22",
+        "/rooftop-radio/play?level=23",
+        "/rooftop-radio/play?level=24",
+        "/rooftop-radio/play?level=25",
+        "/rooftop-radio/play?level=26",
+        "/rooftop-radio/play?level=27",
+        "/rooftop-radio/play?level=28",
+        "/rooftop-radio/play?level=29",
+        "/rooftop-radio/play?level=30",
+        "/rooftop-radio/play?level=31",
+        "/rooftop-radio/play?level=32",
+        "/rooftop-radio/play?level=33",
+        "/rooftop-radio/play?level=34",
+        "/rooftop-radio/play?level=35",
+        "/rooftop-radio/play?level=36",
+        "/rooftop-radio/play?level=37",
+        "/rooftop-radio/play?level=38",
+        "/rooftop-radio/play?level=39",
+        "/rooftop-radio/play?level=40",
+        "/rooftop-radio/play?level=41",
+        "/rooftop-radio/play?level=42",
+        "/rooftop-radio/play?level=43",
+        "/rooftop-radio/play?level=44",
+        "/rooftop-radio/play?level=45",
+        "/rooftop-radio/play?level=46",
+        "/rooftop-radio/play?level=47",
+        "/rooftop-radio/play?level=48",
+        "/rooftop-radio/play?level=49",
+        "/rooftop-radio/play?level=50"
+      ],
+      "lessons": [
+        "https://english.workbook.co.il/grade-7/chapter-3",
+        "https://english.workbook.co.il/grade-8/chapter-9",
+        "https://english.workbook.co.il/grade-8/chapter-11",
+        "https://english.workbook.co.il/grade-9/chapter-11",
+        "https://english.workbook.co.il/grade-7/chapter-3/find-your-way",
+        "https://english.workbook.co.il/grade-7/chapter-3/compare-two-places",
+        "https://english.workbook.co.il/grade-7/chapter-3/read-connect-choose-route",
+        "https://english.workbook.co.il/grade-8/chapter-9/tracking-reference-and-connections",
+        "https://english.workbook.co.il/grade-8/chapter-11/relative-clauses-reference",
+        "https://english.workbook.co.il/grade-9/chapter-11/conditionals-reference"
+      ],
+      "messages": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        },
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "level-start",
+          "level": 50
+        }
+      ],
+      "state": {
+        "mode": "planning",
+        "job": 50,
+        "art": {
+          "courier": true,
+          "glider": true,
+          "bones": 65,
+          "clips": [
+            "idle",
+            "run",
+            "jump_down",
+            "jump",
+            "land"
+          ],
+          "activeClip": "idle",
+          "equipmentBone": "mixamorigSpine2",
+          "grip": {
+            "active": false,
+            "left": 0,
+            "right": 0
+          },
+          "buildings": 67,
+          "districtId": "observatory",
+          "district": {
+            "district": "observatory",
+            "cachedDistricts": 5,
+            "sharedFeatures": 6,
+            "retintedMaterials": 16,
+            "muralVariants": 4
+          },
+          "windCount": 6,
+          "hiddenCrossings": [
+            "antenna-laundry",
+            "clock-mural",
+            "laundry-west",
+            "bell-clock"
+          ],
+          "error": ""
+        }
+      },
+      "iframe": "http://localhost:4417/play/rooftop-radio/2026-10-28/index.html?level=50"
+    },
+    {
+      "mobile": true,
+      "poster": {
+        "loaded": true,
+        "width": 390
+      },
+      "levels": [
+        "/rooftop-radio/play?level=1",
+        "/rooftop-radio/play?level=2",
+        "/rooftop-radio/play?level=3",
+        "/rooftop-radio/play?level=4",
+        "/rooftop-radio/play?level=5",
+        "/rooftop-radio/play?level=6",
+        "/rooftop-radio/play?level=7",
+        "/rooftop-radio/play?level=8",
+        "/rooftop-radio/play?level=9",
+        "/rooftop-radio/play?level=10",
+        "/rooftop-radio/play?level=11",
+        "/rooftop-radio/play?level=12",
+        "/rooftop-radio/play?level=13",
+        "/rooftop-radio/play?level=14",
+        "/rooftop-radio/play?level=15",
+        "/rooftop-radio/play?level=16",
+        "/rooftop-radio/play?level=17",
+        "/rooftop-radio/play?level=18",
+        "/rooftop-radio/play?level=19",
+        "/rooftop-radio/play?level=20",
+        "/rooftop-radio/play?level=21",
+        "/rooftop-radio/play?level=22",
+        "/rooftop-radio/play?level=23",
+        "/rooftop-radio/play?level=24",
+        "/rooftop-radio/play?level=25",
+        "/rooftop-radio/play?level=26",
+        "/rooftop-radio/play?level=27",
+        "/rooftop-radio/play?level=28",
+        "/rooftop-radio/play?level=29",
+        "/rooftop-radio/play?level=30",
+        "/rooftop-radio/play?level=31",
+        "/rooftop-radio/play?level=32",
+        "/rooftop-radio/play?level=33",
+        "/rooftop-radio/play?level=34",
+        "/rooftop-radio/play?level=35",
+        "/rooftop-radio/play?level=36",
+        "/rooftop-radio/play?level=37",
+        "/rooftop-radio/play?level=38",
+        "/rooftop-radio/play?level=39",
+        "/rooftop-radio/play?level=40",
+        "/rooftop-radio/play?level=41",
+        "/rooftop-radio/play?level=42",
+        "/rooftop-radio/play?level=43",
+        "/rooftop-radio/play?level=44",
+        "/rooftop-radio/play?level=45",
+        "/rooftop-radio/play?level=46",
+        "/rooftop-radio/play?level=47",
+        "/rooftop-radio/play?level=48",
+        "/rooftop-radio/play?level=49",
+        "/rooftop-radio/play?level=50"
+      ],
+      "lessons": [
+        "https://english.workbook.co.il/grade-7/chapter-3",
+        "https://english.workbook.co.il/grade-8/chapter-9",
+        "https://english.workbook.co.il/grade-8/chapter-11",
+        "https://english.workbook.co.il/grade-9/chapter-11",
+        "https://english.workbook.co.il/grade-7/chapter-3/find-your-way",
+        "https://english.workbook.co.il/grade-7/chapter-3/compare-two-places",
+        "https://english.workbook.co.il/grade-7/chapter-3/read-connect-choose-route",
+        "https://english.workbook.co.il/grade-8/chapter-9/tracking-reference-and-connections",
+        "https://english.workbook.co.il/grade-8/chapter-11/relative-clauses-reference",
+        "https://english.workbook.co.il/grade-9/chapter-11/conditionals-reference"
+      ],
+      "messages": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        },
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "level-start",
+          "level": 50
+        }
+      ],
+      "state": {
+        "mode": "planning",
+        "job": 50,
+        "art": {
+          "courier": true,
+          "glider": true,
+          "bones": 65,
+          "clips": [
+            "idle",
+            "run",
+            "jump_down",
+            "jump",
+            "land"
+          ],
+          "activeClip": "idle",
+          "equipmentBone": "mixamorigSpine2",
+          "grip": {
+            "active": false,
+            "left": 0,
+            "right": 0
+          },
+          "buildings": 67,
+          "districtId": "observatory",
+          "district": {
+            "district": "observatory",
+            "cachedDistricts": 5,
+            "sharedFeatures": 6,
+            "retintedMaterials": 16,
+            "muralVariants": 4
+          },
+          "windCount": 6,
+          "hiddenCrossings": [
+            "antenna-laundry",
+            "clock-mural",
+            "laundry-west",
+            "bell-clock"
+          ],
+          "error": ""
+        }
+      },
+      "iframe": "http://localhost:4417/play/rooftop-radio/2026-10-28/index.html?level=50"
+    }
+  ],
+  "errors": [],
+  "failures": []
+}
