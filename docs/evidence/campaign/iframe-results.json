@@ -1,0 +1,1332 @@
+{
+  "origin": "http://localhost:4231",
+  "root": "/",
+  "checks": [
+    {
+      "level": 1,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 1
+      },
+      "completed": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-complete",
+        "level": 1,
+        "durationMs": 7300
+      },
+      "next": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 2
+      },
+      "durationExcludesReading": true
+    },
+    {
+      "level": 2,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 2
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 2
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 3,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 3
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 3
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 4,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 4
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 4
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 5,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 5
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 5
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 6,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 6
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 6
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 7,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 7
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 7
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 8,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 8
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 8
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 9,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 9
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 9
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 10,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 10
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 10
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 11,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 11
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 11
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 12,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 12
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 12
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 13,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 13
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 13
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 14,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 14
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 14
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 15,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 15
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 15
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 16,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 16
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 16
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 17,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 17
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 17
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 18,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 18
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 18
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 19,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 19
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 19
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 20,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 20
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 20
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 21,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 21
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 21
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 22,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 22
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 22
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 23,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 23
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 23
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 24,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 24
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 24
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 25,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 25
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 25
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 26,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 26
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 26
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 27,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 27
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 27
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 28,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 28
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 28
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 29,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 29
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 29
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 30,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 30
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 30
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 31,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 31
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 31
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 32,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 32
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 32
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 33,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 33
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 33
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 34,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 34
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 34
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 35,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 35
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 35
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 36,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 36
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 36
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 37,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 37
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 37
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 38,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 38
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 38
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 39,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 39
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 39
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 40,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 40
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 40
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 41,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 41
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 41
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 42,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 42
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 42
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 43,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 43
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 43
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 44,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 44
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 44
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 45,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 45
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 45
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 46,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 46
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 46
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 47,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 47
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 47
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 48,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 48
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 48
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 49,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 49
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 49
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "level": 50,
+      "planning": [
+        {
+          "source": "workbook-game",
+          "version": 1,
+          "slug": "rooftop-radio",
+          "type": "ready"
+        }
+      ],
+      "started": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 50
+      },
+      "retry": {
+        "source": "workbook-game",
+        "version": 1,
+        "slug": "rooftop-radio",
+        "type": "level-start",
+        "level": 50
+      },
+      "noFakeCompletion": true
+    },
+    {
+      "requiredAssetFailure": {
+        "messages": [
+          {
+            "source": "workbook-game",
+            "version": 1,
+            "slug": "rooftop-radio",
+            "type": "error",
+            "message": "Uncaught Error: Required game assets failed: TypeError: Failed to fetch"
+          }
+        ],
+        "visibleError": true,
+        "expectedErrors": [
+          "Error: Required game assets failed: TypeError: Failed to fetch"
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

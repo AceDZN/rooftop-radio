@@ -1,0 +1,62 @@
+
+> rooftop-radio@0.1.0 test
+> vitest run tests/campaign-physical.test.ts --reporter=verbose
+
+
+ RUN  v5.0.5 /Users/acedzn/dev/AceDZN-exp/rooftop-radio
+
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level1 נחיתה ראשונה in old-town 11605ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level2 מעבר לחממה in old-town 16199ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level3 פנייה לתחנה in old-town 5948ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level4 מקום למטען in old-town 2485ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level5 תדר חדש in old-town 12822ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level6 שלוש פניות in old-town 32187ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level7 איסוף בדרך הארוכה in old-town 34571ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level8 בדיקה בשלושה קצוות in old-town 7436ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level9 חבילה וסיבוב בדיקה in old-town 4393ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level10 משלוח שחוזר הביתה in old-town 12632ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level11 שרשרת התעלה in canals 12662ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level12 האיסוף שעל הרציף in canals 10754ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level13 סקר ארבעת הגגות in canals 11367ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level14 הלוך וחזור עם זכוכית in canals 7361ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level15 החזרה דרך העץ in canals 10940ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level16 חמש נקודות על המים in canals 8287ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level17 חבילה מהנמל in canals 11098ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level18 סקר נגד הכיוון in canals 5733ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level19 מטען לאורך התעלה in canals 3778ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level20 סיבוב הבית של הנמל in canals 6289ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level21 מסלול פתיחת השוק in market 3046ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level22 החבילה מאחורי הציור in market 4418ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level23 סקר שתי הפניות in market 3801ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level24 זכוכית סביב השעון in market 4201ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level25 לשוב בלי לקצר in market 4740ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level26 שש תחנות לשידור in market 3792ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level27 איסוף דרך שישה גגות in market 3676ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level28 סקר ההיקף המערבי in market 2782ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level29 זכוכית בשישה שלבים in market 1208ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level30 המסלול המלא של השוק in market 432ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level31 פתיחת רשת הגנים in gardens 1008ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level32 איסוף בין בתי הזכוכית in gardens 3024ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level33 סקר בלי לדלג in gardens 6041ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level34 מסירת הזכוכית של הגן in gardens 3306ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level35 לחזור לציור הפרחים in gardens 3378ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level36 שבעה גגות מחוברים in gardens 5950ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level37 איסוף לאורך החומה in gardens 7299ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level38 שתי הקפות לבדיקה in gardens 9830ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level39 המשלוח העדין של הגנים in gardens 24085ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level40 החזרה הגדולה לגן in gardens 23560ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level41 פתיחת תדרי המצפה in observatory 6952ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level42 איסוף מהחלל העמוק in observatory 56265ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level43 סקר המצפה הכפול in observatory 55795ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level44 זכוכית בין כוכבים in observatory 41006ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level45 החזרה למסך הכוכבים in observatory 9044ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level46 המסלול בין שני התדרים in observatory 6017ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level47 איסוף כפול דרך המפרשים in observatory 3151ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level48 בדיקת הרצף הארוך in observatory 3850ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level49 הזכוכית האחרונה in observatory 4515ms
+ ✓ tests/campaign-physical.test.ts > all50 authored deliveries are physically solvable through movement inputs > completes level50 כל הרשת חוזרת הביתה in observatory 3153ms
+
+ Test Files  1 passed (1)
+      Tests  50 passed (50)
+   Start at  13:11:07
+   Duration  556.27s (tests 99%, transform 1%, import 1%)

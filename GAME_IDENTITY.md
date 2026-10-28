@@ -24,3 +24,8 @@ Target inspection: both images inspected by lead before gameplay implementation.
 
 
 27 October redesign: lead with short parkour deliveries, as selected by the human. Remove the opposite/café puzzle and physical prop swapping. Keep Radio Station west and café east; compare exactly two side-by-side crossings of one gap. Name the current stage briefly, and put interactions at the actual cabinet/counter or beside the referenced model. Two central jump/glide gaps, visible wind lifts, a once-per-flight air burst, optional signal notes, separate flow scoring and quick recoveries make movement the repeated action. Nine original detailed landmarks replace the primitive models, with shared visible-solid collision data. The wider glass-bottle crate makes the parcel's need for room visible. Shrink the deployed glider to preserve landing visibility. Human enjoyment remains a playtest question, not an automated-test conclusion.
+
+
+## Current campaign —28 October 2026
+
+The accepted five-job slice is expanded to 50 numbered levels across five districts. Progression, not a selected school grade, determines increasing route and English complexity. Early one-step delivery grows into seven-stage inspections, collection/return jobs, fragile cargo transport, exact ordered landings and routes with explicit landing exclusions. Each active leg stays concise; the full itinerary can be read while paused. Every level can be opened/replayed through the campaign map and Workbook deep links; local progress marks only earned completions. Existing owned character/building assets are reused, with district dressing, progressively removed walkways, stepping surfaces and visible updrafts sharing their collision data.

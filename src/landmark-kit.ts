@@ -210,9 +210,9 @@ export function createLandmarks():LandmarkKit {
     c.fillStyle='#253d48';c.beginPath();c.moveTo(200,302);c.bezierCurveTo(350,135,458,109,585,143);c.bezierCurveTo(486,191,436,218,429,247);c.bezierCurveTo(510,246,558,285,603,342);c.bezierCurveTo(471,309,350,302,200,302);c.fill();
     c.strokeStyle='#bd6143';c.lineWidth=6;c.strokeRect(18,18,988,540);
   });
-  mesh(mural,new T.PlaneGeometry(4.39,2.12),paintedMaterial('Landmarks / original swift mural',muralMap),-3.45,1.3,-4.763);
-  mesh(mural,new T.CircleGeometry(.32,32),m.terra,-2.15,1.94,-4.746);
-  for(let i=0;i<3;i++){const wave=mesh(mural,new T.TorusGeometry(.34+i*.19,.024,5,28,Math.PI*.8),i%2?m.terra:m.teal,-4.17,1.3,-4.737);wave.rotation.z=-Math.PI*.4;}
+  mesh(mural,new T.PlaneGeometry(4.39,2.12),paintedMaterial('Landmarks / original swift mural',muralMap),-3.45,1.3,-4.738);
+  mesh(mural,new T.CircleGeometry(.32,32),m.terra,-2.15,1.94,-4.721);
+  for(let i=0;i<3;i++){const wave=mesh(mural,new T.TorusGeometry(.34+i*.19,.024,5,28,Math.PI*.8),i%2?m.terra:m.teal,-4.17,1.3,-4.712);wave.rotation.z=-Math.PI*.4;}
   sign(mural,m,'THE ROOFTOP MURAL',-3.45,2.65,-4.756,3.3,.32);
 
   // Terracotta lip, dark soil, authored leaf profiles; no faceted green balls.

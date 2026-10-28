@@ -13,14 +13,14 @@ const state=frame=>frame.evaluate(()=>JSON.parse(window.render_game_to_text()));
 const messages=page=>page.evaluate(()=>window.messages);
 const waitMessages=(page,n)=>page.waitForFunction(n=>window.messages.length>=n,n,{timeout:5000});
 try{
-  for(let level=1;level<=5;level++){
+  for(let level=1;level<=50;level++){
     const {page,frame}=await makePage(level);const before=await state(frame),ready=await messages(page);
     check(before.job.number===level&&before.mode==='planning',`Wrong deep link ${level}: ${JSON.stringify(before)}`);
     check(ready.length===1&&ready[0].type==='ready'&&ready[0].slug==='rooftop-radio'&&ready[0].version===1,`Planning emitted fake play: ${JSON.stringify(ready)}`);
-    check(before.art.courier&&before.art.glider&&before.art.buildings===67&&!before.art.error,'Required models absent');
+    check(before.art.courier&&before.art.glider&&before.art.buildings===67&&!before.art.error,'Required models absent');const district=['old-town','canals','market','gardens','observatory'][Math.floor((level-1)/10)];check(before.art.districtId===district,'Wrong district art');check(before.art.windCount===2+Math.floor((level-1)/10),'Wrong visible wind count');
     await frame.click('#start-btn',{force:true});await frame.evaluate(()=>window.advanceTime(1000,false));
     await waitMessages(page,2);const started=await messages(page);check(started.length===2&&started[1].type==='level-start'&&started[1].level===level,'Actual launch event mismatch');
-    await frame.click('#pause',{force:true});const paused=await state(frame);await frame.evaluate(()=>window.advanceTime(10000,false));
+    if(level%10===1){await frame.evaluate(()=>window.drawGame());await page.screenshot({path:`${out}/district-${district}.png`});}await frame.click('#pause',{force:true});const paused=await state(frame);await frame.evaluate(()=>window.advanceTime(10000,false));
     check((await state(frame)).time===paused.time,'Reading spent movement time');check((await messages(page)).length===2,'Reading emitted completion');
     if(level===1){
       await frame.click('[data-action=resume]',{force:true});const held=new Set();
@@ -52,5 +52,5 @@ try{
   const failedFrame=broken.frames().find(f=>f.parentFrame());check(await failedFrame.locator('#load-error').isVisible(),'Failed asset has no visible error');
   checks.push({requiredAssetFailure:{messages:failedMessages,visibleError:true,expectedErrors}});await broken.close();
   check(errors.length===0,errors.join('\n'));
-  const result={origin,root,checks,errors};await fs.writeFile(`${out}/results.json`,JSON.stringify(result,null,2));console.log(JSON.stringify({passed:true,levels:5,scenarios:checks.length,errors}));
+  const result={origin,root,checks,errors};await fs.writeFile(`${out}/results.json`,JSON.stringify(result,null,2));console.log(JSON.stringify({passed:true,levels:50,scenarios:checks.length,errors}));
 }finally{await browser.close();}

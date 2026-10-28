@@ -31,7 +31,7 @@ export function postToHost(message:HostMessage):void{
 /** Starts mean real launches; pauses, planning and wrong radios do not complete a level. */
 export class WorkbookSession{
   private ready=false;private active:number|null=null;private completed=false;private pending:HostMessage[]=[];
-  constructor(private send:(message:HostMessage)=>void,private levelCount=5){}
+  constructor(private send:(message:HostMessage)=>void,private levelCount=50){}
   private emit(message:HostMessage){if(this.ready)this.send(message);else this.pending.push(message);}
   private valid(level:number){return Number.isInteger(level)&&level>=1&&level<=this.levelCount;}
   markReady(){if(this.ready)return;this.ready=true;this.send({type:'ready'});for(const message of this.pending)this.send(message);this.pending=[];}

@@ -14,7 +14,7 @@ const run=(index:number,events:RouteEvent[])=>events.reduce((s,e)=>observe(contr
 describe('independent English truth fixtures',()=>{
   it('authors one current stage for each ordered radio decision',()=>{
     const jobs=contracts();
-    expect(jobs.map(j=>j.order)).toEqual([['greenhouse'],['greenhouse','bell'],['west'],['west'],['bell','greenhouse','east']]);
+    expect(jobs.slice(0,5).map(j=>j.order)).toEqual([['greenhouse'],['greenhouse','bell'],['west'],['west'],['bell','greenhouse','east']]);
     expect(jobs[0].english).toBe('Deliver the signal to the radio next to the greenhouse.');
     expect(activeBrief(jobs[1],0)).toBe('First, tune the greenhouse radio.');
     expect(activeBrief(jobs[1],1)).toBe('Go past the greenhouse. Tune the bell-tower radio.');

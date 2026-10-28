@@ -1,10 +1,10 @@
 # Rooftop Radio · רדיו על הגגות
 
-A third-person 3D radio-courier game for Hebrew-speaking grade-7 learners. Jump, glide, air-burst and bounce between warm stone rooftops; English radio jobs determine which relays to tune and how to get there. Five original contracts cover spatial relations, `past`, traveller-relative right turns, route width and parcel needs, then a changed-context transfer with a new relay order and reversed approach.
+A third-person 3D radio-courier game for Hebrew-speaking learners. Jump, glide, air-burst and bounce between warm stone rooftops; English radio jobs determine which relays to tune and how to get there. The 50-level campaign grows from short deliveries to seven-stage inspections, collections, returns and fragile cargo routes. Everyone follows the same numbered campaign; there is no grade selector or grade gate.
 
 ## Current acceptance status
 
-The five-contract slice uses a local Tripo courier with a real 65-joint skeleton, idle/run/jump/landing animation, and a separate Tripo glider. Original Blender building modules replace the temporary block façades. A locally composed instrumental score accompanies play, with separate music, effects and glide-wind controls.
+The 50-level campaign uses a local Tripo courier with a real 65-joint skeleton, idle/run/jump/landing animation, and a separate Tripo glider. Original Blender building modules replace the temporary block façades. A locally composed instrumental score accompanies play, with separate music, effects and glide-wind controls.
 
 The 27 October redesign replaces ambiguous directions with short authored stages and permanent landmarks. The parcel job presents two adjacent crossings over the same gap: a narrow wooden beam and a wider striped bridge. The station cabinet and café counter are the delivery points. A second jump/glide gap, wind lifts, one air burst per flight, collectible signal notes, landing feedback and a separate flow score give the delivery loop more movement. Misses recover quickly.
 
@@ -12,7 +12,9 @@ Nine original detailed landmark models share a pure collision layout with the si
 
 ## Run
 
-The approved build is published at [Rooftop Radio](https://assets.acedzn.xyz/games/rooftop-radio/2026-10-27/index.html?level=1). [Workbook integration PR 362](https://github.com/AceDZN/acedzn-tools/pull/362) is merged with five delivery links and three related lessons. The existing English Games production rollout is queued; release verification is recorded in `docs/review/WORKBOOK_RELEASE.md`.
+Use the numbered level map to select or replay any of the 50 levels. Completed levels, best results and the next unfinished level are saved locally. A direct link such as `?level=50` opens that level without inventing earlier completions.
+
+Five districts — Old Town, Canals, Market, Gardens and Observatory — add new finishes, physical gaps, updrafts and shared structural props. Later jobs combine left/right approaches, named landings, landing restrictions, pickups, cargo recovery and repeated returns. Planning presents one instruction at a time; the full itinerary is optional and reading pauses the movement clock.
 
 ```sh
 npm ci
@@ -33,6 +35,7 @@ Tested with Node 24.14.0 and the pinned Vite toolchain. No backend, credentials,
 | Air burst | Shift while airborne; one charge per landing | Air-burst button |
 | Camera | Drag right to look right; vertical drag changes elevation; J/L; C resets | Drag the scene |
 | Deliver / tune nearby | E | Contextual destination button |
+| Level map | Grid button in the toolbar | Same; all 50 level buttons remain available |
 | Read / pause | P or Escape, or reading button | Pause / reading button |
 | Vocabulary | Hebrew toolbar button | Same |
 | Fullscreen / mute | F / M or toolbar | Toolbar |

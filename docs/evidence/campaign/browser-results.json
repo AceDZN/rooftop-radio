@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "firstDelivery": true,
+      "resume": 2
+    },
+    {
+      "level": 11,
+      "district": "canals",
+      "windCount": 3,
+      "hiddenCrossings": [
+        "antenna-laundry"
+      ]
+    },
+    {
+      "level": 21,
+      "district": "market",
+      "windCount": 4,
+      "hiddenCrossings": [
+        "antenna-laundry",
+        "clock-mural"
+      ]
+    },
+    {
+      "level": 31,
+      "district": "gardens",
+      "windCount": 5,
+      "hiddenCrossings": [
+        "antenna-laundry",
+        "clock-mural",
+        "laundry-west"
+      ]
+    },
+    {
+      "level": 41,
+      "district": "observatory",
+      "windCount": 6,
+      "hiddenCrossings": [
+        "antenna-laundry",
+        "clock-mural",
+        "laundry-west",
+        "bell-clock"
+      ]
+    },
+    {
+      "lastDelivery": true,
+      "onlyEarnedCompletions": [
+        1,
+        50
+      ],
+      "resume": 2
+    },
+    {
+      "phoneLevel50": true,
+      "all50Selectable": true
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}

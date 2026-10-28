@@ -8,6 +8,10 @@ function fixture(levelCount=5){
 }
 
 describe('Workbook deep links and parent-origin boundary',()=>{
+  it.each(Array.from({length:50},(_,i)=>i+1))('opens campaign level %i without a grade gate',level=>{
+    expect(parseLevelParam(`?level=${level}&grade=7`,50)).toBe(level-1);
+    expect(parseLevelParam(`?level=${level}&grade=9`,50)).toBe(level-1);
+  });
   it.each([1,2,3,4,5])('opens public level %i as its zero-based job index',level=>{
     expect(parseLevelParam(`?level=${level}`,5)).toBe(level-1);
   });
@@ -34,6 +38,10 @@ describe('Workbook deep links and parent-origin boundary',()=>{
 });
 
 describe('Workbook actual-play lifecycle',()=>{
+  it('supports the complete50-level default campaign and rejects51',()=>{
+    const messages:HostMessage[]=[];const session=new WorkbookSession(m=>messages.push(m));session.markReady();session.startLevel(50);session.completeLevel(50,1200);session.startLevel(51);
+    expect(messages).toEqual([{type:'ready'},{type:'level-start',level:50},{type:'level-complete',level:50,durationMs:1200}]);
+  });
   it('sends ready once without pretending the planning screen started a level',()=>{
     const {session,messages}=fixture();
     expect(messages).toEqual([]);session.markReady();session.markReady();

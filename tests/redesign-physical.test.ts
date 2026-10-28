@@ -36,7 +36,10 @@ describe('redesigned physical choices and movement',()=>{
   it('starts facing the two west crossings, rejects the beam and a partial stripe, then accepts a full stripe crossing',()=>{
     for(const variant of [0,1]){
       const targets=new Simulation(variant).relays;
-      expect(targets.map(r=>r.site).sort()).toEqual(['bell','clock','east','greenhouse','water','west']);
+      expect(targets.map(r=>r.site).sort()).toEqual(['antenna','bell','clock','east','greenhouse','laundry','mural','water','west']);
+      expect(targets.find(r=>r.site==='laundry')?.pos).toEqual({x:-20,y:9,z:16});
+      expect(targets.find(r=>r.site==='antenna')?.pos).toEqual({x:-16.2,y:10,z:34});
+      expect(targets.find(r=>r.site==='mural')?.pos).toEqual({x:-16,y:10,z:-16});
       expect(targets.find(r=>r.site==='greenhouse')?.pos).toEqual({x:-.5,y:9,z:22.2});
       expect(targets.find(r=>r.site==='bell')?.pos).toEqual({x:-2.4,y:9,z:-3.3});
       expect(targets.find(r=>r.site==='west')).toMatchObject({name:'Radio Station',pos:{x:-21.85,y:9,z:-4.4}});

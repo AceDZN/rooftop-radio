@@ -38,3 +38,10 @@ These checks establish mechanics, clarity of the captured comparison and simulat
 ## Workbook host integration
 
 The full game now has110 passing tests, including60 independently authored host cases. Build/typecheck pass. A real same-origin iframe run opens all five `?level=N` planning screens, observes one ready and no fake start, launches each by UI, exercises reading/retries, and physically completes the first delivery before launching delivery2. Completion duration excludes a ten-second reading pause and duplicates are suppressed. Deliberately blocking the courier GLB produces a visible error/host error with no ready or level-start. Results and actual iframe images are in `docs/evidence/workbook/`; all normal-scenario browser errors are empty. The blocked-asset case records its expected error separately.
+
+
+## 28 October 2026 —50-level campaign
+
+All 50 authored routes passed the input-only physical driver with zero recoveries and zero rejected hand-ins. Separately,335 unit/regression cases pass (the old six-radio fixture was updated to independently assert all nine actual interaction positions). The browser completed levels 1 and 50 through real keyboard events, resumed level 2 after reload, verified all five district transitions and checked all 50 menu buttons on desktop and390px phone. A direct level 50 completion records only the earned level, without a whole-campaign claim.
+
+The real touch route, glide, burst/recharge, camera, reading/pause, settings/sliders/persistence and first delivery all pass with no browser errors. Longer phone instructions were inspected and the flow score moved below them. Planning now shows one active leg, with the full itinerary in an optional disclosure. Art review caught a mural painting inside its beveled wall; the paint and ceramic relief move forward 25mm, with no collider change. Final fifty-link iframe and rebuilt visual checks are recorded in docs/review/CAMPAIGN_ACCEPTANCE.md.
